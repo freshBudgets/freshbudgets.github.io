@@ -10,7 +10,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <div>Fresh Budgets Homepage</div>
+      <div>Fresh Budgets Homepage?</div>
     );
   }
 }
