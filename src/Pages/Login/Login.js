@@ -1,78 +1,59 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { _noop } from 'lodash';
+import { loginUser } from '../../Actions';
 
-import { apiPost } from '../../Functions/api';
-import { createUser } from '../../Functions/UserManagement';
+const propTypes = {
+  loginUser: PropTypes.func,
+};
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      apiError: ''
-    }
-  }
+const defaultProps = {
+  loginUser: _noop,
+};
 
-  updateEmail = (e) => {
-    this.setState({
-      email: e.target.value
-    })
-  }
-  updatePassword = (e) => {
-    this.setState({
-      password: e.target.value
-    })
-  }
-  login = () => {
-    const credentials = {
-      email: this.state.email,
-      password: this.state.password
+class Login extends PureComponent {
+  handleClick(event) {
+    const creds = {
+      email: this.refs.username.value.trim(),
+      password: this.refs.password.value.trim()
     }
 
-    apiPost('auth/login', credentials).then((data) => {
-      if (data.success) {
-        createUser(data.token)
-        window.location.reload()
-        this.context.router.history.push('/dashboard');
-      } else {
-        this.setState({ apiError: data.message })
-      }
-    });
+    this.props.loginUser(creds);
   }
 
   render() {
-    const { apiError } = this.state;
+    const { errorMessage } = this.props
+
     return (
       <div>
-        {/* <Nav /> */}
-        <div className="flex flex-center login-wrapper">
-          <div className="center">
-            <h1 className="text-center">Login</h1>
-            <div className="" style={{width: '400px'}}>
-              <h3>Email</h3>
-              <input type="email" name="email" className="margin-y" onChange={this.updateEmail} />
-              <h3>Password</h3>
-              <input type="password" name="password" className="margin-y" onChange={this.updatePassword} />
-              <div>
-                <button onClick={this.login}>Login</button><br/>
-                <Link to='/register'><div className="margin-y link">Register</div></Link>
-                <Link to='/forgot'><div className="margin-y link2">Forgot your password?</div></Link>
-              </div>
-              <div style={{marginTop: '12px'}}>{ apiError }</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        <input type='text' ref='username' className="form-control" placeholder='Username'/>
+        <input type='password' ref='password' className="form-control" placeholder='Password'/>
+        <button onClick={(event) => this.handleClick(event)} className="btn btn-primary">
+          Login
+        </button>
 
-  static contextTypes = {
-    router: PropTypes.object
+        {errorMessage &&
+          <p>{errorMessage}</p>
+        }
+      </div>
+    )
   }
 }
 
+const mapStateToProps = (state) => {
+  const { isAuthenticated, errorMessage } = state.user;
 
+  return {
+    isAuthenticated,
+    errorMessage
+  }
+}
 
-export default Login;
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  loginUser: (creds) => dispatch(loginUser(creds))
+});
+
+Login.propTypes = propTypes;
+Login.defaultProps = defaultProps;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
