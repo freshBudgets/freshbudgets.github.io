@@ -1,5 +1,7 @@
 language: node_js
 cache: yarn
+  directories:
+    - node_modules
 node_js:
 - 6
 install:
@@ -12,5 +14,6 @@ deploy:
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
+  local_dir: build
   on:
     branch: gh-pages

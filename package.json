@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://freshbudgets.github.io/frontend/",
   "dependencies": {
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
