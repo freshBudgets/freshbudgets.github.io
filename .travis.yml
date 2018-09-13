@@ -13,5 +13,6 @@ deploy:
   github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
   local_dir: build
+  target-branch: master
   on:
-    branch: master
+    branch: prod
