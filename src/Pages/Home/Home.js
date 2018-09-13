@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import LoggedOutNav from '../../Components/LoggedOutNav';
+// import LoggedOutNav from '../../Components/LoggedOutNav';
 
-import './_pillar.home.source.css';
+import './_pillar.home.source.scss';
 
 class Home extends Component {
   constructor(props) {
