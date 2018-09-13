@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './_pillar.side_bar_view.source.scss';
 
 class SideBarView extends Component {
@@ -12,7 +11,7 @@ class SideBarView extends Component {
   }
   render() {
     const { children } = this.props;
-    
+
     return (
       <div className="p-login">
         <div className="p-login__art"></div>
