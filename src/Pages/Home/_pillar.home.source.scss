@@ -12,20 +12,25 @@
 .p-home__content {
   text-align: left;
   color: $dark_blue;
-  max-width: 500px;
+  flex-basis: 1100px;
   padding: 0 12px;
+  display: flex;
+  align-items: center;
 }
+.p-home__content_image {
+  width: 30%;
+  padding-left: $spacing_100;
 
+}
+.p-home__content_copy {
+  width: 70%;
+}
 .p-home__content h1 {
   font-size: 80px;
   margin: 0;
-  margin-bottom: 12px;
-}
-
-.p-home__content h2 {
-  margin: 0;
-  margin-bottom: 24px;
-  line-height: 1.6em;
+  margin-bottom: $spacing_200;
+  line-height: 82px;
+  letter-spacing: -2.5px;
 }
 
 .p-home__content button {
@@ -43,4 +48,24 @@
 }
 .p-home__content button:hover {
   background: $black;
+}
+
+@media (max-width: 815px) {
+  .p-home__content_image {
+    display: none;
+  }
+  .p-home__content_copy {
+    width: 100%;
+  }
+}
+@media (max-width: 760px) {
+  .p-home__content h1 {
+    font-size: 50px;
+    line-height: 62px;
+  }
+}
+@media (max-width: 380px) {
+  .p-home__content {
+    text-align: center;
+  }
 }

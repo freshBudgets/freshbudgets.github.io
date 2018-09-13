@@ -1,0 +1,30 @@
+@import '../../Public/tools.scss';
+
+.p-nav--logged_out {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 70px;
+  border-bottom: 1px solid $dark_blue;
+  display: flex;
+  align-items: center;
+  padding: 0 $spacing_100;
+  color: $dark_blue;
+  font-weight: bold;
+  font-size: 18px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.p-nav__item {
+  height: 100%;
+  border-left: 1px solid $dark_blue;
+  padding: $spacing_150;
+  text-decoration: none !important;
+  color: inherit !important;
+
+  &:last-child {
+    padding-right: 0;
+  }
+}

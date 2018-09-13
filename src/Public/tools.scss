@@ -1,8 +1,9 @@
 // Colors
-$black: #11111F;
+$black: #373A3C;
 $white: #ffffff;
 $light_blue: #95E5F5;
 $dark_blue: #0C4AAB;
+$pink: #FFD6E5;
 
 // Spacing
 $spacing_25: 4px;
@@ -38,8 +39,12 @@ button {
   line-height: 24px;
   padding: $spacing_75 $spacing_200;
   cursor: pointer;
+  transition: .1s;
 
   &:hover {
     background: $black;
+    box-shadow: 0 0px 0 rgba(17,17,31,.25);
+    transition: .1s;
+
   }
 }

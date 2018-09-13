@@ -16,7 +16,7 @@ const defaultProps = {
   loginUser: _noop,
 };
 
-class Login extends PureComponent {
+class Register extends PureComponent {
   handleClick(event) {
     const creds = {
       email: this.refs.username.value.trim(),
@@ -32,20 +32,20 @@ class Login extends PureComponent {
     return (
       <SideBarView>
         <h1>FreshBudgets</h1>
-        <input type='text' ref='username' className="form-control" placeholder='Username'/>
+        <input type='text' ref='username' className="form-control" placeholder='First Name'/>
+        <input type='text' ref='username' className="form-control" placeholder='Last Name'/>
+        <input type='text' ref='username' className="form-control" placeholder='Email'/>
+        <input type='text' ref='username' className="form-control" placeholder='Phone Number'/>
         <input type='password' ref='password' className="form-control" placeholder='Password'/>
         <button onClick={(event) => this.handleClick(event)}>
-          Login
+          Register
         </button>
 
         {errorMessage &&
           <p>{errorMessage}</p>
         }
         <div className="p-login__extra_links">
-          <Link to="/register" className="p-login__links">Register</Link>{' '}/{' '}
-          <Link to="/reset" className="p-login__links">
-            Forgot your password?
-          </Link>
+          <Link to="/login" className="p-login__links">Already have an account? Login</Link>
         </div>
       </SideBarView>
     )
@@ -65,6 +65,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   loginUser: (creds) => dispatch(loginUser(creds))
 });
 
-Login.propTypes = propTypes;
-Login.defaultProps = defaultProps;
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+Register.propTypes = propTypes;
+Register.defaultProps = defaultProps;
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
