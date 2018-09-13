@@ -20,7 +20,6 @@ class Home extends Component {
           <h1>Fresh Budgets</h1>
           <h2>Keep your financials in check and start spending right.</h2>
           <Link to="/login"><button>login</button></Link>
-          <p>* now with scss</p>
         </div>
       </div>
     );

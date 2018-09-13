@@ -1,0 +1,45 @@
+// Colors
+$black: #11111F;
+$white: #ffffff;
+$light_blue: #95E5F5;
+$dark_blue: #0C4AAB;
+
+// Spacing
+$spacing_25: 4px;
+$spacing_50: 8px;
+$spacing_75: 12px;
+$spacing_100: 16px;
+$spacing_125: 20px;
+$spacing_150: 24px;
+$spacing_175: 28px;
+$spacing_200: 32px;
+
+$border_radius: 4px;
+
+input {
+  width: 100%;
+  padding: $spacing_100 $spacing_150;
+  margin-bottom: $spacing_100;
+  box-sizing: border-box;
+  border-radius: $border_radius;
+  border: 1px solid $black;
+  font-size: 14px;
+}
+
+button {
+  background-color: $dark_blue;
+  border: none;
+  color: #fff;
+  box-shadow: 0 5px 0 rgba(17,17,31,.25);
+  border-radius: 99999rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  padding: $spacing_75 $spacing_200;
+  cursor: pointer;
+
+  &:hover {
+    background: $black;
+  }
+}

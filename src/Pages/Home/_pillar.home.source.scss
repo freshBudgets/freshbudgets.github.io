@@ -1,5 +1,7 @@
+@import '../../Public/tools.scss';
+
 .p-home {
-  background: #98E5F4;
+  background: $light_blue;
   width: 100%;
   height: 100vh;
   color: #FFFFFF;
@@ -7,11 +9,9 @@
   align-items: center;
   justify-content: center;
 }
-$margin_100: 16px;
-
 .p-home__content {
   text-align: left;
-  color: #134DA8;
+  color: $dark_blue;
   max-width: 500px;
   padding: 0 12px;
 }
@@ -29,7 +29,7 @@ $margin_100: 16px;
 }
 
 .p-home__content button {
-  background-color: #1850a5;
+  background-color: $dark_blue;
   border: none;
   color: #fff;
   box-shadow: 0 5px 0 rgba(17,17,31,.25);
@@ -39,7 +39,8 @@ $margin_100: 16px;
   font-size: 16px;
   line-height: 24px;
   padding: 16px 64px;
+  cursor: pointer;
 }
 .p-home__content button:hover {
-  background: #11111F;
+  background: $black;
 }
