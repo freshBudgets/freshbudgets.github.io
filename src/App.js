@@ -13,14 +13,17 @@ import Dashboard from './Pages/Dashboard';
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Route exact path="/" component={ Home } />
+      <div>
+        Above router
+        <BrowserRouter>
+          <div>
+            <Route exact path="/" component={ Home } />
 
-          <NotAuthenticatedRoute authed={ isAuthenticated() } path="/login" component={ Login } />
-          <AuthenticatedRoute authed={ isAuthenticated() } path='/dashboard' component={ Dashboard } />
-        </div>
-      </BrowserRouter>
+            <NotAuthenticatedRoute authed={ isAuthenticated() } path="/login" component={ Login } />
+            <AuthenticatedRoute authed={ isAuthenticated() } path='/dashboard' component={ Dashboard } />
+          </div>
+        </BrowserRouter>
+      </div>
     );
   }
 }
