@@ -13,9 +13,9 @@ class SideBarView extends Component {
     const { children } = this.props;
 
     return (
-      <div className="p-login">
-        <div className="p-login__art"></div>
-        <div className="p-login__container">
+      <div className="p-side_bar_view">
+        <div className="p-side_bar_view__art"></div>
+        <div className="p-side_bar_view__container">
           <div>
             { children }
           </div>
