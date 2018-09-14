@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { _noop } from 'lodash';
 import { Link } from 'react-router-dom';
-import { loginUser } from '../../Actions';
 import { Redirect } from 'react-router-dom';
+import { format, normalize } from 'react-phone-input-auto-format';
 
+import { loginUser } from '../../Actions';
 import SideBarView from '../../Components/SideBarView';
 import './_pillar.login.source.scss';
 
@@ -21,13 +22,30 @@ const defaultProps = {
 };
 
 class Login extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      phoneNumber: '',
+      formattedPhoneNumber: ''
+    }
+
+    this.changePhoneNumber = this.changePhoneNumber.bind(this);
+  }
+
   handleClick(event) {
     const creds = {
-      phoneNumber: this.refs.phone.value.trim(),
+      phoneNumber: normalize(this.refs.phone.value.trim()),
       password: this.refs.password.value.trim()
     }
 
     this.props.loginUser(creds);
+  }
+
+  changePhoneNumber(e) {
+    this.setState({
+      formattedPhoneNumber: format(e.target.value)
+    })
   }
 
   render() {
@@ -37,7 +55,7 @@ class Login extends PureComponent {
     return (
       <SideBarView isFetching={isFetching}>
         <h1>FreshBudgets</h1>
-        <input type='text' ref='phone' className="form-control" placeholder='Phone Number'/>
+        <input onChange={this.changePhoneNumber} value={this.state.formattedPhoneNumber} type='text' ref='phone' className="form-control" placeholder='Phone Number'/>
         <input type='password' ref='password' className="form-control" placeholder='Password'/>
         <button onClick={(event) => this.handleClick(event)}>
           Login

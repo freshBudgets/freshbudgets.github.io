@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { _noop } from 'lodash';
-import { Link } from 'react-router-dom';
-import { signupUser } from '../../Actions';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { format, normalize } from 'react-phone-input-auto-format';
 
+import { signupUser } from '../../Actions';
 import SideBarView from '../../Components/SideBarView';
 import './_pillar.login.source.scss';
 
@@ -24,11 +24,27 @@ const defaultProps = {
 };
 
 class Register extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      formattedPhoneNumber: ''
+    }
+
+    this.changePhoneNumber = this.changePhoneNumber.bind(this);
+  }
+
+  changePhoneNumber(e) {
+    this.setState({
+      formattedPhoneNumber: format(e.target.value)
+    })
+  }
+
   handleClick(event) {
     const creds = {
       firstName: this.refs.firstName.value.trim(),
       lastName: this.refs.lastName.value.trim(),
-      phoneNumber: this.refs.phoneNumber.value.trim(),
+      phoneNumber: normalize(this.refs.phoneNumber.value.trim()),
       email: this.refs.email.value.trim(),
       password: this.refs.password.value.trim()
     }
@@ -46,7 +62,7 @@ class Register extends PureComponent {
         <input type='text' ref='firstName' className="form-control" placeholder='First Name'/>
         <input type='text' ref='lastName' className="form-control" placeholder='Last Name'/>
         <input type='text' ref='email' className="form-control" placeholder='Email'/>
-        <input type='text' ref='phoneNumber' className="form-control" placeholder='Phone Number'/>
+        <input onChange={this.changePhoneNumber} value={this.state.formattedPhoneNumber} type='text' ref='phone' className="form-control" placeholder='Phone Number'/>
         <input type='password' ref='password' className="form-control" placeholder='Password'/>
         <button onClick={(event) => this.handleClick(event)}>
           Register
