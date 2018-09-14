@@ -1,4 +1,5 @@
-import React, { Component,  } from 'react';
+import React, { PureComponent } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { _noop } from 'lodash';
@@ -6,6 +7,7 @@ import { _noop } from 'lodash';
 import { logoutUser } from '../../Actions';
 
 const propTypes = {
+  isAuthenticated: PropTypes.bool,
   logoutUser: PropTypes.func,
 }
 
@@ -13,8 +15,12 @@ const defaultProps = {
   logoutUser: _noop,
 }
 
-class Dashboard extends Component {
+class Dashboard extends PureComponent {
   render() {
+    const { isAuthenticated } = this.props;
+    
+    if(!isAuthenticated) return(<Redirect to="/login" />);
+
     return (
       <div>
         DASHBOARD {this.props.test}
@@ -25,10 +31,10 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const test = true;
+  const { isAuthenticated } = state.user;
 
   return {
-    test
+    isAuthenticated
   }
 };
 

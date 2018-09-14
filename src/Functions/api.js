@@ -1,5 +1,5 @@
 import { getToken } from './UserManagement';
-const API_URL = process.env.API_URL || 'https://api.boilermake.org/v1/';
+const API_URL = process.env.API_URL || 'https://freshbudgets-api.herokuapp.com/api';
 const HEADERS = {
   'Accept': 'application/json',
   'Content-Type': 'application/json',

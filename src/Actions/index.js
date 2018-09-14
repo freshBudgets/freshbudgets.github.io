@@ -18,8 +18,7 @@ function receiveLogin(user) {
   return {
     type: LOGIN_SUCCESS,
     isFetching: false,
-    isAuthenticated: true,
-    id_token: user.id_token
+    isAuthenticated: true
   }
 }
 
@@ -36,14 +35,13 @@ export function loginUser(creds) {
   return dispatch => {
     dispatch(requestLogin(creds))
 
-    return apiPost('users/login', creds).then( response => {
+    return apiPost('/login', creds).then( response => {
       if (!response.success) {
         dispatch(loginError(response.error));
         return Promise.reject(response.user);
       }
-
-      createUser(response.data.token);
-      dispatch(receiveLogin(response.user));
+      createUser(response.token);
+      dispatch(receiveLogin({}));
     }).catch(err => console.log(err));
   }
 }

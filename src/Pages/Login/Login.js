@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 import { _noop } from 'lodash';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../../Actions';
+import { Redirect } from 'react-router-dom';
 
 import SideBarView from '../../Components/SideBarView';
 import './_pillar.login.source.scss';
 
 const propTypes = {
   loginUser: PropTypes.func,
+  isFetching: PropTypes.bool,
+  isAuthenticated: PropTypes.bool,
+  errorMessage: PropTypes.string,
 };
 
 const defaultProps = {
@@ -19,7 +23,7 @@ const defaultProps = {
 class Login extends PureComponent {
   handleClick(event) {
     const creds = {
-      email: this.refs.username.value.trim(),
+      phoneNumber: this.refs.phone.value.trim(),
       password: this.refs.password.value.trim()
     }
 
@@ -27,16 +31,20 @@ class Login extends PureComponent {
   }
 
   render() {
-    const { errorMessage } = this.props
+    const { errorMessage, isAuthenticated, isFetching } = this.props
+    if (isAuthenticated) return(<Redirect to="/dashboard"/>);
 
     return (
       <SideBarView>
         <h1>FreshBudgets</h1>
-        <input type='text' ref='username' className="form-control" placeholder='Username'/>
+        <input type='text' ref='phone' className="form-control" placeholder='Phone Number'/>
         <input type='password' ref='password' className="form-control" placeholder='Password'/>
         <button onClick={(event) => this.handleClick(event)}>
           Login
         </button>
+        <div>
+          { isFetching ? 'Loading...' : null}          
+        </div>
 
         {errorMessage &&
           <p>{errorMessage}</p>
@@ -53,11 +61,12 @@ class Login extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated, errorMessage } = state.user;
+  const { isAuthenticated, errorMessage, isFetching } = state.user;
 
   return {
     isAuthenticated,
-    errorMessage
+    errorMessage,
+    isFetching,
   }
 }
 
