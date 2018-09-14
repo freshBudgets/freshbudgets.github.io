@@ -35,17 +35,13 @@ class Login extends PureComponent {
     if (isAuthenticated) return(<Redirect to="/dashboard"/>);
 
     return (
-      <SideBarView>
+      <SideBarView isFetching={isFetching}>
         <h1>FreshBudgets</h1>
         <input type='text' ref='phone' className="form-control" placeholder='Phone Number'/>
         <input type='password' ref='password' className="form-control" placeholder='Password'/>
         <button onClick={(event) => this.handleClick(event)}>
           Login
         </button>
-        <div>
-          { isFetching ? 'Loading...' : null}          
-        </div>
-
         {errorMessage &&
           <p>{errorMessage}</p>
         }

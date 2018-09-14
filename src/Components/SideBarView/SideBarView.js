@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import InfiniteSpinner from '../InfiniteSpinner';
+
 import './_pillar.side_bar_view.source.scss';
 
 class SideBarView extends Component {
@@ -10,14 +12,14 @@ class SideBarView extends Component {
     }
   }
   render() {
-    const { children } = this.props;
+    const { children, isFetching } = this.props;
 
     return (
       <div className="p-side_bar_view">
         <div className="p-side_bar_view__art"></div>
         <div className="p-side_bar_view__container">
-          <div>
-            { children }
+          <div className="p-side_bar_view__container_content">
+            { isFetching ? <InfiniteSpinner /> : children }
           </div>
         </div>
 

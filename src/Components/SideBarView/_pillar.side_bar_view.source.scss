@@ -18,6 +18,9 @@ $login_container_width: 500px;
   display: flex;
   align-items: center;
 }
+.p-side_bar_view__container_content {
+  width: 100%;
+}
 .p-side_bar_view__art {
   float: right;
   background: url('../../Public/Images/wallet.svg');

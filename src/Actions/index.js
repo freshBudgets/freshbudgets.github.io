@@ -74,3 +74,48 @@ export function logoutUser() {
     dispatch(receiveLogout())
   }
 }
+
+export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_FAILURE = "SIGNUP_FAILURE";
+
+function requestSignup(creds) {
+  return {
+    type: SIGNUP_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+    creds
+  }
+}
+
+function receiveSignup(user) {
+  return {
+    type: SIGNUP_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true
+  }
+}
+
+function signupError(errorMap) {
+  return {
+    type: SIGNUP_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    errorMap
+  }
+}
+
+export function signupUser(creds) {
+  return dispatch => {
+    dispatch(requestSignup(creds))
+
+    return apiPost('/signup', creds).then( response => {
+      if (!response.success) {
+        dispatch(signupError(response.errorMap));
+        return Promise.reject(response.errorMap);
+      }
+      createUser(response.token);
+      dispatch(receiveSignup({}));
+    }).catch(err => console.log(err));
+  }
+}

@@ -4,7 +4,10 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
 } from '../Actions'
 
 function user(state = {
@@ -32,8 +35,24 @@ function user(state = {
       })
     case LOGOUT_SUCCESS:
       return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: false
+      })
+    case SIGNUP_REQUEST:
+      return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: false
+      })
+    case SIGNUP_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: false
+      })
+    case SIGNUP_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: false,
+        errorMap: action.errorMap
       })
     default:
       return state
