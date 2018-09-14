@@ -6,6 +6,7 @@ import { _noop } from 'lodash';
 
 import { logoutUser } from '../../Actions';
 import Nav from '../../Components/Nav';
+import Hero from '../../Public/Images/hero.svg';
 import './_pillar.dashboard.source.scss';
 
 const propTypes = {
@@ -27,8 +28,8 @@ class Dashboard extends PureComponent {
       <div className="p-dashboard">
         <Nav />
         <div>
-          <h1>BIG POOP</h1>
-          <button onClick={() => this.props.logoutUser()}>Logout</button>
+          <img src={Hero} width="300px" height="auto" alt="Hero"/>
+          <h1>Functionality Coming Soon™</h1>
         </div>
       </div>
     )
