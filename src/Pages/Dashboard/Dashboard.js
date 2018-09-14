@@ -6,6 +6,8 @@ import { _noop } from 'lodash';
 
 import { logoutUser } from '../../Actions';
 
+import './_pillar.dashboard.source.scss';
+
 const propTypes = {
   isAuthenticated: PropTypes.bool,
   logoutUser: PropTypes.func,
@@ -18,13 +20,15 @@ const defaultProps = {
 class Dashboard extends PureComponent {
   render() {
     const { isAuthenticated } = this.props;
-    
+
     if(!isAuthenticated) return(<Redirect to="/login" />);
 
     return (
-      <div>
-        DASHBOARD {this.props.test}
-        <button onClick={() => this.props.logoutUser()}>Logout</button>
+      <div className="p-dashboard">
+        <div>
+          <h1>BIG POOP</h1>
+          <button onClick={() => this.props.logoutUser()}>Logout</button>
+        </div>
       </div>
     )
   }

@@ -1,0 +1,10 @@
+.p-dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  & div {
+    text-align: center;
+  }
+}
