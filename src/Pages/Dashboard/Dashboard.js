@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { _noop } from 'lodash';
 
 import { logoutUser } from '../../Actions';
-
+import Nav from '../../Components/Nav';
 import './_pillar.dashboard.source.scss';
 
 const propTypes = {
@@ -25,6 +25,7 @@ class Dashboard extends PureComponent {
 
     return (
       <div className="p-dashboard">
+        <Nav />
         <div>
           <h1>BIG POOP</h1>
           <button onClick={() => this.props.logoutUser()}>Logout</button>

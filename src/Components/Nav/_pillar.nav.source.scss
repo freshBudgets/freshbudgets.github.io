@@ -9,7 +9,7 @@
   border-bottom: 1px solid $dark_blue;
   display: flex;
   align-items: center;
-  padding: 0 $spacing_100;
+  padding-left: $spacing_100;
   color: $dark_blue;
   font-weight: bold;
   font-size: 18px;
@@ -23,8 +23,5 @@
   padding: $spacing_150;
   text-decoration: none !important;
   color: inherit !important;
-
-  &:last-child {
-    padding-right: 0;
-  }
+  float: left;
 }

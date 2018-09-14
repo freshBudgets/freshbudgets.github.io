@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../../Public/Images/hero.svg';
 
-import LoggedOutNav from '../../Components/LoggedOutNav';
+import Nav from '../../Components/Nav';
 
 import './_pillar.home.source.scss';
 
-class Home extends Component {
+class Home extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -17,7 +17,7 @@ class Home extends Component {
   render() {
     return (
       <div className="p-home">
-        <LoggedOutNav />
+        <Nav />
         <div className="p-home__content">
           <div className="p-home__content_copy">
             {/* <h1>Fresh Budgets</h1> */}
