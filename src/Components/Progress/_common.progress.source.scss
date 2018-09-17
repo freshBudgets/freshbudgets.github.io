@@ -4,14 +4,17 @@
   width: 100%;
   height: 200px;
   position: relative;
-  background: $dark_gray;
-  border-bottom: 1px solid $black;
+  background: $dark_green;
+  border-radius: 8px;
+  border: 1px solid $dark_gray;
 }
 .c-progress__so_far {
   height: 100%;
-  background: $light_gray;
+  background: $light_green;
   transition: .2s;
   width: 0px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
 }
 .c-progress__left_wrapper {
   position: absolute;

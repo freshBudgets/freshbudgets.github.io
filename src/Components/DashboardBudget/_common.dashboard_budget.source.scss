@@ -1,16 +1,15 @@
 @import '../../Public/tools.scss';
 
 .c-dashboard_budget {
-  width: 50%;
-  padding: $spacing_100;
+  width: calc(100%/3);
+  padding: $spacing_200;
   box-sizing: border-box;
-  border-bottom: 1px solid $gray;
   text-align: center;
   cursor: pointer;
+}
 
-  &:nth-child(even) {
-    border-left: 1px solid $gray;
-  }
+.c-dashboard_budget h2 {
+  margin-bottom: 0;
 }
 
 .c-dashboard_budget__chart_wrapper {

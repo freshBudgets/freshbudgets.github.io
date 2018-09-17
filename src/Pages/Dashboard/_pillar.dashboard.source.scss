@@ -1,25 +1,42 @@
 @import '../../Public/tools.scss';
 
 .p-dashboard {
+  background: $light_gray;
+  min-height: calc(100vh - 70px);
   margin-top: 70px;
+  padding-top: $spacing_200;
+  padding-bottom: $spacing_200;
+}
+.p-dashboard__content {
+  max-width: 1000px;
+  padding: 0 $spacing_100;
+  margin: auto;
 }
 
+.c-card.p-dashboard__total_progress {
+  padding: 0;
+}
+
+.p-dashboard__budgets_wrapper {
+  margin-top: $spacing_200;
+}
 .p-dashboard__h1 {
-  max-width: 700px;
-  margin: auto;
-  margin-top: $spacing_100;
-  padding: 0 $spacing_100;
+  margin: 0;
 }
 
 .p-dashboard__budgets {
-  max-width: 700px;
   margin: auto;
   margin-top: $spacing_100;
   display: flex;
-  padding: 0 $spacing_100;
+  justify-content: space-around;
 }
 
-@media (max-width: 580px) {
+.p-dashboard__add_budget {
+  margin-top: $spacing_200;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
   .p-dashboard__h1 {
     text-align: center;
   }

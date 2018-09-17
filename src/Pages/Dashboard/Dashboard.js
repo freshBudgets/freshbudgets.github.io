@@ -45,15 +45,23 @@ class Dashboard extends PureComponent {
     return (
       <div className="p-dashboard">
         <Nav />
-        <Progress total={total.total} spent={total.spent} />
-        <div className="p-dashboard__budgets_wrapper">
-          <h1 className="p-dashboard__h1">Budgets</h1>
-          <div className="p-dashboard__budgets">
-            {
-              Object.keys(budgets).map(id => {
-                return <DashboardBudget budget={budgets[id]} key={id} />
-              })
-            }
+        <div className="p-dashboard__content">
+          <div className="c-card p-dashboard__total_progress">
+            <Progress total={total.total} spent={total.spent} />
+          </div>
+          <div className="p-dashboard__budgets_wrapper c-card">
+            <div className="c-card_header">Your Budgets</div>
+            <div className="p-dashboard__budgets">
+              {
+                Object.keys(budgets).map(id => {
+                  return <DashboardBudget budget={budgets[id]} key={id} />
+                })
+              }
+            </div>
+          </div>
+          <div className="p-dashboard__add_budget c-card c-clickable_card">
+            <div className="c-light_text"><i className="fa fa-plus-circle fa-2x"></i></div>
+            <div className="c-light_text">Add Budget</div>
           </div>
         </div>
       </div>

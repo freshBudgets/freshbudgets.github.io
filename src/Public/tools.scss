@@ -1,13 +1,15 @@
 // Colors
-$black: #373A3C;
-$dark_gray: #333D47;
-$gray: #D8DFE6;
-$light_gray: #F3F5F5;
+$black: #3D4950;
+$dark_gray: #74808D;
+$gray: #E2EAF1;
+$light_gray: #F4F4F6;
 $white: #ffffff;
 
 $light_blue: #95E5F5;
 $dark_blue: #0C4AAB;
 $pink: #FFD6E5;
+$dark_green: #8BCA4B;
+$light_green: #D3F2B3;
 
 // Spacing
 $spacing_25: 4px;
@@ -49,6 +51,44 @@ button {
     background: $black;
     box-shadow: 0 0px 0 rgba(17,17,31,.25);
     transition: .1s;
-
   }
+}
+
+.c-card {
+  width: 100%;
+  padding: $spacing_200;
+  box-shadow: 0 0 30px rgba(0,0,0,0.1);
+  border-radius: calc(#{$border_radius} * 2);
+  background: $white;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+.c-card_header {
+  width: calc(100% + 64px);
+  background: linear-gradient(-90deg, #26C7B1 0%, #2FA9C2 100%);
+  color: $white;
+  margin-left: -$spacing_200;
+  margin-top: -$spacing_200;
+  margin-bottom: $spacing_200;
+  padding: $spacing_100 $spacing_200;
+  border-top-left-radius: calc(#{$border_radius} * 2);
+  border-top-right-radius: calc(#{$border_radius} * 2);
+  box-sizing: border-box;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+.c-card.c-clickable_card {
+  transition: .2s;
+}
+.c-clickable_card:hover {
+  transform: scale(1.01);
+  transition: .2s;
+  box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+
+.c-light_text {
+  color: $dark_gray;
 }
