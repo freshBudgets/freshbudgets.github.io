@@ -22,7 +22,7 @@ class DashboardBudget extends PureComponent {
   render() {
     const {budget} = this.props;
     const data = [
-      {title: "Total", value: budget.total - budget.spent, color: "#FFFFFF"},
+      {title: "Total", value: budget.total - budget.spent, color: "#E5E5E5"},
       {title: "Spent", value: budget.spent, color: "#0F5091"},
     ]
     let left = budget.total - budget.spent;
