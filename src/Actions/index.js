@@ -1,4 +1,4 @@
-import { apiPost } from '../Functions/api';
+import { apiPost, apiGet } from '../Functions/api';
 import { createUser, destroyUser } from '../Functions/UserManagement';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
@@ -18,7 +18,8 @@ function receiveLogin(user) {
   return {
     type: LOGIN_SUCCESS,
     isFetching: false,
-    isAuthenticated: true
+    isAuthenticated: true,
+    user: user
   }
 }
 
@@ -35,13 +36,21 @@ export function loginUser(creds) {
   return dispatch => {
     dispatch(requestLogin(creds))
 
-    return apiPost('/login', creds).then( response => {
+    apiPost('/login', creds).then( response => {
       if (!response.success) {
-        dispatch(loginError(response.error));
-        return Promise.reject(response.user);
+        dispatch(loginError(response.message));
+        return Promise.reject(response.message);
       }
       createUser(response.token);
-      dispatch(receiveLogin({}));
+
+      return apiGet('/user', response.token).then( response => {
+        if (!response.success) {
+          dispatch(loginError(response.message));
+          return Promise.reject(response.message);
+        }
+
+        dispatch(receiveLogin(response.user));
+      })
     }).catch(err => console.log(err));
   }
 }

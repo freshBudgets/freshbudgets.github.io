@@ -13,6 +13,11 @@ import {
 function user(state = {
     isFetching: false,
     isAuthenticated: isAuthenticated(),
+    user: {
+      firstName: '',
+      lastName: '',
+    },
+    errorMessage: '',
   }, action) {
   switch (action.type) {
     case LOGIN_REQUEST:
@@ -25,7 +30,11 @@ function user(state = {
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        errorMessage: ''
+        errorMessage: '',
+        user: {
+          firstName: action.user.firstName,
+          lastName: action.user.lastName
+        }
       })
     case LOGIN_FAILURE:
       return Object.assign({}, state, {

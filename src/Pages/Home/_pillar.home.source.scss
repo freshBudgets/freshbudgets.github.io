@@ -49,6 +49,9 @@
 .p-home__content button:hover {
   background: $black;
 }
+.p-home_phone_input {
+  max-width: 280px;
+}
 
 @media (max-width: 815px) {
   .p-home__content_image {

@@ -1,23 +1,23 @@
 import { getToken } from './UserManagement';
 const API_URL = process.env.API_URL || 'https://freshbudgets-api.herokuapp.com/api';
-const HEADERS = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json',
-  'Authorization': getToken()
-};
+// const API_URL = 'http://localhost:5000/api';
 
-export function apiGet(endpoint) {
-  return fetch(`${API_URL}${endpoint}/`, {headers: HEADERS}).then((res) => res.json());
+function getHeaders(token) {
+  return {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Token': token
+  };
 }
 
-export function apiPost(endpoint, data = {}) {
+export function apiGet(endpoint, token = getToken()) {
+  return fetch(`${API_URL}${endpoint}/`, {headers: getHeaders(token)}).then((res) => res.json());
+}
+
+export function apiPost(endpoint, data = {}, token = getToken()) {
   const options = {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': getToken()
-    },
+    headers: getHeaders(token),
     body: JSON.stringify(data)
   }
 

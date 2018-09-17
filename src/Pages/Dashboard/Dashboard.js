@@ -5,31 +5,53 @@ import { connect } from 'react-redux'
 import { _noop } from 'lodash';
 
 import { logoutUser } from '../../Actions';
+import { getAllBudgets } from '../../Actions/Budget';
 import Nav from '../../Components/Nav';
-import Hero from '../../Public/Images/hero.svg';
+import Progress from '../../Components/Progress';
+import DashboardBudget from '../../Components/DashboardBudget';
 import './_pillar.dashboard.source.scss';
 
 const propTypes = {
   isAuthenticated: PropTypes.bool,
   logoutUser: PropTypes.func,
+  user: PropTypes.object,
+  total: PropTypes.object,
+  budgets: PropTypes.object,
+  getAllBudgets: PropTypes.func
 }
 
 const defaultProps = {
+  user: {
+    firstName: '',
+    lastName: ''
+  },
+  total: {
+    spent: 0,
+    total: 0
+  },
+  budgets: {},
   logoutUser: _noop,
+  getAllBudgets: _noop,
 }
 
 class Dashboard extends PureComponent {
+  componentWillMount() {
+    this.props.getAllBudgets();
+  }
   render() {
-    const { isAuthenticated } = this.props;
-
+    const { isAuthenticated, total, budgets } = this.props;
     if(!isAuthenticated) return(<Redirect to="/login" />);
 
     return (
       <div className="p-dashboard">
         <Nav />
-        <div>
-          <img src={Hero} width="300px" height="auto" alt="Hero"/>
-          <h1>Functionality Coming Soon™</h1>
+        <Progress total={total.total} spent={total.spent} />
+        <div className="p-dashboard__budgets">
+          {
+            Object.keys(budgets).map(id => {
+              return <DashboardBudget budget={budgets[id]} key={id} />
+            })
+          }
         </div>
       </div>
     )
@@ -37,15 +59,20 @@ class Dashboard extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated } = state.user;
+  const { isAuthenticated, user } = state.user;
+  const { total, budgets } = state.budget;
 
   return {
-    isAuthenticated
+    isAuthenticated,
+    user,
+    total,
+    budgets
   }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    logoutUser: () => dispatch(logoutUser())
+    logoutUser: () => dispatch(logoutUser()),
+    getAllBudgets: () => dispatch(getAllBudgets()),
 });
 
 Dashboard.propTypes = propTypes;

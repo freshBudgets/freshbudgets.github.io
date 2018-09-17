@@ -1,10 +1,12 @@
-.p-dashboard {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+@import '../../Public/tools.scss';
 
-  & div {
-    text-align: center;
-  }
+.p-dashboard {
+  margin-top: 70px;
+}
+
+.p-dashboard__budgets {
+  width: 700px;
+  margin: auto;
+  margin-top: $spacing_100;
+  display: flex;
 }

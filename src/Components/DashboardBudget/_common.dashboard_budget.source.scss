@@ -1,0 +1,13 @@
+@import '../../Public/tools.scss';
+
+.c-dashboard_budget {
+  width: 50%;
+  padding: $spacing_100;
+  box-sizing: border-box;
+  border-bottom: 1px solid $gray;
+  text-align: center;
+
+  &:nth-child(even) {
+    border-left: 1px solid $gray;
+  }
+}
