@@ -1,5 +1,4 @@
 import { isAuthenticated } from '../Functions/UserManagement';
-import rootReducer from './index';
 
 import {
   LOGIN_REQUEST,

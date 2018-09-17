@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import PieChart from "react-svg-piechart"
-import InfiniteSpinner from '../InfiniteSpinner';
 
 import './_common.dashboard_budget.source.scss';
 

@@ -5,9 +5,11 @@ import Nav from '../../Components/Nav';
 import './_pillar.budget.source.scss';
 
 const propTypes = {
+  budget: PropTypes.object,
 }
 
 const defaultProps = {
+  budget: {}
 }
 
 class Budget extends PureComponent {
