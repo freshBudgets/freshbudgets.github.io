@@ -46,9 +46,7 @@ class Dashboard extends PureComponent {
       <div className="p-dashboard">
         <Nav />
         <div className="p-dashboard__content">
-          <div className="c-card p-dashboard__total_progress">
-            <Progress total={total.total} spent={total.spent} />
-          </div>
+          <Progress total={total.total} spent={total.spent} />
           <div className="p-dashboard__budgets_wrapper c-card">
             <div className="c-card_header">Your Budgets</div>
             <div className="p-dashboard__budgets">

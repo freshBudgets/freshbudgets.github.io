@@ -19,11 +19,13 @@ class LoggedInNav extends Component {
   render() {
     return (
       <nav className="p-nav p-nav--logged_in">
-        FreshBudgets
+        <div className="p-nav__logo">
+          FreshBudgets
+        </div>
         <div className="p-nav__items">
-          <Link to="/dashboard"><div className="p-nav__item">
+          <Link to="/dashboard" className="p-nav__item">
             Dashboard
-          </div></Link>
+          </Link>
           <div className="p-nav__item" onClick={() => this.props.logoutUser()}>
             Logout
           </div>

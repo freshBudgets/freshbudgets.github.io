@@ -2,7 +2,7 @@
 
 .c-dashboard_budget {
   width: calc(100%/3);
-  padding: $spacing_200;
+  padding: $spacing_100;
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
@@ -35,11 +35,11 @@ $chart_size: calc(100% - #{$spacing_200});
 .c-dashboard_budget__chart_nums h1 {
   margin: 0;
   margin-bottom: $spacing_50;
-  font-size: 50px;
+  font-size: $text_large;
 }
 .c-dashboard_budget__chart_nums h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: $text_body;
 }
 
 @media (max-width: 580px) {

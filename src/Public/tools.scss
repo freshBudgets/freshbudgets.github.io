@@ -1,14 +1,14 @@
 // Colors
-$black: #3D4950;
-$dark_gray: #74808D;
-$gray: #E2EAF1;
-$light_gray: #F4F4F6;
+$black: #000000;
+$dark_gray: #484848;
+$gray: #767676;
+$light_gray: rgba(0,0,0,0.1);
 $white: #ffffff;
 
 $light_blue: #95E5F5;
-$dark_blue: #0C4AAB;
+$dark_blue: #074E93;
 $pink: #FFD6E5;
-$dark_green: #8BCA4B;
+$dark_green: #00848A;
 $light_green: #D3F2B3;
 
 // Spacing
@@ -22,6 +22,12 @@ $spacing_175: 28px;
 $spacing_200: 32px;
 
 $border_radius: 4px;
+
+// fontface
+$text_large: 24px;
+$text_med: 22px;
+$text_body: 16px;
+$text_small: 12px;
 
 input {
   width: 100%;
@@ -57,17 +63,18 @@ button {
 .c-card {
   width: 100%;
   padding: $spacing_200;
-  box-shadow: 0 0 30px rgba(0,0,0,0.1);
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.06);
   border-radius: calc(#{$border_radius} * 2);
   background: $white;
   box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
+  border: 1px solid $light_gray;
 }
 .c-card_header {
   width: calc(100% + 64px);
-  background: linear-gradient(-90deg, #26C7B1 0%, #2FA9C2 100%);
-  color: $white;
+  // background: linear-gradient(-90deg, #26C7B1 0%, #2FA9C2 100%);
+  color: $dark_gray;
   margin-left: -$spacing_200;
   margin-top: -$spacing_200;
   margin-bottom: $spacing_200;
@@ -79,6 +86,7 @@ button {
   font-weight: bold;
   letter-spacing: 1px;
   font-size: 14px;
+  border-bottom: 1px solid $light_gray;
 }
 .c-card.c-clickable_card {
   transition: .2s;
@@ -86,7 +94,6 @@ button {
 .c-clickable_card:hover {
   transform: scale(1.01);
   transition: .2s;
-  box-shadow: 0 0 30px rgba(0,0,0,0.2);
 }
 
 .c-light_text {

@@ -23,7 +23,7 @@ class DashboardBudget extends PureComponent {
     const {budget} = this.props;
     const data = [
       {title: "Total", value: budget.total - budget.spent, color: "#FFFFFF"},
-      {title: "Spent", value: budget.spent, color: "#89CC41"},
+      {title: "Spent", value: budget.spent, color: "#0F5091"},
     ]
     let left = budget.total - budget.spent;
     left = parseFloat(Math.round(left * 100) / 100).toFixed(2);
