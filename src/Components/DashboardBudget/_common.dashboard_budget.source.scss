@@ -11,3 +11,12 @@
     border-left: 1px solid $gray;
   }
 }
+
+@media (max-width: 580px) {
+  .c-dashboard_budget {
+    width: 100%;
+    &:nth-child(even) {
+      border-left: none;
+    }
+  }
+}

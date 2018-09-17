@@ -1,12 +1,11 @@
 @import '../../Public/tools.scss';
 
-.p-nav--logged_out {
+.p-nav {
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
   height: 70px;
-  border-bottom: 1px solid $dark_blue;
   display: flex;
   align-items: center;
   padding-left: $spacing_100;
@@ -16,6 +15,12 @@
   box-sizing: border-box;
   justify-content: space-between;
 }
+.p-nav--logged_out {
+  border-bottom: 1px solid $dark_blue;
+}
+.p-nav--logged_in {
+  border-bottom: 1px solid $black;
+}
 
 .p-nav__item {
   height: 100%;
@@ -24,4 +29,8 @@
   text-decoration: none !important;
   color: inherit !important;
   float: left;
+}
+.p-nav--logged_in .p-nav__item {
+  border-left: 1px solid $black;
+  color: $black;
 }

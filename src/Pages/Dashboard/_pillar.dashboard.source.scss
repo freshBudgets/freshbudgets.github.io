@@ -4,9 +4,26 @@
   margin-top: 70px;
 }
 
+.p-dashboard h1 {
+  max-width: 700px;
+  margin: auto;
+  margin-top: $spacing_100;
+  padding: 0 $spacing_100;
+}
+
 .p-dashboard__budgets {
-  width: 700px;
+  max-width: 700px;
   margin: auto;
   margin-top: $spacing_100;
   display: flex;
+  padding: 0 $spacing_100;
+}
+
+@media (max-width: 580px) {
+  .p-dashboard h1 {
+    text-align: center;
+  }
+  .p-dashboard__budgets {
+    display: block;
+  }
 }

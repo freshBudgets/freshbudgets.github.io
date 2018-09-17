@@ -12,7 +12,7 @@ class LoggedOutNav extends Component {
   }
   render() {
     return (
-      <nav className="p-nav--logged_out">
+      <nav className="p-nav p-nav--logged_out">
         FreshBudgets
         <div className="p-nav__items">
           <Link to="/login"><div className="p-nav__item">
