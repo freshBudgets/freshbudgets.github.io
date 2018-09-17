@@ -6,10 +6,41 @@
   box-sizing: border-box;
   border-bottom: 1px solid $gray;
   text-align: center;
+  cursor: pointer;
 
   &:nth-child(even) {
     border-left: 1px solid $gray;
   }
+}
+
+.c-dashboard_budget__chart_wrapper {
+  position: relative;
+}
+
+$chart_size: calc(100% - #{$spacing_200});
+
+.c-dashboard_budget__chart_nums {
+  position: absolute;
+  width: $chart_size;
+  top: 0;
+  background: $white;
+  border-radius: 100%;
+  height: calc(#{$chart_size} - 4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-top: $spacing_100;
+  margin-left: $spacing_100;
+}
+.c-dashboard_budget__chart_nums h1 {
+  margin: 0;
+  margin-bottom: $spacing_50;
+  font-size: 50px;
+}
+.c-dashboard_budget__chart_nums h2 {
+  margin: 0;
+  font-size: 18px;
 }
 
 @media (max-width: 580px) {

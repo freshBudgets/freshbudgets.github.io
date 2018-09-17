@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import PieChart from "react-svg-piechart"
 import InfiniteSpinner from '../InfiniteSpinner';
 
 import './_common.dashboard_budget.source.scss';
@@ -20,14 +22,26 @@ const defaultProps = {
 class DashboardBudget extends PureComponent {
   render() {
     const {budget} = this.props;
-    // const width = budget.spent / budget.total;
-    // const left = budget.total - budget.spent;
+    const data = [
+      {title: "Total", value: budget.total - budget.spent, color: "#FFFFFF"},
+      {title: "Spent", value: budget.spent, color: "#95E5F5"},
+    ]
+    let left = budget.total - budget.spent;
+    left = parseFloat(Math.round(left * 100) / 100).toFixed(2);
 
     return(
-      <div className="c-dashboard_budget">
-        <InfiniteSpinner />
-        {budget.name}
-      </div>
+      <Link to={`/budget/${budget.id}`} className="c-dashboard_budget">
+        <div className="c-dashboard_budget__chart_wrapper">
+          <PieChart data={data} />
+          <div className="c-dashboard_budget__chart_nums">
+            <div>
+              <h1>${left}</h1>
+              <h2>Left Today</h2>
+            </div>
+          </div>
+        </div>
+        <h2>{budget.name}</h2>
+      </Link>
     )
   }
 }

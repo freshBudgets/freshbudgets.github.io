@@ -47,14 +47,14 @@ class Dashboard extends PureComponent {
         <Nav />
         <Progress total={total.total} spent={total.spent} />
         <div className="p-dashboard__budgets_wrapper">
-          <h1>Budgets</h1>
+          <h1 className="p-dashboard__h1">Budgets</h1>
           <div className="p-dashboard__budgets">
             {
               Object.keys(budgets).map(id => {
                 return <DashboardBudget budget={budgets[id]} key={id} />
               })
             }
-          </div>          
+          </div>
         </div>
       </div>
     )

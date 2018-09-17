@@ -4,7 +4,7 @@
   margin-top: 70px;
 }
 
-.p-dashboard h1 {
+.p-dashboard__h1 {
   max-width: 700px;
   margin: auto;
   margin-top: $spacing_100;
@@ -20,7 +20,7 @@
 }
 
 @media (max-width: 580px) {
-  .p-dashboard h1 {
+  .p-dashboard__h1 {
     text-align: center;
   }
   .p-dashboard__budgets {

@@ -10,6 +10,7 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Dashboard from './Pages/Dashboard';
+import Budget from './Pages/Budget';
 
 class App extends Component {
   render() {
@@ -20,7 +21,9 @@ class App extends Component {
 
           <NotAuthenticatedRoute authed={ isAuthenticated() } path="/login" component={ Login } />
           <NotAuthenticatedRoute authed={ isAuthenticated() } path="/register" component={ Register } />
+
           <AuthenticatedRoute authed={ isAuthenticated() } path='/dashboard' component={ Dashboard } />
+          <AuthenticatedRoute authed={ isAuthenticated() } path='/budget/:id' component={ Budget } />
         </div>
       </BrowserRouter>
     );
