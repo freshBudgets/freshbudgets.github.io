@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import LoggedOutNav from './LoggedOutNav';
 import LoggedInNav from './LoggedInNav';
@@ -14,9 +15,23 @@ const defaultProps = {
 }
 
 class Nav extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      shouldRedirect: false
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.isAuthenticated !== this.props.isAuthenticated) {
+      this.setState({shouldRedirect:true});
+    }
+  }
+
   render() {
     const { isAuthenticated } = this.props;
-
+    if (this.state.shouldRedirect) return <Redirect to="/login" />
     return isAuthenticated ? <LoggedInNav /> : <LoggedOutNav />
   }
 }

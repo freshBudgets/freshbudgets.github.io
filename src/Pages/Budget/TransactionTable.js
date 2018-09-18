@@ -44,7 +44,7 @@ class TransactionTable extends PureComponent {
     if (transactions.length === 0) return this.renderNoTransactions();
 
     return(
-      <table className="p-transaction_table" cellspacing='0'>
+      <table className="p-transaction_table" cellSpacing='0'>
         <thead>
           <tr>
             <th className="p-transaction_table__column--location">Location</th>

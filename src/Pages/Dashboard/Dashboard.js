@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { _noop } from 'lodash';
@@ -32,12 +31,12 @@ const defaultProps = {
 }
 
 class Dashboard extends PureComponent {
-  componentWillMount() {
+  componentDidMount() {
     this.props.getAllBudgets();
   }
+
   render() {
-    const { isAuthenticated, total, budgets } = this.props;
-    if(!isAuthenticated) return(<Redirect to="/login" />);
+    const { total, budgets } = this.props;
 
     return (
       <div className="p-dashboard">
@@ -65,11 +64,10 @@ class Dashboard extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated, user } = state.user;
+  const { user } = state.user;
   const { total, budgets } = state.budget;
 
   return {
-    isAuthenticated,
     user,
     total,
     budgets

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { _noop } from 'lodash';
 
@@ -9,18 +9,14 @@ import './_pillar.nav.source.scss';
 
 const propTypes = {
   logoutUser: PropTypes.func,
-  isAuthenticated: PropTypes.bool,
 }
 
 const defaultProps = {
   logoutUser: _noop,
-  isAuthenticated: true,
 }
 
 class LoggedInNav extends Component {
   render() {
-    if(!this.props.isAuthenticated) return(<Redirect to="/login" />);
-
     return (
       <nav className="p-nav p-nav--logged_in">
         <div className="p-nav__logo">
@@ -40,9 +36,7 @@ class LoggedInNav extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated } = state.user;
-
-  return { isAuthenticated }
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => ({

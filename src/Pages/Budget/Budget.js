@@ -24,14 +24,14 @@ const defaultProps = {
 }
 
 class Budget extends PureComponent {
-  componentWillMount() {
+  componentDidMount() {
     const id = this.props.match.params.id;
 
     this.props.getOneBudget(id);
   }
 
   render() {
-    const { budget } = this.props;
+    const { budget, isAuthenticated } = this.props;
     return (
       <div className="p-budget">
         <Nav />
@@ -48,10 +48,12 @@ class Budget extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
+  const { isAuthenticated } = state.user;
   const { budget } = state.budget;
 
   return {
-    budget
+    budget,
+    isAuthenticated
   }
 };
 

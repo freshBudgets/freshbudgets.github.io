@@ -56,7 +56,6 @@ function requestBudget() {
 }
 
 function receiveBudget(budget) {
-  console.log(budget);
   return {
     type: BUDGET_SUCCESS,
     isFetching: false,
