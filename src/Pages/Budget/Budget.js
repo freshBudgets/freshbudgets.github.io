@@ -31,7 +31,7 @@ class Budget extends PureComponent {
   }
 
   render() {
-    const { budget, isAuthenticated } = this.props;
+    const { budget } = this.props;
     return (
       <div className="p-budget">
         <Nav />
@@ -48,12 +48,10 @@ class Budget extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated } = state.user;
   const { budget } = state.budget;
 
   return {
     budget,
-    isAuthenticated
   }
 };
 

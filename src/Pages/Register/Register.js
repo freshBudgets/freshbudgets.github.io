@@ -14,6 +14,7 @@ const propTypes = {
   isAuthenticated: PropTypes.bool,
   errorMap: PropTypes.object,
   isFetching: PropTypes.bool,
+  user: PropTypes.object,
 };
 
 const defaultProps = {
@@ -21,6 +22,9 @@ const defaultProps = {
   isAuthenticated: false,
   errorMap: {},
   isFetching: false,
+  user: {
+    isVerified: false
+  }
 };
 
 class Register extends PureComponent {
@@ -44,7 +48,7 @@ class Register extends PureComponent {
     const creds = {
       firstName: this.refs.firstName.value.trim(),
       lastName: this.refs.lastName.value.trim(),
-      phoneNumber: normalize(this.refs.phoneNumber.value.trim()),
+      phoneNumber: normalize(this.refs.phone.value.trim()),
       email: this.refs.email.value.trim(),
       password: this.refs.password.value.trim()
     }
@@ -53,7 +57,8 @@ class Register extends PureComponent {
   }
 
   render() {
-    const { errorMessage, isAuthenticated, isFetching } = this.props
+    const { errorMap, isAuthenticated, isFetching, user } = this.props;
+    if (isAuthenticated && !user.isVerified) return(<Redirect to="/verify_phone"/>);
     if (isAuthenticated) return(<Redirect to="/dashboard"/>);
 
     return (
@@ -68,8 +73,8 @@ class Register extends PureComponent {
           Register
         </button>
 
-        {errorMessage &&
-          <p>{errorMessage}</p>
+        {errorMap.message &&
+          <p>{errorMap.message}</p>
         }
         <div className="p-login__extra_links">
           <Link to="/login" className="p-login__links">Already have an account? Login</Link>
@@ -80,12 +85,13 @@ class Register extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated, errorMap, isFetching } = state.user;
+  const { isAuthenticated, errorMap, isFetching, user } = state.user;
 
   return {
     isAuthenticated,
     errorMap,
     isFetching,
+    user
   }
 }
 

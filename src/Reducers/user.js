@@ -8,6 +8,9 @@ import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
+  VERIFY_CODE_REQUEST,
+  VERIFY_CODE_SUCCESS,
+  VERIFY_CODE_FAILURE,
 } from '../Actions'
 
 function user(state = {
@@ -16,6 +19,7 @@ function user(state = {
     user: {
       firstName: '',
       lastName: '',
+      isVerified: false
     },
     errorMessage: '',
   }, action) {
@@ -33,7 +37,8 @@ function user(state = {
         errorMessage: '',
         user: {
           firstName: action.user.firstName,
-          lastName: action.user.lastName
+          lastName: action.user.lastName,
+          isVerified: action.user.isVerified
         }
       })
     case LOGIN_FAILURE:
@@ -55,9 +60,35 @@ function user(state = {
     case SIGNUP_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        isAuthenticated: false
+        isAuthenticated: true,
+        user: {
+          firstName: action.user.firstName,
+          lastName: action.user.lastName,
+          isVerified: action.user.isVerified
+        },
+        errorMap: {}
       })
     case SIGNUP_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: false,
+        errorMap: action.errorMap
+      })
+    case VERIFY_CODE_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: true,
+        isAuthenticated: false
+      })
+    case VERIFY_CODE_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: true,
+        user: {
+          ...state.user,
+          isVerified: true
+        }
+      })
+    case VERIFY_CODE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: false,

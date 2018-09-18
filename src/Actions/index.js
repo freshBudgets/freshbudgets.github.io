@@ -101,7 +101,8 @@ function receiveSignup(user) {
   return {
     type: SIGNUP_SUCCESS,
     isFetching: false,
-    isAuthenticated: true
+    isAuthenticated: true,
+    user
   }
 }
 
@@ -124,7 +125,52 @@ export function signupUser(creds) {
         return Promise.reject(response.errorMap);
       }
       createUser(response.token);
-      dispatch(receiveSignup({}));
+      dispatch(receiveSignup(response.user));
+    }).catch(err => console.log(err));
+  }
+}
+
+export const VERIFY_CODE_REQUEST = "VERIFY_CODE_REQUEST";
+export const VERIFY_CODE_SUCCESS = "VERIFY_CODE_SUCCESS";
+export const VERIFY_CODE_FAILURE = "VERIFY_CODE_FAILURE";
+
+function requestCodeVerify() {
+  return {
+    type: VERIFY_CODE_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+  }
+}
+
+function receiveCodeVerify(user) {
+  return {
+    type: VERIFY_CODE_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    isVerified: true
+  }
+}
+
+function codeVerifyError(errorMap) {
+  return {
+    type: VERIFY_CODE_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    errorMap
+  }
+}
+
+export function verifyCode(code) {
+  return dispatch => {
+    dispatch(requestCodeVerify())
+
+    return apiPost('/verifyPhone', { code }).then( response => {
+      if (!response.success) {
+        dispatch(codeVerifyError(response.errorMap));
+        return Promise.reject(response.errorMap);
+      }
+
+      dispatch(receiveCodeVerify());
     }).catch(err => console.log(err));
   }
 }

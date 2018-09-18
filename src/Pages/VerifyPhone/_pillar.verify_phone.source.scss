@@ -1,0 +1,13 @@
+@import '../../Public/tools.scss';
+
+.p-verify_phone__code_input {
+  text-align: center;
+}
+
+.p-verify_phone__extra_links {
+   margin-top: $spacing_100;
+   & a {
+     color: $black;
+     text-decoration: none;
+   }
+}
