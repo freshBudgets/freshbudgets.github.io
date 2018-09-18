@@ -14,7 +14,7 @@ function requestBudgets() {
 function receiveBudgets(total, budgets) {
   return {
     type: BUDGETS_SUCCESS,
-    isFetching: true,
+    isFetching: false,
     total,
     budgets
   }
@@ -40,6 +40,55 @@ export function getAllBudgets() {
       }
 
       dispatch(receiveBudgets(response.total, response.budgets));
+    })
+  }
+}
+
+export const BUDGET_REQUEST = 'BUDGET_REQUEST';
+export const BUDGET_SUCCESS = 'BUDGET_SUCCESS';
+export const BUDGET_FAILURE = 'BUDGET_FAILURE';
+
+function requestBudget() {
+  return {
+    type: BUDGET_REQUEST,
+    isFetching: true
+  }
+}
+
+function receiveBudget(budget) {
+  console.log(budget);
+  return {
+    type: BUDGET_SUCCESS,
+    isFetching: false,
+    budget: {
+      name: budget.name,
+      total: budget.total,
+      spent: budget.spent,
+      transactions: budget.transactions
+    }
+  }
+}
+
+function budgetFailure(message) {
+  return {
+    type: BUDGET_FAILURE,
+    isFetching: false,
+    message
+  }
+}
+
+export function getOneBudget(id) {
+  return dispatch => {
+    dispatch(requestBudget());
+
+    return apiGet(`/budget/${id}`).then( response => {
+      if (!response.success) {
+        const message = response.message || 'Problem getting budget';
+        dispatch(budgetFailure(message));
+        return Promise.reject(message);
+      }
+
+      dispatch(receiveBudget(response[id]));
     })
   }
 }

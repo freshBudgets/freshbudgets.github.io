@@ -2,6 +2,8 @@
 
 .c-dashboard_budget {
   width: calc(100%/3);
+  max-width: 220px;
+  min-width: 170px;
   padding: $spacing_100;
   box-sizing: border-box;
   text-align: center;
@@ -42,11 +44,12 @@ $chart_size: calc(100% - #{$spacing_200});
   font-size: $text_body;
 }
 
-@media (max-width: 580px) {
-  .c-dashboard_budget {
-    width: 100%;
-    &:nth-child(even) {
-      border-left: none;
-    }
+@media (max-width: 730px) {
+  .c-dashboard_budget__chart_nums h1 {
+    font-size: $text_med,
+  }
+  .c-dashboard_budget__chart_nums h2 {
+    margin: 0;
+    font-size: $text_small;
   }
 }

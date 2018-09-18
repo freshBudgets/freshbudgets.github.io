@@ -13,11 +13,13 @@ class LoggedOutNav extends Component {
   render() {
     return (
       <nav className="p-nav p-nav--logged_out">
-        FreshBudgets
+        <div className="p-nav__logo">
+          FreshBudgets
+        </div>
         <div className="p-nav__items">
-          <Link to="/login"><div className="p-nav__item">
-            Login
-          </div></Link>
+          <Link to="/login" className="p-nav__item">
+            Log In
+          </Link>
         </div>
       </nav>
     );

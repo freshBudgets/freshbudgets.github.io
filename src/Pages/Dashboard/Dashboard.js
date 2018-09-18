@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { _noop } from 'lodash';
 
-import { logoutUser } from '../../Actions';
 import { getAllBudgets } from '../../Actions/Budget';
 import Nav from '../../Components/Nav';
 import Progress from '../../Components/Progress';
@@ -13,7 +12,6 @@ import './_pillar.dashboard.source.scss';
 
 const propTypes = {
   isAuthenticated: PropTypes.bool,
-  logoutUser: PropTypes.func,
   user: PropTypes.object,
   total: PropTypes.object,
   budgets: PropTypes.object,
@@ -30,7 +28,6 @@ const defaultProps = {
     total: 0
   },
   budgets: {},
-  logoutUser: _noop,
   getAllBudgets: _noop,
 }
 
@@ -80,7 +77,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    logoutUser: () => dispatch(logoutUser()),
     getAllBudgets: () => dispatch(getAllBudgets()),
 });
 

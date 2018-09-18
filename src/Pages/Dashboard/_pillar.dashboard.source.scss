@@ -8,9 +8,7 @@
   padding-bottom: $spacing_200;
 }
 .p-dashboard__content {
-  max-width: 1000px;
-  padding: 0 $spacing_100;
-  margin: auto;
+  @include max-width;
 }
 
 .c-card.p-dashboard__total_progress {
@@ -29,6 +27,7 @@
   margin-top: $spacing_100;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .p-dashboard__add_budget {
@@ -36,7 +35,7 @@
   text-align: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 60px) {
   .p-dashboard__h1 {
     text-align: center;
   }

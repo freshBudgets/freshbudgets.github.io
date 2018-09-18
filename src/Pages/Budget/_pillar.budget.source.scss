@@ -1,1 +1,28 @@
 @import '../../Public/tools.scss';
+
+.p-budget {
+  margin-top: 70px;
+  padding-top: $spacing_200;
+}
+
+.p-budget__content {
+  @include max-width;
+}
+
+.p-budget__transactions {
+  margin-top: $spacing_200;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.p-budget__transactions .c-card_header {
+  padding-left: $spacing_200;
+  padding-right: $spacing_200;
+  width: 100%;
+  margin-left: 0;
+}
+
+.p-budget__transactions p {
+  text-align: center;
+  color: $gray;
+}

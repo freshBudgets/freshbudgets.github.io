@@ -14,13 +14,13 @@
   font-size: $text_body;
   box-sizing: border-box;
   justify-content: space-between;
+  background: $white;
 }
 .p-nav--logged_out {
   border-bottom: 1px solid $dark_blue;
 }
 .p-nav--logged_in {
   border-bottom: 1px solid $light_gray;
-  justify-content: space-between;
 }
 .p-nav__logo {
   color: $dark_blue;
@@ -42,4 +42,12 @@
 }
 .p-nav--logged_in .p-nav__item {
   color: $black;
+}
+
+@media (max-width: 350px) {
+  .p-nav--logged_in {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: $spacing_100 inherit;
+  }
 }

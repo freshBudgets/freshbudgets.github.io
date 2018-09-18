@@ -21,12 +21,21 @@ const defaultProps = {
 class DashboardBudget extends PureComponent {
   render() {
     const {budget} = this.props;
-    const data = [
-      {title: "Total", value: budget.total - budget.spent, color: "#E5E5E5"},
-      {title: "Spent", value: budget.spent, color: "#0F5091"},
-    ]
     let left = budget.total - budget.spent;
-    left = parseFloat(Math.round(left * 100) / 100).toFixed(2);
+    let data = [];
+    let subText = '';
+    if (left < 0) {
+      data = [{title: "Over", value: budget.spent, color: "#FF585B"}];
+      subText = 'Over Budget'
+    } else {
+      data = [
+        {title: "Left", value: left, color: "#E5E5E5"},
+        {title: "Spent", value: budget.spent, color: "#00848B"},
+      ];
+      subText = 'Left Today'
+    }
+
+    left = parseFloat(Math.round(Math.abs(left) * 100) / 100).toFixed(2);
 
     return(
       <Link to={`/budget/${budget.id}`} className="c-dashboard_budget">
@@ -35,7 +44,7 @@ class DashboardBudget extends PureComponent {
           <div className="c-dashboard_budget__chart_nums">
             <div>
               <h1>${left}</h1>
-              <h2>Left Today</h2>
+              <h2>{subText}</h2>
             </div>
           </div>
         </div>

@@ -29,6 +29,14 @@ $text_med: 22px;
 $text_body: 16px;
 $text_small: 12px;
 
+@mixin max-width {
+  max-width: 1000px;
+  padding: 0 $spacing_100;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
 input {
   width: 100%;
   padding: $spacing_100 $spacing_150;

@@ -16,7 +16,8 @@ class Progress extends PureComponent {
   render() {
     const {spent, total} = this.props;
     const width = (spent / total)*100;
-    const left = total - spent;
+    let left = total - spent;
+    left = parseFloat(Math.round(Math.abs(left) * 100) / 100).toFixed(2);
     const darkText = width < 55 ? 'c-progress__left--dark' : '';
 
     return(
