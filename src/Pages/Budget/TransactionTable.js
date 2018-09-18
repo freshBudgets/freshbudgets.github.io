@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import './_pillar.budget.transaction_table.source.scss';
 
 const propTypes = {
-  transactions: PropTypes.array
+  transactions: PropTypes.array,
 }
 
 const defaultProps = {
-  transactions: []
+  transactions: [],
 }
 
 class TransactionTable extends PureComponent {
