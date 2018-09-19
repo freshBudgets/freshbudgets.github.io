@@ -1,17 +1,17 @@
 const createUser = (token, callback) => {
-  sessionStorage.setItem('token', token);
+  localStorage.setItem('token', token);
 }
 
 const destroyUser = () => {
-  sessionStorage.removeItem('token');
+  localStorage.removeItem('token');
 }
 
 const getToken = () => {
-  return sessionStorage.getItem('token');
+  return localStorage.getItem('token');
 }
 
 const isAuthenticated = () => {
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
   let ret = false;
 
   if (token !== null) ret = token.length > 10;
