@@ -1,0 +1,23 @@
+@import '../../Public/tools.scss';
+
+.p-add_account {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.p-add_account__content {
+  text-align: center;
+}
+.p-add_account__button {
+  color: $black;
+  background: $dark_blue;
+}
+.p-add_account__spacer {
+  height: 0;
+  transition: .2s;
+}
+.p-add_account__spacer--open {
+  height: 600px;
+  transition: .2s;
+}

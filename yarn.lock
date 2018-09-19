@@ -5674,12 +5674,22 @@ react-https-redirect@^1.0.10:
   dependencies:
     prop-types "^15.5.8"
 
+react-load-script@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
+
 react-phone-input-auto-format@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-phone-input-auto-format/-/react-phone-input-auto-format-0.0.6.tgz#e6c54902975e31b929b8e480227ad65939211ed2"
   dependencies:
     react "^16.2.0"
     react-dom "^16.2.0"
+
+react-plaid-link@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-plaid-link/-/react-plaid-link-1.0.2.tgz#7cc45e009758e6cad02082292678b12ddce56213"
+  dependencies:
+    react-load-script "0.0.6"
 
 react-redux@^5.0.7:
   version "5.0.7"

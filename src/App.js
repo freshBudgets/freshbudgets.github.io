@@ -10,6 +10,7 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import VerifyPhone from './Pages/VerifyPhone';
+import AddAccount from './Pages/AddAccount';
 import Dashboard from './Pages/Dashboard';
 import Budget from './Pages/Budget';
 
@@ -24,6 +25,7 @@ class App extends Component {
           <NotAuthenticatedRoute authed={ isAuthenticated() } path="/register" component={ Register } />
 
           <AuthenticatedRoute authed={ isAuthenticated() } path="/verify_phone" component={ VerifyPhone } />
+          <AuthenticatedRoute authed={ isAuthenticated() } path="/add_account" component={ AddAccount } />
           <AuthenticatedRoute authed={ isAuthenticated() } path='/dashboard' component={ Dashboard } />
           <AuthenticatedRoute authed={ isAuthenticated() } path='/budget/:id' component={ Budget } />
         </div>
