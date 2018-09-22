@@ -1,3 +1,4 @@
+
 const createUser = (token, callback) => {
   localStorage.setItem('token', token);
 }
@@ -15,7 +16,6 @@ const isAuthenticated = () => {
   let ret = false;
 
   if (token !== null) ret = token.length > 10;
-
   return ret
 }
 
