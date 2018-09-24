@@ -11,7 +11,12 @@ import {
   VERIFY_CODE_REQUEST,
   VERIFY_CODE_SUCCESS,
   VERIFY_CODE_FAILURE,
-} from '../Actions'
+} from '../Actions';
+
+import {
+  TRUIFY_AUTH,
+  FALSIFY_AUTH,
+} from '../Actions/Token';
 
 function user(state = {
     isFetching: false,
@@ -93,6 +98,14 @@ function user(state = {
         isFetching: false,
         isAuthenticated: false,
         errorMap: action.errorMap
+      })
+    case TRUIFY_AUTH:
+      return Object.assign({}, state, {
+        isAuthenticated: true,
+      })
+    case FALSIFY_AUTH:
+      return Object.assign({}, state, {
+        isAuthenticated: false,
       })
     default:
       return state

@@ -49,7 +49,7 @@ class Login extends PureComponent {
 
   render() {
     const { errorMessage, isAuthenticated, isFetching } = this.props;
-    if (isAuthenticated) return(<Redirect to="/dashboard"/>);
+    if (isAuthenticated) return <Redirect to="/dashboard"/>;
 
     return (
       <SideBarView isFetching={isFetching}>
