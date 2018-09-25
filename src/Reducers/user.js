@@ -20,7 +20,7 @@ import {
 
 const INITIAL_STATE = {
   isFetching: false,
-  isAuthenticated: false,
+  isAuthenticated: isAuthenticated(),
   user: {
     firstName: '',
     lastName: '',
