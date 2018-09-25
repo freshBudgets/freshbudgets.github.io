@@ -18,52 +18,58 @@ import {
   FALSIFY_AUTH,
 } from '../Actions/Token';
 
-function user(state = {
-    isFetching: false,
-    isAuthenticated: isAuthenticated(),
-    user: {
-      firstName: '',
-      lastName: '',
-      isVerified: false
-    },
-    errorMessage: '',
-  }, action) {
+const INITIAL_STATE = {
+  isFetching: false,
+  isAuthenticated: false,
+  user: {
+    firstName: '',
+    lastName: '',
+    isVerified: false,
+  },
+  errorMap: {}
+}
+
+function user(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOGIN_REQUEST:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
-        isAuthenticated: false,
-        user: action.creds
-      })
+        isAuthenticated: false
+      }
     case LOGIN_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
+      return {
+        ...state,
         isAuthenticated: true,
-        errorMessage: '',
+        isFetching: false,
         user: {
           firstName: action.user.firstName,
           lastName: action.user.lastName,
           isVerified: action.user.isVerified
         }
-      })
+      }
     case LOGIN_FAILURE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         isAuthenticated: false,
-        errorMessage: action.message
-      })
+        errorMap: {login: action.message},
+      }
     case LOGOUT_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
-        isAuthenticated: false
-      })
+        isAuthenticated: false,
+      }
     case SIGNUP_REQUEST:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
-        isAuthenticated: false
-      })
+        isAuthenticated: false,
+      }
     case SIGNUP_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         isAuthenticated: true,
         user: {
@@ -72,41 +78,46 @@ function user(state = {
           isVerified: action.user.isVerified
         },
         errorMap: {}
-      })
+      }
     case SIGNUP_FAILURE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
-        isAuthenticated: false,
         errorMap: action.errorMap
-      })
+      }
     case VERIFY_CODE_REQUEST:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
         isAuthenticated: false
-      })
+      }
     case VERIFY_CODE_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         isAuthenticated: true,
         user: {
           ...state.user,
-          isVerified: true
+          isVerified: true,
         }
-      })
+      }
     case VERIFY_CODE_FAILURE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         isAuthenticated: false,
-        errorMap: action.errorMap
-      })
+        errorMap: action.errorMap,
+      }
     case TRUIFY_AUTH:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isAuthenticated: true,
-      })
+      }
     case FALSIFY_AUTH:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isAuthenticated: false,
-      })
+      }
     default:
       return state
   }
