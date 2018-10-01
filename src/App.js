@@ -13,6 +13,7 @@ import VerifyPhone from './Pages/VerifyPhone';
 import AddAccount from './Pages/AddAccount';
 import Dashboard from './Pages/Dashboard';
 import Budget from './Pages/Budget';
+import CreateBudget from './Pages/CreateBudget';
 
 class App extends Component {
   render() {
@@ -28,6 +29,7 @@ class App extends Component {
           <AuthenticatedRoute authed={ isAuthenticated() } path="/add_account" component={ AddAccount } />
           <AuthenticatedRoute authed={ isAuthenticated() } path='/dashboard' component={ Dashboard } />
           <AuthenticatedRoute authed={ isAuthenticated() } path='/budget/:id' component={ Budget } />
+          <AuthenticatedRoute authed={ isAuthenticated() } path='/create_budget' component={ CreateBudget } />
         </div>
       </BrowserRouter>
     );

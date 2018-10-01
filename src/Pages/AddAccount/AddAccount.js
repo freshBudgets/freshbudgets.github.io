@@ -74,6 +74,7 @@ class AddAccount extends PureComponent {
             style={{}}
             onExit={this.handleOnExit}
             onEvent={this.onEvent}
+            webhook="https://api.freshbudgets.com/api/plaid/transaction"
             onSuccess={this.handleOnSuccess}>
             Connect
           </PlaidLink>

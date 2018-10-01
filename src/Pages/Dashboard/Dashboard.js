@@ -55,10 +55,10 @@ class Dashboard extends PureComponent {
             </div>
           </div>
           <div className="p-dashboard__actions">
-            <div className="p-dashboard__action_button c-card c-clickable_card">
+            <Link className="p-dashboard__action_button c-card c-clickable_card" to="/create_budget">
               <div className="c-light_text"><i className="fa fa-plus-circle fa-2x"></i></div>
               <div className="c-light_text">Add Budget</div>
-            </div>
+            </Link>
             <Link className="p-dashboard__action_button c-card c-clickable_card" to="/add_account?env=dev">
               <div className="c-light_text"><i className="fa fa-plus-circle fa-2x"></i></div>
               <div className="c-light_text">Add Account (DEV)</div>
