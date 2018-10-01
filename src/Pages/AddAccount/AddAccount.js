@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
-// import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PlaidLink from 'react-plaid-link'
+import PlaidLink from './PlaidLink';
 
 import Nav from '../../Components/Nav';
+import { linkAccount } from '../../Actions/Account';
 import './_pillar.add_account.source.scss';
 
 const propTypes = {
@@ -17,18 +18,39 @@ class AddAccount extends PureComponent {
     super(props);
 
     this.state = {
-      modalOpen: false
+      modalOpen: false,
+      redirect: false,
+      message: null,
     }
 
     this.onEvent = this.onEvent.bind(this);
+    this.handleOnSuccess = this.handleOnSuccess.bind(this);
+    this.handleOnExit = this.handleOnExit.bind(this);
   }
+
+  componentDidMount() {
+    const env = this.props.location.search.substring(5);
+    this.setState({env: env === 'dev' ? 'development' : 'sandbox'});
+  }
+
   handleOnSuccess(token, metadata) {
-    console.log(token, metadata);
-    // send token to client server
+    const obj = {
+      publicToken: token,
+      accountIDs: metadata.accounts.map((account) => account.id),
+    }
+
+    this.props.linkAccount(obj).then(() => {
+      this.setState({redirect: true});
+    }).catch((message) => {
+      this.setState({message});
+    })
   }
+
   handleOnExit() {
-    // handle the case when your user exits Link
+    this.setState({message: 'You clicked the little x. Redirecting...'});
+    this.setState({redirect: true});
   }
+
   onEvent(e) {
     if (e === 'OPEN') {
       this.setState({modalOpen: true});
@@ -38,16 +60,15 @@ class AddAccount extends PureComponent {
     }
   }
   render() {
-    const spacerClass = this.state.modalOpen ? 'p-add_account__spacer--open' : 'p-add_account__spacer';
+    if (this.state.redirect) return <Redirect to="/dashboard" />
     return (
       <div className="p-add_account">
         <Nav />
         <div className="p-add_account__content">
-          <h1>Add an account to get started!</h1>
-          <div className={spacerClass} />
+          { this.state.message && this.state.message }
           <PlaidLink
             clientName="Fresh Budgets"
-            env="sandbox"
+            env={this.state.env}
             product={["auth", "transactions"]}
             publicKey="c71dae3573f12ec78aaaabfeca273d"
             style={{}}
@@ -67,6 +88,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  linkAccount: (obj) => dispatch(linkAccount(obj))
 });
 
 AddAccount.propTypes = propTypes;

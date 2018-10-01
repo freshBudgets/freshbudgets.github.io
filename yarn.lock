@@ -2109,9 +2109,9 @@ dotenv-expand@4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-4.2.0.tgz#def1f1ca5d6059d24a766e587942c21106ce1275"
 
-dotenv@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
+dotenv@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -5678,7 +5678,7 @@ react-https-redirect@^1.0.10:
   dependencies:
     prop-types "^15.5.8"
 
-react-load-script@0.0.6:
+react-load-script@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
 
@@ -5688,12 +5688,6 @@ react-phone-input-auto-format@^0.0.6:
   dependencies:
     react "^16.2.0"
     react-dom "^16.2.0"
-
-react-plaid-link@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-plaid-link/-/react-plaid-link-1.0.2.tgz#7cc45e009758e6cad02082292678b12ddce56213"
-  dependencies:
-    react-load-script "0.0.6"
 
 react-redux@^5.0.7:
   version "5.0.7"

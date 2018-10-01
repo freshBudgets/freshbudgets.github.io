@@ -29,9 +29,19 @@
   flex-wrap: wrap;
 }
 
-.p-dashboard__add_budget {
+.p-dashboard__actions {
+  display: flex;
+}
+
+.p-dashboard__action_button {
   margin-top: $spacing_200;
   text-align: center;
+  margin-right: $spacing_100 !important;
+  cursor: pointer;
+
+  &:last-child {
+    margin-right: 0 !important;
+  }
 }
 
 @media (max-width: 60px) {

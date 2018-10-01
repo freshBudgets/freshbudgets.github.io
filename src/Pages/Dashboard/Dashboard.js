@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { _noop } from 'lodash';
+import { Link } from 'react-router-dom';
 
 import { getAllBudgets } from '../../Actions/Budget';
 import Nav from '../../Components/Nav';
@@ -53,9 +54,19 @@ class Dashboard extends PureComponent {
               }
             </div>
           </div>
-          <div className="p-dashboard__add_budget c-card c-clickable_card">
-            <div className="c-light_text"><i className="fa fa-plus-circle fa-2x"></i></div>
-            <div className="c-light_text">Add Budget</div>
+          <div className="p-dashboard__actions">
+            <div className="p-dashboard__action_button c-card c-clickable_card">
+              <div className="c-light_text"><i className="fa fa-plus-circle fa-2x"></i></div>
+              <div className="c-light_text">Add Budget</div>
+            </div>
+            <Link className="p-dashboard__action_button c-card c-clickable_card" to="/add_account?env=dev">
+              <div className="c-light_text"><i className="fa fa-plus-circle fa-2x"></i></div>
+              <div className="c-light_text">Add Account (DEV)</div>
+            </Link>
+            <Link className="p-dashboard__action_button c-card c-clickable_card" to="/add_account?env=sandbox">
+              <div className="c-light_text"><i className="fa fa-plus-circle fa-2x"></i></div>
+              <div className="c-light_text">Add Account (SANDBOX)</div>
+            </Link>
           </div>
         </div>
       </div>
