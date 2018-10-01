@@ -1,4 +1,4 @@
-import { apiGet } from '../Functions/api';
+import { apiGet, apiPost } from '../Functions/api';
 
 export const BUDGETS_REQUEST = 'BUDGETS_REQUEST';
 export const BUDGETS_SUCCESS = 'BUDGETS_SUCCESS';
@@ -88,6 +88,17 @@ export function getOneBudget(id) {
       }
 
       dispatch(receiveBudget(response[id]));
+    })
+  }
+}
+
+export function createBudget(budget) {
+  return dispatch => {
+    return apiPost('/budget/createBudget').then( response => {
+      if (!response.success) {
+        return Promise.reject(response.message);
+      }
+      return Promise.resolve(response.budgetID);
     })
   }
 }

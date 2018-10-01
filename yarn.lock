@@ -5682,6 +5682,12 @@ react-load-script@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
 
+react-number-format@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-3.6.1.tgz#4dde8a113d4ecff6e85ae85cc24efa33ea3ee075"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-phone-input-auto-format@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-phone-input-auto-format/-/react-phone-input-auto-format-0.0.6.tgz#e6c54902975e31b929b8e480227ad65939211ed2"

@@ -7,7 +7,7 @@ $white: #ffffff;
 
 $light_blue: #95E5F5;
 $dark_blue: #074E93;
-$pink: #FFD6E5;
+$pink: #FF585B;
 $dark_green: #00848A;
 $light_green: #D3F2B3;
 
@@ -106,4 +106,7 @@ button {
 
 .c-light_text {
   color: $dark_gray;
+}
+.c-error_text {
+  color: $pink;
 }

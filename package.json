@@ -41,6 +41,7 @@
     "react-dom": "^16.5.0",
     "react-https-redirect": "^1.0.10",
     "react-load-script": "^0.0.6",
+    "react-number-format": "^3.6.1",
     "react-phone-input-auto-format": "^0.0.6",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
