@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
-import Nav from '../../Components/Nav';
 import Progress from '../../Components/Progress';
 import TransactionTable from './TransactionTable';
 import { getOneBudget } from '../../Actions/Budget';
@@ -34,7 +33,6 @@ class Budget extends PureComponent {
     const { budget } = this.props;
     return (
       <div className="p-budget">
-        <Nav />
         <div className="p-budget__content">
           <Progress spent={budget.spent} total={budget.total} />
           <div className="p-budget__transactions c-card">

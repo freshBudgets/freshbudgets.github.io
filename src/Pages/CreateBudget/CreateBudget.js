@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 
-import Nav from '../../Components/Nav';
 import { createBudget } from '../../Actions/Budget';
 import './_pillar.create_budget.source.scss';
 
@@ -58,7 +57,6 @@ class CreateBudget extends PureComponent {
 
     return (
       <div className="p-create_budget">
-        <Nav />
         <div className="p-create_budget__content">
           <div className="p-create_budget__header">Create Budget</div>
           <div className="p-create_budget__input_group">

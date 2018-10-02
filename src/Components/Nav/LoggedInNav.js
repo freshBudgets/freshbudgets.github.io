@@ -26,6 +26,9 @@ class LoggedInNav extends Component {
           <Link to="/dashboard" className="p-nav__item">
             Dashboard
           </Link>
+          <Link to="/dashboard" className="p-nav__item">
+            Create Budget
+          </Link>
           <div className="p-nav__item" onClick={() => this.props.logoutUser()}>
             Logout
           </div>

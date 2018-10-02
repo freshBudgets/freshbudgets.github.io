@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { format } from 'react-phone-input-auto-format';
 
 import Hero from '../../Public/Images/hero.svg';
-import Nav from '../../Components/Nav';
 import './_pillar.home.source.scss';
 
 class Home extends PureComponent {
@@ -27,7 +26,7 @@ class Home extends PureComponent {
   render() {
     return (
       <div className="p-home">
-        <Nav />
+        {/* <Nav /> */}
         <div className="p-home__content">
           <div className="p-home__content_copy">
             {/* <h1>Fresh Budgets</h1> */}

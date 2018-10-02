@@ -5,7 +5,6 @@ import { _noop } from 'lodash';
 import { Link } from 'react-router-dom';
 
 import { getAllBudgets } from '../../Actions/Budget';
-import Nav from '../../Components/Nav';
 import Progress from '../../Components/Progress';
 import DashboardBudget from '../../Components/DashboardBudget';
 import './_pillar.dashboard.source.scss';
@@ -41,7 +40,6 @@ class Dashboard extends PureComponent {
 
     return (
       <div className="p-dashboard">
-        <Nav />
         <div className="p-dashboard__content">
           <Progress total={total.total} spent={total.spent} />
           <div className="p-dashboard__budgets_wrapper c-card">

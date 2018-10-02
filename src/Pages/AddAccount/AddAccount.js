@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PlaidLink from './PlaidLink';
 
-import Nav from '../../Components/Nav';
 import { linkAccount } from '../../Actions/Account';
 import './_pillar.add_account.source.scss';
 
@@ -63,7 +62,6 @@ class AddAccount extends PureComponent {
     if (this.state.redirect) return <Redirect to="/dashboard" />
     return (
       <div className="p-add_account">
-        <Nav />
         <div className="p-add_account__content">
           { this.state.message && this.state.message }
           <PlaidLink
