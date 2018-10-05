@@ -53,10 +53,10 @@ class Dashboard extends PureComponent {
     return(
       <div className="p-dashboard__empty_state">
         <p>
-          You haven't created a budget you.
+          You haven't created a budget yet.
         </p>
         <p>
-          Create one to get started saving <span role="img" aria-label="Nice!">👍</span>
+          Create one to get started <span role="img" aria-label="Nice!">👍</span>
         </p>
         <Link to="/create_budget">
           <button>Get Started</button>
