@@ -66,11 +66,7 @@ function user(state = INITIAL_STATE, action) {
         errorMap: {login: action.message},
       }
     case LOGOUT_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        isAuthenticated: false,
-      }
+      return INITIAL_STATE
     case SIGNUP_REQUEST:
       return {
         ...state,

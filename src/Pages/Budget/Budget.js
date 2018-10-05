@@ -87,7 +87,7 @@ class Budget extends PureComponent {
         <div className="p-budget__content">
           <div className="p-budget__title_bar">
             <div className="p-budget__title">{budget.name}</div>
-            <i className="fa fa-cog" onClick={this.showModal}></i>
+            <i className="fa fa-cog p-budget__settings_icon" onClick={this.showModal}></i>
           </div>
           <Progress spent={budget.spent} total={budget.total} />
           <div className="p-budget__transactions c-card">
@@ -111,8 +111,10 @@ class Budget extends PureComponent {
               const {formattedValue, value} = values;
               this.setState({limit: value, formattedLimit: formattedValue})
           }}/>
-          <button onClick={this.updateBudget}>Save</button>
-          <div className="c-error_text p-budget__delete" onClick={this.onDelete}>Delete Budget</div>
+          <div className="p-budget__edit_modal_actions">
+            <button onClick={this.updateBudget}>Save</button>
+            <div className="c-error_text p-budget__delete" onClick={this.onDelete}>Delete Budget</div>
+          </div>
         </Modal>
       </div>
     );

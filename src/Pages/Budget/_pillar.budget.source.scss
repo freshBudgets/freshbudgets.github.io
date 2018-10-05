@@ -15,6 +15,9 @@
   margin-bottom: $spacing_100;
   font-weight: bold;
 }
+.p-budget__settings_icon {
+  cursor: pointer;
+}
 .p-budget__transactions {
   margin-top: $spacing_200;
   padding-bottom: 0;
@@ -31,6 +34,12 @@
 .p-budget__transactions p {
   text-align: center;
   color: $gray;
+}
+
+.p-budget__edit_modal_actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .p-budget__delete {
