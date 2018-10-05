@@ -48,25 +48,35 @@ class Dashboard extends PureComponent {
     )
   }
 
+  renderNoBudgets() {
+    return(
+      <div className="p-dashboard__empty_state">
+        <p>
+          We don't have any budget yet!.
+        </p>
+        <p>
+          Create one to get started saving <span role="img" aria-label="Nice!">👍</span>
+        </p>
+      </div>
+    );
+  }
+
   render() {
     const { total, budgets } = this.props;
 
     return (
       <div className="p-dashboard">
-        <div className="p-dashboard__content">
-          <div className="p-dashboard__title">Budget Overview</div>
-          <Progress total={total.total} spent={total.spent} />
-          <div className="p-dashboard__budgets_wrapper c-card">
-            <div className="c-card_header">Your Budgets</div>
-            { budgets.length === 0 ?
-              <div>
-                No budgets
+          <div className="p-dashboard__content">
+            { budgets.length === 0 ? this.renderNoBudgets() : <div>
+              <div className="p-dashboard__title">Budget Overview</div>
+              <Progress total={total.total} spent={total.spent} />
+              <div className="p-dashboard__budgets_wrapper c-card">
+                <div className="c-card_header">Your Budgets</div>
+                  { this.renderBudgets() }
               </div>
-              :
-              this.renderBudgets()
+            </div>
             }
           </div>
-        </div>
       </div>
     )
   }
