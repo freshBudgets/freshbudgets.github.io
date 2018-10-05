@@ -70,9 +70,8 @@ class Budget extends PureComponent {
       newBudgetLimit: this.state.limit,
       budgetID: this.props.budget.id
     }
-    console.log('Pages/Budget.js:73');
+
     this.props.updateBudget(budget).then(() => {
-      console.log('Pages/Budget.js:75');
       this.setState({editBudgetModal: false});
     });
   }
