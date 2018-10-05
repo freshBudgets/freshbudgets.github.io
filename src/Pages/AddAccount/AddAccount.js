@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PlaidLink from './PlaidLink';
+import Nav from '../../Components/Nav';
 
 import { linkAccount } from '../../Actions/Account';
 import './_pillar.add_account.source.scss';
@@ -32,6 +33,11 @@ class AddAccount extends PureComponent {
     this.setState({env: env === 'dev' ? 'development' : 'sandbox'});
   }
 
+  componentWillUnmount() {
+    const plaid = document.getElementById('plaid-link-iframe-1');
+    plaid.style.display = 'none';
+  }
+
   handleOnSuccess(token, metadata) {
     const obj = {
       publicToken: token,
@@ -58,10 +64,18 @@ class AddAccount extends PureComponent {
       this.setState({modalOpen: false});
     }
   }
+
+  onLoad() {
+    const plaid = document.getElementById('plaid-link-iframe-1');
+    plaid.style.zIndex = 10;
+  }
+
   render() {
     if (this.state.redirect) return <Redirect to="/dashboard" />
     return (
       <div className="p-add_account">
+        <div className="p-add_account__nav"><Nav/></div>
+        <div className="p-add_account__header">Add Account</div>
         <div className="p-add_account__content">
           { this.state.message && this.state.message }
           <PlaidLink
@@ -72,6 +86,7 @@ class AddAccount extends PureComponent {
             style={{}}
             onExit={this.handleOnExit}
             onEvent={this.onEvent}
+            onLoad={this.onLoad}
             webhook="https://api.freshbudgets.com/api/plaid/transaction"
             onSuccess={this.handleOnSuccess}>
             Connect

@@ -3,7 +3,7 @@
 .p-home {
   background: $light_blue;
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 70px);
   color: #FFFFFF;
   display: flex;
   align-items: center;

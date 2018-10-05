@@ -1,0 +1,25 @@
+@import '../../Public/tools.scss';
+
+.p-settings {
+  @include max-width;
+}
+
+.p-settings__header {
+  font-size: $text_large;
+  font-weight: bold;
+  margin-bottom: $spacing_100;
+}
+
+.p-settings__card {
+  margin-bottom: $spacing_100;
+}
+
+.p-settings__setting {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing_50;
+}
+
+.p-settings__setting input[type="checkbox"] {
+  margin-right: $spacing_50;
+}

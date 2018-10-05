@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { _noop } from 'lodash';
-import { Link } from 'react-router-dom';
 
 import { getAllBudgets } from '../../Actions/Budget';
 import Progress from '../../Components/Progress';
@@ -13,7 +12,7 @@ const propTypes = {
   isAuthenticated: PropTypes.bool,
   user: PropTypes.object,
   total: PropTypes.object,
-  budgets: PropTypes.object,
+  budgets: PropTypes.array,
   getAllBudgets: PropTypes.func
 }
 
@@ -26,7 +25,7 @@ const defaultProps = {
     spent: 0,
     total: 0
   },
-  budgets: {},
+  budgets: [],
   getAllBudgets: _noop,
 }
 
@@ -35,32 +34,37 @@ class Dashboard extends PureComponent {
     this.props.getAllBudgets();
   }
 
+  renderBudgets() {
+    const { budgets } = this.props;
+
+    return (
+      <div className="p-dashboard__budgets">
+        {
+          Object.keys(budgets).map(id => {
+            return <DashboardBudget budget={budgets[id]} key={id} />
+          })
+        }
+      </div>
+    )
+  }
+
   render() {
     const { total, budgets } = this.props;
 
     return (
       <div className="p-dashboard">
         <div className="p-dashboard__content">
+          <div className="p-dashboard__title">Budget Overview</div>
           <Progress total={total.total} spent={total.spent} />
           <div className="p-dashboard__budgets_wrapper c-card">
             <div className="c-card_header">Your Budgets</div>
-            <div className="p-dashboard__budgets">
-              {
-                Object.keys(budgets).map(id => {
-                  return <DashboardBudget budget={budgets[id]} key={id} />
-                })
-              }
-            </div>
-          </div>
-          <div className="p-dashboard__actions">
-            <Link className="p-dashboard__action_button c-card c-clickable_card" to="/create_budget">
-              <div className="c-light_text"><i className="fa fa-plus-circle fa-2x"></i></div>
-              <div className="c-light_text">Create Budget Category</div>
-            </Link>
-            <Link className="p-dashboard__action_button c-card c-clickable_card" to="/add_account?env=dev">
-              <div className="c-light_text"><i className="fa fa-plus-circle fa-2x"></i></div>
-              <div className="c-light_text">Link Bank Account</div>
-            </Link>
+            { budgets.length === 0 ?
+              <div>
+                No budgets
+              </div>
+              :
+              this.renderBudgets()
+            }
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import {
   BUDGET_REQUEST,
   BUDGET_SUCCESS,
   BUDGET_FAILURE,
+  BUDGET_UPDATE,
 } from '../Actions/Budget'
 
 const INITIAL_STATE = {
@@ -18,7 +19,8 @@ const INITIAL_STATE = {
     name: '',
     total: '',
     spent: '',
-    transactions: []
+    transactions: [],
+    id: ''
   },
   message: ''
 }
@@ -56,7 +58,8 @@ function budget(state = INITIAL_STATE, action) {
           name: action.budget.name,
           total: action.budget.total,
           spent: action.budget.spent,
-          transactions: action.budget.transactions
+          transactions: action.budget.transactions,
+          id: action.budget.id
         }
       }
     case BUDGET_FAILURE:
@@ -64,6 +67,16 @@ function budget(state = INITIAL_STATE, action) {
         ...state,
         isFetching: false,
         message: action.message
+      }
+    case BUDGET_UPDATE:
+      return {
+        ...state,
+        isFetching: false,
+        budget: {
+          ...state.budget,
+          name: action.budget.name,
+          total: action.budget.total,
+        }
       }
     default:
       return state

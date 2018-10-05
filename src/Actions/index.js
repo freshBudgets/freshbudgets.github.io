@@ -164,7 +164,7 @@ export function verifyCode(code) {
   return dispatch => {
     dispatch(requestCodeVerify())
 
-    return apiPost('/verifyPhone', { code }).then( response => {
+    return apiPost('/sms/verify', { verificationCode: code }).then( response => {
       if (!response.success) {
         dispatch(codeVerifyError(response.errorMap));
         return Promise.reject(response.errorMap);

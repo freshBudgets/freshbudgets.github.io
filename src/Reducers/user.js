@@ -14,6 +14,12 @@ import {
 } from '../Actions';
 
 import {
+  SETTINGS_REQUEST,
+  SETTINGS_SUCCESS,
+  SETTINGS_UPDATE,
+} from '../Actions/Settings'
+
+import {
   TRUIFY_AUTH,
   FALSIFY_AUTH,
 } from '../Actions/Token';
@@ -26,7 +32,11 @@ const INITIAL_STATE = {
     lastName: '',
     isVerified: false,
   },
-  errorMap: {}
+  errorMap: {},
+  settings: {
+    email: false,
+    sms: false
+  }
 }
 
 function user(state = INITIAL_STATE, action) {
@@ -117,6 +127,26 @@ function user(state = INITIAL_STATE, action) {
       return {
         ...state,
         isAuthenticated: false,
+      }
+    case SETTINGS_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      }
+    case SETTINGS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        settings: action.settings
+      }
+    case SETTINGS_UPDATE:
+      return {
+        ...state,
+        isFetching: false,
+        settings: {
+          email: action.email,
+          sms: action.sms
+        }
       }
     default:
       return state

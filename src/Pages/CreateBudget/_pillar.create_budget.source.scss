@@ -1,22 +1,21 @@
 @import '../../Public/tools.scss';
 
 .p-create_budget {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+  @include max-width;
+
 }
 
 .p-create_budget__content {
-  flex-basis: 700px;
-  padding: 0 $spacing_100;
 }
 
 .p-create_budget__header {
   font-size: $text_large;
+  font-weight: bold;
+  margin-bottom: $spacing_100;
 }
 
 .p-create_budget__input_group {
-  margin-top: $spacing_100;
+
 }
 
 .p-create_budget__input_header {

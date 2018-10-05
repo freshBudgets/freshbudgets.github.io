@@ -5,7 +5,16 @@
 .p-budget__content {
   @include max-width;
 }
-
+.p-budget__title_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.p-budget__title {
+  font-size: $text_large;
+  margin-bottom: $spacing_100;
+  font-weight: bold;
+}
 .p-budget__transactions {
   margin-top: $spacing_200;
   padding-bottom: 0;
@@ -22,4 +31,10 @@
 .p-budget__transactions p {
   text-align: center;
   color: $gray;
+}
+
+.p-budget__delete {
+  margin-top: $spacing_100;
+  font-size: $text_small;
+  cursor: pointer;
 }

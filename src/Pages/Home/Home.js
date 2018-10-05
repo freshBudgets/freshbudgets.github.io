@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-// import { format, normalize } from 'react-phone-input-auto-format';
 import { format } from 'react-phone-input-auto-format';
 
 import Hero from '../../Public/Images/hero.svg';
@@ -26,7 +25,6 @@ class Home extends PureComponent {
   render() {
     return (
       <div className="p-home">
-        {/* <Nav /> */}
         <div className="p-home__content">
           <div className="p-home__content_copy">
             {/* <h1>Fresh Budgets</h1> */}

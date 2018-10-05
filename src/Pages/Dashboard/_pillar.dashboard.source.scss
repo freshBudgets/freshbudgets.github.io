@@ -18,7 +18,11 @@
 .p-dashboard__h1 {
   margin: 0;
 }
-
+.p-dashboard__title {
+  font-size: $text_large;
+  font-weight: bold;
+  margin-bottom: $spacing_100;
+}
 .p-dashboard__budgets {
   margin: auto;
   margin-top: $spacing_100;

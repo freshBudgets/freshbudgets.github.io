@@ -1,10 +1,12 @@
 @import '../../Public/tools.scss';
 
 .p-add_account {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include max-width;
+}
+.p-add_account__header {
+  font-size: $text_large;
+  margin-bottom: $spacing_100;
+  font-weight: bold;
 }
 .p-add_account__content {
   text-align: center;
@@ -20,4 +22,11 @@
 .p-add_account__spacer--open {
   height: 600px;
   transition: .2s;
+}
+.p-add_account__nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  width: 100%;
 }
