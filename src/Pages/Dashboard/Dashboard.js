@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { _noop } from 'lodash';
+import { Link } from 'react-router-dom';
 
 import { getAllBudgets } from '../../Actions/Budget';
 import Progress from '../../Components/Progress';
@@ -52,11 +53,14 @@ class Dashboard extends PureComponent {
     return(
       <div className="p-dashboard__empty_state">
         <p>
-          We don't have any budget yet!.
+          You haven't created a budget you.
         </p>
         <p>
           Create one to get started saving <span role="img" aria-label="Nice!">👍</span>
         </p>
+        <Link to="/create_budget">
+          <button>Get Started</button>
+        </Link>
       </div>
     );
   }
