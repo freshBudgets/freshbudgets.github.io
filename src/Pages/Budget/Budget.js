@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 
+import { apiGet, apiPost } from '../../Functions/api'
 import Progress from '../../Components/Progress';
 import Modal from '../../Components/Modal';
 import TransactionTable from './TransactionTable';
-import { getOneBudget, deleteBudget, updateBudget } from '../../Actions/Budget';
 
 import './_pillar.budget.source.scss';
 
@@ -30,30 +30,55 @@ class Budget extends PureComponent {
     super(props);
 
     this.state = {
+      budget: {
+        _id: '',
+        budgetLimit: 0,
+        budgetName: "",
+        currentAmount: 0,
+      },
       deleted: false,
       editBudgetModal: false,
-      newName: this.props.budget.name,
-      newTotal: this.props.budget.total,
       limit: this.props.budget.total,
       formattedLimit: this.props.budget.total,
+      transactions: [],
     }
 
     this.onDelete = this.onDelete.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.updateBudget = this.updateBudget.bind(this);
+    this.updateTransactions = this.updateTransactions.bind(this);
   }
 
   componentDidMount() {
     const id = this.props.match.params.id;
 
-    this.props.getOneBudget(id);
+    apiGet(`/budget/${id}`).then( response => {
+      if (!response.success) {
+        const message = response.message || 'Problem getting budget';
+        console.error(message);
+      }
+
+      this.setState({budget: {...response.budgets}});
+    })
+
+    this.updateTransactions();
+  }
+
+  updateTransactions() {
+    apiGet(`/transactions`).then( response => {
+      this.setState({transactions: response.transactions});
+    })
   }
 
   onDelete() {
-    this.props.deleteBudget(this.props.budget.id).then((message) => {
+    apiPost('/budget/delete', {budgetID: this.state.budget._id}).then(response => {
+      if (!response.success) {
+        const message = response.message || 'Problem getting budget';
+        console.error(message);
+      }
       this.setState({deleted: true})
-    })
+    });
   }
 
   showModal() {
@@ -66,49 +91,61 @@ class Budget extends PureComponent {
 
   updateBudget() {
     const budget = {
-      newBudgetName: this.state.newName,
-      newBudgetLimit: this.state.limit,
-      budgetID: this.props.budget.id
+      newBudgetName: this.state.budget.budgetName,
+      newBudgetLimit: this.state.budget.budgetLimit,
+      budgetID: this.state.budget._id
     }
 
-    this.props.updateBudget(budget).then(() => {
-      this.setState({editBudgetModal: false});
-    });
+    apiPost('/budget/edit', budget).then(response => {
+      if (!response.success) {
+        const message = response.message || 'Problem getting budget';
+        console.error(message);
+      }
+
+      this.setState({
+        budget: {
+          ...this.state.budget,
+          budgetName: budget.newBudgetName,
+          budgetLimit: budget.newBudgetLimit
+        },
+        editBudgetModal: false
+      });
+    })
   }
 
   render() {
-    const { budget } = this.props;
-
+    const { budget, transactions } = this.state;
     if (this.state.deleted) return <Redirect to="/dashboard" />;
 
     return (
       <div className="p-budget">
         <div className="p-budget__content">
           <div className="p-budget__title_bar">
-            <div className="p-budget__title">{budget.name}</div>
+            <div className="p-budget__title">{budget.budgetName}</div>
             <i className="fa fa-cog p-budget__settings_icon" onClick={this.showModal}></i>
           </div>
-          <Progress spent={budget.spent} total={budget.total} />
+          <Progress spent={budget.currentAmount} total={budget.budgetLimit} />
           <div className="p-budget__transactions c-card">
             <div className="c-card_header">Transactions</div>
-            <TransactionTable transactions={budget.transactions} />
+
+            <TransactionTable transactions={transactions} updateTransactions={this.updateTransactions}/>
           </div>
         </div>
         <Modal title="Edit Budget" isShowing={this.state.editBudgetModal} closeModal={this.hideModal}>
           <input
             type="text"
             placeholder="Name"
-            defaultValue={this.props.budget.name}
-            onChange={(e) => {this.setState({newName: e.target.value})}}
+            defaultValue={this.state.budget.budgetName}
+            onChange={(e) => {this.setState({budget: {...this.state.budget, budgetName: e.target.value}})}}
             ref="budget_name" />
           <NumberFormat
-            value={this.state.formattedLimit}
+            value={this.state.budget.budgetLimit}
             decimalScale={2}
             thousandSeparator={true}
             prefix={'$'}
             onValueChange={(values) => {
               const {formattedValue, value} = values;
-              this.setState({limit: value, formattedLimit: formattedValue})
+              this.setState({budget: {...this.state.budget, budgetLimit: parseFloat(value)}, limit: value, formattedLimit: formattedValue})
           }}/>
           <div className="p-budget__edit_modal_actions">
             <button onClick={this.updateBudget}>Save</button>
@@ -121,17 +158,10 @@ class Budget extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { budget } = state.budget;
-
-  return {
-    budget,
-  }
+  return {}
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    getOneBudget: (id) => dispatch(getOneBudget(id)),
-    deleteBudget: (id) => dispatch(deleteBudget(id)),
-    updateBudget: (budget) => dispatch(updateBudget(budget)),
 });
 
 Budget.propTypes = propTypes;

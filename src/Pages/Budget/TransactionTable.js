@@ -1,14 +1,20 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import ReactTable from "react-table";
+import "react-table/react-table.css";
+import { _noop } from 'lodash';
+
 import EditTransaction from './EditTransaction';
 import './_pillar.budget.transaction_table.source.scss';
 
 const propTypes = {
   transactions: PropTypes.array,
+  updateTransactions: PropTypes.func
 }
 
 const defaultProps = {
   transactions: [],
+  updateTransactions: _noop,
 }
 
 class TransactionTable extends PureComponent {
@@ -17,23 +23,27 @@ class TransactionTable extends PureComponent {
 
     this.state = {
       showEditModal: false,
-      editingTransaction: {}
+      editingTransaction: {},
+      transactions: this.props.transactions
     }
 
     this.showEditModal = this.showEditModal.bind(this);
     this.hideEditModal = this.hideEditModal.bind(this);
   }
-  showEditModal(transaction) {
+  showEditModal(transactionId) {
+    const transaction = this.props.transactions.filter(t => t._id === transactionId);
+    console.log(transaction);
     this.setState({
       showEditModal: true,
-      editingTransaction: transaction
+      editingTransaction: transaction[0]
     })
   }
-  hideEditModal() {
+  hideEditModal(shouldUpdateTransactions = false) {
     this.setState({
       showEditModal: false,
       editingTransaction: {}
     })
+    if (shouldUpdateTransactions) this.props.updateTransactions();
   }
 
   renderNoTransactions() {
@@ -43,7 +53,7 @@ class TransactionTable extends PureComponent {
           We don't have any transactions stored for this budget categroy.
         </p>
         <p>
-          Good job budgeting <span role="img" aria-label="Nice!">👍</span>
+          Remember, a penny saved is a penny earned <span role="img" aria-label="Nice!">👍</span>
         </p>
       </div>
     );
@@ -67,26 +77,37 @@ class TransactionTable extends PureComponent {
 
   render() {
     const {transactions} = this.props;
-    if (transactions.length === 0) return this.renderNoTransactions();
 
+    const mappedTransactions = transactions.map(t => {
+      return {name: t.name, amount: t.amount, edit: t._id};
+    })
+
+    if (transactions.length === 0) return this.renderNoTransactions();
+    const columns = [
+      {
+        Header: 'Name',
+        accessor: 'name'
+      },
+      {
+        Header: 'Amount',
+        accessor: 'amount',
+        Cell: row => (<span>${row.value}</span>)
+      },
+      {
+        Header: 'Edit',
+        accessor: 'edit',
+        Cell: row => (<i onClick={ () => {this.showEditModal(row.value)} } className="fa fa-pencil"></i>),
+        maxWidth: 50
+      }
+    ]
     return(
       <div>
-        <table className="p-transaction_table" cellSpacing='0'>
-          <thead>
-            <tr>
-              <th className="p-transaction_table__column--location">Location</th>
-              <th className="p-transaction_table__column--amount">Amount</th>
-              <th className="p-transaction_table__column--edit">Edit</th>
-            </tr>
-          </thead>
-          <tbody className="p-transaction_table__body">
-            {
-              transactions.map(transaction => {
-                return this.renderTransactionRow(transaction);
-              })
-            }
-          </tbody>
-        </table>
+        <ReactTable
+          data={mappedTransactions}
+          columns={columns}
+          className=""
+          defaultPageSize={5}
+        />
         <EditTransaction
           transaction={this.state.editingTransaction}
           isShowing={this.state.showEditModal}
