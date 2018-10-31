@@ -32,7 +32,7 @@ class TransactionTable extends PureComponent {
   }
   showEditModal(transactionId) {
     const transaction = this.props.transactions.filter(t => t._id === transactionId);
-    console.log(transaction);
+
     this.setState({
       showEditModal: true,
       editingTransaction: transaction[0]
@@ -91,12 +91,13 @@ class TransactionTable extends PureComponent {
       {
         Header: 'Amount',
         accessor: 'amount',
-        Cell: row => (<span>${row.value}</span>)
+        Cell: row => (<div className="p-transaction_table__amount">${row.value.toFixed(2)}</div>),
+        maxWidth: 200
       },
       {
         Header: 'Edit',
         accessor: 'edit',
-        Cell: row => (<i onClick={ () => {this.showEditModal(row.value)} } className="fa fa-pencil"></i>),
+        Cell: row => (<div className="p-transaction_table__edit"><i onClick={ () => {this.showEditModal(row.value)} } className="fa fa-pencil"></i></div>),
         maxWidth: 50
       }
     ]

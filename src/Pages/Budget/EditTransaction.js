@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Select from 'react-select';
 
 import { apiPost } from '../../Functions/api'
 import Modal from '../../Components/Modal';
@@ -8,7 +10,8 @@ import './_pillar.budget.transaction_table.source.scss';
 const propTypes = {
   transaction: PropTypes.object,
   isShowing: PropTypes.bool,
-  hideEditModal: PropTypes.func
+  hideEditModal: PropTypes.func,
+  budgets : PropTypes.array
 }
 
 const defaultProps = {
@@ -17,7 +20,8 @@ const defaultProps = {
     amount: '',
     _id: ''
   },
-  isShowing: false
+  isShowing: false,
+  budgets: {}
 }
 
 class EditTransaction extends PureComponent {
@@ -25,38 +29,59 @@ class EditTransaction extends PureComponent {
     super(props);
 
     this.state ={
-      name: ''
+      name: '',
+      selectedOption: {},
     }
 
     this.save = this.save.bind(this);
+    this.handleChangeBudget = this.handleChangeBudget.bind(this);
   }
+
   save() {
-    console.log(this.props.transaction);
     const updatedTransaction = {
       transaction_id: this.props.transaction._id,
-      budget_id: '5bb7744218cf2800164a16d1',
-      name: this.state.name,
+      budget_id: this.state.selectedOption.value,
+      name: this.state.name || this.props.transaction.name,
       amount: this.props.transaction.amount,
       date: new Date(),
     }
-    console.log(updatedTransaction);
+
     apiPost('/transactions/update', updatedTransaction).then(res => {
-      console.log(res);
       this.props.hideEditModal(true);
     })
   }
 
+  handleChangeBudget(selectedOption) {
+    this.setState({ selectedOption });
+  }
+
   render() {
+    const options = this.props.budgets.map(b => {return {value: b.id, label: b.name}});
+    const { selectedOption } = this.state;
+
     return (
       <Modal title="Edit Transaction" isShowing={this.props.isShowing} closeModal={this.props.hideEditModal} className="">
         <input type="text" ref="name" placeholder="Name" onChange={e => this.setState({name: e.target.value})} defaultValue={this.props.transaction.name}/>
-        <input type="text" ref="budget" placeholder="Budget"/>
-        <button onClick={this.save}>Save</button>
+        <Select
+          value={selectedOption}
+          onChange={this.handleChangeBudget}
+          options={options}
+        />
+        <button onClick={this.save} style={{marginTop: '16px'}}>Save</button>
       </Modal>
     )
   }
 }
 
+const mapStateToProps = (state) => {
+  const { budgets } = state.budget;
+
+  return { budgets }
+};
+
+const mapDispatchToProps = (dispatch) => ({
+});
+
 EditTransaction.propTypes = propTypes;
 EditTransaction.defaultProps = defaultProps;
-export default (EditTransaction)
+export default connect(mapStateToProps, mapDispatchToProps)(EditTransaction)

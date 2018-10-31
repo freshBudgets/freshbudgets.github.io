@@ -1,50 +1,24 @@
 @import '../../Public/tools.scss';
 
-$table_border: 1px solid $light_gray;
-
-
-.p-transaction_table {
+.p-transaction_table__amount {
   width: 100%;
-  border-radius: $border_radius;
-  margin-top: -$spacing_200;
+  text-align: center;
 }
 
-.p-transaction_table thead {
-  background: $light_gray;
-
-  & tr th {
-    padding-top: $spacing_100;
-    padding-bottom: $spacing_100;
-  }
+.p-transaction_table__edit {
+  width: 100%;
+  text-align: center;
 }
 
-.p-transaction_table__body tr td {
-  padding: $spacing_50 $spacing_100;
-  box-sizing: border-box;
-}
-.p-transaction_table__body tr:nth-child(even) {
-  background: fade-out($light_gray, .07);
-
-  & td {
-    border-top: $table_border;
-    border-bottom: $table_border;
-  }
-}
-.p-transaction_table__body tr:last-child td{
-  border-bottom: none;
+.-pagination {
+  align-items: center;
+  padding: $spacing_50;
 }
 
-.p-transaction_table__column--location {
-    width: 75%;
-    text-align: left;
+.ReactTable .-pagination {
+  padding: $spacing_50;
 }
-th.p-transaction_table__column--location {
-    padding-left: $spacing_100;
-}
-.p-transaction_table__column--amount {
-    width: 25%;
-    text-align: center;
-}
-.p-transaction_table__edit_transaction_button {
-  cursor: pointer;
+
+.-pageJump input {
+  margin-bottom: 0;
 }

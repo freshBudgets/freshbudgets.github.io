@@ -45,6 +45,7 @@
     "react-phone-input-auto-format": "^0.0.6",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-select": "^2.1.1",
     "react-svg-piechart": "^2.1.1",
     "react-table": "^6.8.6",
     "redux": "^4.0.0",
