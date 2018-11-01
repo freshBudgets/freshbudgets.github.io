@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { getAllBudgets } from '../../Actions/Budget';
 import Progress from '../../Components/Progress';
 import DashboardBudget from '../../Components/DashboardBudget';
+import BudgetSelector from '../../Components/BudgetSelector';
 import './_pillar.dashboard.source.scss';
 
 const propTypes = {
@@ -65,6 +66,17 @@ class Dashboard extends PureComponent {
     );
   }
 
+  renderUncategorized() {
+    return (
+      <div className="c-card p-dashboard__uncategorized">
+        <div className="c-card_header">
+          Uncategorized Transactions
+        </div>
+        <BudgetSelector />
+      </div>
+    )
+  }
+
   render() {
     const { total, budgets } = this.props;
 
@@ -74,6 +86,7 @@ class Dashboard extends PureComponent {
             { budgets.length === 0 ? this.renderNoBudgets() : <div>
               <div className="p-dashboard__title">Budget Overview</div>
               <Progress total={total.total} spent={total.spent} />
+              { this.renderUncategorized() }
               <div className="p-dashboard__budgets_wrapper c-card">
                 <div className="c-card_header">Your Budgets</div>
                   { this.renderBudgets() }

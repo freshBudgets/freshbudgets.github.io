@@ -23,6 +23,9 @@
   font-weight: bold;
   margin-bottom: $spacing_100;
 }
+.p-dashboard__uncategorized {
+  margin-top: $spacing_200;
+}
 .p-dashboard__budgets {
   margin: auto;
   margin-top: $spacing_100;
@@ -48,7 +51,7 @@
 
 .p-dashboard__empty_state {
   text-align: center;
-  
+
 }
 
 @media (max-width: 60px) {

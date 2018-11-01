@@ -66,7 +66,7 @@ class Budget extends PureComponent {
   }
 
   updateTransactions() {
-    apiGet(`/transactions`).then( response => {
+    apiGet(`/transactions/budget/${this.props.match.params.id}`).then( response => {
       this.setState({transactions: response.transactions});
     })
   }
@@ -125,9 +125,8 @@ class Budget extends PureComponent {
             <i className="fa fa-cog p-budget__settings_icon" onClick={this.showModal}></i>
           </div>
           <Progress spent={budget.currentAmount} total={budget.budgetLimit} />
-          <div className="p-budget__transactions c-card">
+          <div className="c-card p-budget__transactions">
             <div className="c-card_header">Transactions</div>
-
             <TransactionTable transactions={transactions} updateTransactions={this.updateTransactions}/>
           </div>
         </div>

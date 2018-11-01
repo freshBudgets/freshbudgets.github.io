@@ -20,13 +20,13 @@
 }
 .p-budget__transactions {
   margin-top: $spacing_200;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .p-budget__transactions .c-card_header {
-  padding-left: $spacing_200;
-  padding-right: $spacing_200;
+  padding-left: $spacing_200 !important;
+  padding-right: $spacing_200 !important;
   width: 100%;
   margin-left: 0;
 }

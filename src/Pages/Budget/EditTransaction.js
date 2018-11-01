@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Select from 'react-select';
+import { find, isEmpty } from 'lodash';
 
 import { apiPost } from '../../Functions/api'
 import Modal from '../../Components/Modal';
@@ -15,11 +16,7 @@ const propTypes = {
 }
 
 const defaultProps = {
-  transaction: {
-    name: '',
-    amount: '',
-    _id: ''
-  },
+  transaction: null,
   isShowing: false,
   budgets: {}
 }
@@ -35,6 +32,14 @@ class EditTransaction extends PureComponent {
 
     this.save = this.save.bind(this);
     this.handleChangeBudget = this.handleChangeBudget.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!isEmpty(this.props.transaction) && this.props.transaction !== prevProps.transaction) {
+      const budId = this.props.transaction.budget_id;
+      const budget = find(this.props.budgets, {id: budId});
+      this.setState({selectedOption: {value: budget.id, label: budget.name}})
+    }
   }
 
   save() {
