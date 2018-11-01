@@ -15,21 +15,12 @@ const defaultProps = {
 }
 
 class BudgetSelector extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedOption: null
-    }
-  }
-
   render() {
-    const { selectedOption } = this.state;
     const options = this.props.budgets.map(b => {return {value: b.id, label: b.name}});
 
     return (
       <Select
-        value={selectedOption}
+        value={this.props.selectedOption}
         onChange={this.props.handleChangeBudget}
         options={options}
       />

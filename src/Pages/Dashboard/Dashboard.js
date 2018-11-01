@@ -72,6 +72,7 @@ class Dashboard extends PureComponent {
         <div className="c-card_header">
           Uncategorized Transactions
         </div>
+
         <BudgetSelector />
       </div>
     )
@@ -86,7 +87,7 @@ class Dashboard extends PureComponent {
             { budgets.length === 0 ? this.renderNoBudgets() : <div>
               <div className="p-dashboard__title">Budget Overview</div>
               <Progress total={total.total} spent={total.spent} />
-              { this.renderUncategorized() }
+              {/* { this.renderUncategorized() } */}
               <div className="p-dashboard__budgets_wrapper c-card">
                 <div className="c-card_header">Your Budgets</div>
                   { this.renderBudgets() }
