@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { getAllBudgets } from '../../Actions/Budget';
 import Progress from '../../Components/Progress';
 import DashboardBudget from '../../Components/DashboardBudget';
-import BudgetSelector from '../../Components/BudgetSelector';
+// import BudgetSelector from '../../Components/BudgetSelector';
 import './_pillar.dashboard.source.scss';
 
 const propTypes = {
