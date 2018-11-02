@@ -45,7 +45,8 @@ class EditTransaction extends PureComponent {
   save() {
     const updatedTransaction = {
       transaction_id: this.props.transaction._id,
-      budget_id: this.state.selectedOption.value,
+      currentBudget: this.props.transaction.budget_id,
+      newBudget: this.state.selectedOption.value,
       name: this.state.name || this.props.transaction.name,
       amount: this.props.transaction.amount,
       date: new Date(),
