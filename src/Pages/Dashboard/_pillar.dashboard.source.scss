@@ -26,6 +26,10 @@
 .p-dashboard__uncategorized {
   margin-top: $spacing_200;
 }
+.p-dashboard__transaction_header {
+  display: flex;
+  justify-content: space-between;
+}
 .p-dashboard__budgets {
   margin: auto;
   margin-top: $spacing_100;

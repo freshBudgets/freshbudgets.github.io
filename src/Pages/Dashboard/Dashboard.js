@@ -66,18 +66,6 @@ class Dashboard extends PureComponent {
     );
   }
 
-  renderUncategorized() {
-    return (
-      <div className="c-card p-dashboard__uncategorized">
-        <div className="c-card_header">
-          Uncategorized Transactions
-        </div>
-
-        <BudgetSelector />
-      </div>
-    )
-  }
-
   render() {
     const { total, budgets } = this.props;
 
@@ -87,9 +75,15 @@ class Dashboard extends PureComponent {
             { budgets.length === 0 ? this.renderNoBudgets() : <div>
               <div className="p-dashboard__title">Budget Overview</div>
               <Progress total={total.total} spent={total.spent} />
-              {/* { this.renderUncategorized() } */}
               <div className="p-dashboard__budgets_wrapper c-card">
-                <div className="c-card_header">Your Budgets</div>
+                <div className="c-card_header">
+                  <div className="p-dashboard__transaction_header">
+                    <span>Your Budgets</span>
+                    <span>
+                      <Link to='/create_budget'><i className="fa fa-plus"></i></Link>
+                    </span>
+                  </div>
+                </div>
                   { this.renderBudgets() }
               </div>
             </div>

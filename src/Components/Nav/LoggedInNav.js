@@ -23,12 +23,6 @@ class LoggedInNav extends Component {
           <Link to="/dashboard" className="p-nav__item">
             Dashboard
           </Link>
-          <Link to="/create_budget" className="p-nav__item">
-            Create Budget
-          </Link>
-          <Link to="/add_account" className="p-nav__item">
-            Link Account
-          </Link>
           <Link to="/settings" className="p-nav__item">
             Settings
           </Link>

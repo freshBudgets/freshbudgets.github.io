@@ -23,3 +23,12 @@
 .p-settings__setting input[type="checkbox"] {
   margin-right: $spacing_50;
 }
+
+.p-settings__link_account {
+  margin-bottom: $spacing_100;
+}
+
+.p-settings__actions {
+  display: flex;
+  justify-content: space-around;
+}

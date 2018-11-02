@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import NumberFormat from 'react-number-format';
 import { _noop } from 'lodash';
 
@@ -56,6 +56,7 @@ class Settings extends PureComponent {
       <div className="p-settings">
         <div className="p-settings__header">Settings</div>
         <div className="c-card p-settings__card">
+          <div className="c-card_header">Notification Settings</div>
           <div className="p-settings__setting">
             <input type="checkbox" defaultChecked={settings.email} ref="email_setting"/> I would like to get emails.
           </div>
@@ -67,8 +68,12 @@ class Settings extends PureComponent {
           </div>
           { this.state.message && this.state.message}
         </div>
-        <div className="c-card">
-          <button onClick={this.props.logoutUser} className="">Logout</button>
+        <div className="c-card p-settings__link_account">
+          <div className="c-card_header">Actions</div>
+          <div className="p-settings__actions">
+            <Link to='/add_account'><button>Link Bank Account</button></Link>
+            <button onClick={this.props.logoutUser} className="">Logout</button>
+          </div>
         </div>
       </div>
     )
