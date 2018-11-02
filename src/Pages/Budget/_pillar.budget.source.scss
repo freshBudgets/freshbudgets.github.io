@@ -47,3 +47,9 @@
   font-size: $text_small;
   cursor: pointer;
 }
+
+.p-edit_transactions__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

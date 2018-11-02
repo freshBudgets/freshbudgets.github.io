@@ -57,6 +57,15 @@ class EditTransaction extends PureComponent {
     })
   }
 
+  delete() {
+    const options = {
+      transaction_id: this.props.transaction._id
+    }
+    apiPost('/transactions/remove', options).then(res => {
+      this.props.hideEditModal(true);
+    })
+  }
+
   handleChangeBudget(selectedOption) {
     this.setState({ selectedOption });
   }
@@ -73,7 +82,10 @@ class EditTransaction extends PureComponent {
           onChange={this.handleChangeBudget}
           options={options}
         />
-        <button onClick={this.save} style={{marginTop: '16px'}}>Save</button>
+        <div className="p-edit_transactions__actions">
+          <button onClick={this.save} style={{marginTop: '16px'}}>Save</button>
+          <div onClick={this.delete} className="c-error_text">Delete Transaction</div>
+        </div>
       </Modal>
     )
   }
