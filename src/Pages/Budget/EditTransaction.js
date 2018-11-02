@@ -31,6 +31,7 @@ class EditTransaction extends PureComponent {
     }
 
     this.save = this.save.bind(this);
+    this.delete = this.delete.bind(this);
     this.handleChangeBudget = this.handleChangeBudget.bind(this);
   }
 
@@ -59,7 +60,7 @@ class EditTransaction extends PureComponent {
 
   delete() {
     const options = {
-      transaction_id: this.props.transaction._id
+      transaction_id: this.props.transaction._id,
     }
     apiPost('/transactions/remove', options).then(res => {
       this.props.hideEditModal(true);
