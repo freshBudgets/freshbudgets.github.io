@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     spent: 0,
     total: 0,
   },
-  budgets: {},
+  budgets: [],
   message: ''
 }
 

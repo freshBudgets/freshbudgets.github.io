@@ -52,13 +52,11 @@ input[type="checkbox"] {
 }
 
 button {
-  background-color: $dark_blue;
+  background-color: $dark_green;
   border: none;
-  color: #fff;
-  box-shadow: 0 5px 0 rgba(17,17,31,.25);
-  border-radius: 99999rem;
-  text-transform: uppercase;
-  font-weight: bold;
+  color: #FFFFFF;
+  border-radius: $border_radius;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   padding: $spacing_75 $spacing_200;
@@ -66,8 +64,7 @@ button {
   transition: .1s;
 
   &:hover {
-    background: $black;
-    box-shadow: 0 0px 0 rgba(17,17,31,.25);
+    background: #006c72;
     transition: .1s;
   }
 }
@@ -85,7 +82,6 @@ button {
 }
 .c-card_header {
   width: calc(100% + 64px);
-  // background: linear-gradient(-90deg, #26C7B1 0%, #2FA9C2 100%);
   color: $dark_gray;
   margin-left: -$spacing_200;
   margin-top: -$spacing_200;

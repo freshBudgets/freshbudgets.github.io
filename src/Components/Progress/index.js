@@ -17,14 +17,16 @@ class Progress extends PureComponent {
     const {spent, total} = this.props;
     console.log(spent, total);
     let width = (spent / total)*100;
-    width = width > 99 ? 99 : width;
+    width = width >= 100 ? 100 : width;
     let left = total - spent;
     left = parseFloat(Math.round(left * 100) / 100).toFixed(2);
     const darkText = width < 55 ? 'c-progress__left--dark' : '';
 
+    const roundAll = width === 100 ? 'round_all' : '';
+
     return(
       <div className="c-progress c-card">
-        <div className="c-progress__so_far" style={{width: `${width}%`}}/>
+        <div className={`c-progress__so_far ${roundAll}`} style={{width: `${width}%`}}/>
         <div className="c-progress__left_wrapper">
           <div className={`c-progress__left ${darkText}`}>
             <h1>${left}</h1>
