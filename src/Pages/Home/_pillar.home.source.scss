@@ -1,21 +1,34 @@
 @import '../../Public/tools.scss';
 
-.p-home {
+.p-home__grabber {
   background: $light_blue;
   width: 100%;
-  min-height: calc(100vh - 70px);
   color: #FFFFFF;
+}
+.p-home nav {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  height: 70px;
+  padding: 0 $spacing_100;
+  box-sizing: border-box;
+}
+.p-home__logo {
+  font-size: $text_large;
+  font-weight: bold;
+  color: $black;
 }
 .p-home__content {
+  @include max-width;
   text-align: left;
-  color: $dark_blue;
+  color: $black;
   flex-basis: 1100px;
   padding: 0 12px;
   display: flex;
   align-items: center;
+  margin-top: $spacing_200;
+  padding-bottom: 64px;
 }
 .p-home__content_image {
   width: 30%;
@@ -48,10 +61,32 @@
   cursor: pointer;
 }
 .p-home__content button:hover {
-  background: $black;
+  background: $light_blue;
 }
 .p-home_phone_input {
   max-width: 280px;
+}
+
+.p-home__features {
+  margin: $spacing_200 auto;
+  @include max-width;
+}
+
+.p-home__feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing_200;
+}
+
+.p-home__feature_description {
+  padding: 0 $spacing_200;
+}
+
+.p-home__get_started {
+  width: 100%;
+  padding: $spacing_200 0;
+  text-align: center;
+  background: $dark_gray;
 }
 
 @media (max-width: 815px) {
