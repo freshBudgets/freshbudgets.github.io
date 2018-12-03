@@ -2,6 +2,7 @@
 
 .p-add_account {
   @include max-width;
+  margin-top: $spacing_100;
 }
 .p-add_account__header {
   font-size: $text_large;

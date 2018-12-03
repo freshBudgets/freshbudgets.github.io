@@ -9,10 +9,10 @@ const AuthenticatedRoute = ({component: Component, ...rest}) => {
       {...rest}
       render={(props) => isAuthenticated() === true
         ?
-        <div>
+        <div className="c-site">
           <Nav />
           <div className="c-content_wrapper">
-            <Component {...props} />            
+            <Component {...props} />
           </div>
         </div>
         : <Redirect to='/login' />}

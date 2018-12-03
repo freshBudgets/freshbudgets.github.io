@@ -2,6 +2,7 @@
 
 .p-settings {
   @include max-width;
+  margin-top: $spacing_100;
 }
 
 .p-settings__header {
@@ -30,5 +31,5 @@
 
 .p-settings__actions {
   display: flex;
-  justify-content: space-around;
+  // justify-content: space-around;
 }

@@ -17,13 +17,14 @@ class SmallProgress extends PureComponent {
     const {spent, total} = this.props;
     let width = (spent / total)*100;
     width = width >= 100 ? 100 : width;
-
+    console.log(spent, total);
     // let left = total - spent;
     // left = parseFloat(Math.round(left * 100) / 100).toFixed(2);
-    let type = '';
+    let type = 'green';
     if (spent && total) {
-      type = spent > total ? 'red' : 'green';      
+      type = spent > total ? 'red' : 'green';
     }
+
 
     return(
       <div className="c-small_progress">

@@ -12,6 +12,9 @@
   float: left;
   text-align: center;
   flex-direction: column;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0 0 4px rgba(0,0,0,0.12);
 }
 .p-nav--logged_out {
   border-bottom: 1px solid $dark_blue;
@@ -35,12 +38,18 @@
   cursor: pointer;
   text-align: center;
   display: block;
-  margin-bottom: $spacing_75;
+  // margin: $spacing_25 0;
+  padding: $spacing_50 0;
+
+  &:hover {
+    background: $light_gray
+  }
 }
 .p-nav__item_sub {
   font-size: 10px;
   text-transform: uppercase;
   font-weight: bold;
+  margin-top: $spacing_50;
 }
 .p-nav--logged_in .p-nav__item {
   color: $black;

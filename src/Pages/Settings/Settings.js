@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 // import NumberFormat from 'react-number-format';
 import { _noop } from 'lodash';
 
@@ -33,14 +32,26 @@ class Settings extends PureComponent {
     super(props);
 
     this.state = {
-      message: null
+      message: null,
     }
 
     this.handleSave = this.handleSave.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangeSms = this.handleChangeSms.bind(this);
   }
 
   componentDidMount() {
     this.props.getSettings();
+  }
+
+  handleChangeEmail(e) {
+    const email = e.target.checked;
+    this.props.saveSettings(email,this.props.settings.sms)
+  }
+
+  handleChangeSms(e) {
+    const sms = e.target.checked;
+    this.props.saveSettings(this.props.settings.email, sms)
   }
 
   handleSave() {
@@ -52,26 +63,26 @@ class Settings extends PureComponent {
 
   render() {
     const { settings } = this.props;
+
     return (
       <div className="p-settings">
         <div className="p-settings__header">Settings</div>
         <div className="c-card p-settings__card">
           <div className="c-card_header">Notification Settings</div>
           <div className="p-settings__setting">
-            <input type="checkbox" defaultChecked={settings.email} ref="email_setting"/> I would like to get emails.
+            <input type="checkbox" checked={settings.email} onChange={this.handleChangeEmail} ref="email_setting"/> I would like to get emails.
           </div>
           <div className="p-settings__setting">
-            <input type="checkbox" defaultChecked={settings.sms} ref="sms_setting"/> I would like to get sms notifications.
+            <input type="checkbox" checked={settings.sms} onChange={this.handleChangeSms} ref="sms_setting"/> I would like to get sms notifications.
           </div>
           <div className="p-settings__setting">
-            <button onClick={this.handleSave}>Save</button>
+            { settings.isFetching ? 'Saving...' : ''}
           </div>
           { this.state.message && this.state.message}
         </div>
         <div className="c-card p-settings__link_account">
           <div className="c-card_header">Actions</div>
           <div className="p-settings__actions">
-            <Link to='/add_account'><button>Link Bank Account</button></Link>
             <button onClick={this.props.logoutUser} className="">Logout</button>
           </div>
         </div>
@@ -81,8 +92,7 @@ class Settings extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { settings } = state.user;
-
+  const { settings } = state;
   return {
     settings
   };

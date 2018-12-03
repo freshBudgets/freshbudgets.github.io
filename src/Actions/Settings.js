@@ -21,15 +21,6 @@ function updateSettings(email,sms) {
   }
 }
 
-function receiveSettings(settings) {
-  console.log(settings);
-  return {
-    type: SETTINGS_SUCCESS,
-    isFetching: false,
-    settings,
-  }
-}
-
 function settingsFailure(message) {
   return {
     type: SETTINGS_FAILURE,
@@ -54,7 +45,7 @@ export function getSettings() {
         sms: response.smsNotifications
       }
 
-      dispatch(receiveSettings(settings));
+      dispatch(updateSettings(settings.email, settings.sms));
 
       return Promise.resolve('Settings Updated')
     })
@@ -76,7 +67,6 @@ export function saveSettings(email, sms) {
         dispatch(settingsFailure(message));
         return Promise.reject(message);
       }
-
       dispatch(updateSettings(email, sms));
     })
   }

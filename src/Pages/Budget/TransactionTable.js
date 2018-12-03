@@ -51,7 +51,7 @@ class TransactionTable extends PureComponent {
 
   renderNoTransactions() {
     return(
-      <div>
+      <div className="c-card">
         <p>
           We don't have any transactions stored for this budget categroy.
         </p>

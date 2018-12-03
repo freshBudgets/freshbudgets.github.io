@@ -18,7 +18,7 @@ class Modal extends PureComponent {
   render() {
     return (
       this.props.isShowing &&
-      <div className={`${this.props.className} c-modal`}>
+      <div className={`${this.props.className || ''} c-modal`}>
         <div className="c-modal__bg" onClick={this.props.closeModal} />
         <div className="c-modal__modal">
           { this.props.title && <div className="c-modal__header">{this.props.title}</div> }

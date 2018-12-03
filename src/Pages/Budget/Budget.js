@@ -113,7 +113,7 @@ class Budget extends PureComponent {
       });
     })
   }
-  
+
   render() {
     const { budget, transactions } = this.state;
     if (this.state.deleted) return <Redirect to="/dashboard" />;
