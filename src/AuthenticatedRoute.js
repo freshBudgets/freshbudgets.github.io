@@ -11,7 +11,9 @@ const AuthenticatedRoute = ({component: Component, ...rest}) => {
         ?
         <div>
           <Nav />
-          <Component {...props} />
+          <div className="c-content_wrapper">
+            <Component {...props} />            
+          </div>
         </div>
         : <Redirect to='/login' />}
     />

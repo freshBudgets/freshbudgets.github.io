@@ -1,6 +1,48 @@
 @import '../../Public/tools.scss';
 
 .p-budget { }
+.p-budget__header {
+  width: 100%;
+  height: 220px;
+  padding: $spacing_100;
+  box-sizing: border-box;
+  margin-bottom: $spacing_100;
+
+  &.p-budget__header-red {
+    background: $dark_red;
+  }
+
+  &.p-budget__header-green {
+    background: $dark_green;
+  }
+}
+.p-budget__left {
+  font-size: $text_large;
+  color: $white;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: $spacing_100;
+}
+.p-budget__progress_wrapper {
+  margin: 0 auto;
+  margin-bottom: $spacing_100;
+  max-width: 700px;
+}
+.p-budget__left_unit {
+  font-size: $text_body;
+  color: $white;
+  text-align: center;
+}
+.p-budget__transactions {
+  max-width: 700px;
+  margin: auto;
+}
+.p-budget__transactions_header {
+  font-size: $text_large;
+  font-weight: bold;
+  color: $black;
+  margin-bottom: $spacing_100;
+}
 
 .p-budget__content {
   @include max-width;
@@ -14,21 +56,10 @@
   font-size: $text_large;
   margin-bottom: $spacing_100;
   font-weight: bold;
+  color: $white;
 }
 .p-budget__settings_icon {
   cursor: pointer;
-}
-.p-budget__transactions {
-  margin-top: $spacing_200;
-  padding-bottom: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-.p-budget__transactions .c-card_header {
-  padding-left: $spacing_200 !important;
-  padding-right: $spacing_200 !important;
-  width: 100%;
-  margin-left: 0;
 }
 
 .p-budget__transactions p {

@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ReactTable from "react-table";
+import moment from 'moment';
+// import ReactTable from "react-table";
 import "react-table/react-table.css";
 import { _noop } from 'lodash';
 
+import { FormatPrice } from '../../Functions/Price';
 import EditTransaction from './EditTransaction';
 import './_pillar.budget.transaction_table.source.scss';
 
@@ -34,10 +36,11 @@ class TransactionTable extends PureComponent {
     const transaction = this.props.transactions.filter(t => t._id === transactionId);
 
     this.setState({
+      editingTransaction: transaction[0],
       showEditModal: true,
-      editingTransaction: transaction[0]
     })
   }
+
   hideEditModal(shouldUpdateTransactions = false) {
     this.setState({
       showEditModal: false,
@@ -59,56 +62,36 @@ class TransactionTable extends PureComponent {
     );
   }
 
-  renderTransactionRow(transaction) {
-    return (
-      <tr key={`${transaction.from}-${transaction.price}`}>
-        <td>
-          {transaction.from}
-        </td>
-        <td className="p-transaction_table__column--amount">
-          ${transaction.amount}
-        </td>
-        <td>
-          <i className="fa fa-pencil p-transaction_table__edit_transaction_button" onClick={() => this.showEditModal(transaction)}></i>
-        </td>
-      </tr>
-    );
-  }
-
   render() {
     const {transactions} = this.props;
-
-    const mappedTransactions = transactions.map(t => {
-      return {name: t.name, amount: t.amount, edit: t._id};
-    })
-
     if (transactions.length === 0) return this.renderNoTransactions();
-    const columns = [
-      {
-        Header: 'Name',
-        accessor: 'name'
-      },
-      {
-        Header: 'Amount',
-        accessor: 'amount',
-        Cell: row => (<div className="p-transaction_table__amount">${row.value.toFixed(2)}</div>),
-        maxWidth: 200
-      },
-      {
-        Header: 'Edit',
-        accessor: 'edit',
-        Cell: row => (<div className="p-transaction_table__edit"><i onClick={ () => {this.showEditModal(row.value)} } className="fa fa-pencil"></i></div>),
-        maxWidth: 50
-      }
-    ]
+
     return(
       <div>
-        <ReactTable
-          data={mappedTransactions}
-          columns={columns}
-          className=""
-          defaultPageSize={5}
-        />
+        {
+          transactions.map((transaction) => {
+            return (
+              <div
+                className="c-card p-budget__transaction"
+                key="transition._id"
+                onClick={() => this.showEditModal(transaction._id)}
+                >
+                  <div>
+                    <div className="c-text_body">
+                      {transaction.name}
+                    </div>
+                    <div className="c-text_small p-budget__transaction_date">
+                      {moment(transaction.date).format('MMM DD, YYYY')}
+                    </div>
+                  </div>
+                  <div>
+                    {FormatPrice(transaction.amount)}
+                  </div>
+              </div>
+            )
+          })
+        }
+
         <EditTransaction
           transaction={this.state.editingTransaction}
           isShowing={this.state.showEditModal}

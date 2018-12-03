@@ -1,8 +1,7 @@
 @import '../../Public/tools.scss';
 
 .p-dashboard {
-  background: $white;
-  padding-bottom: $spacing_200;
+  padding-top: $spacing_100;
 }
 .p-dashboard__content {
   @include max-width;
@@ -29,6 +28,7 @@
 .p-dashboard__transaction_header {
   display: flex;
   justify-content: space-between;
+  color: $black;
 }
 .p-dashboard__budgets {
   margin: auto;

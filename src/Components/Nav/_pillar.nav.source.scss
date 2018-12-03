@@ -1,44 +1,46 @@
 @import '../../Public/tools.scss';
 
 .p-nav {
-  width: 100%;
-  height: 70px;
+  width: $nav_width;
+  height: 100vh;
   display: flex;
-  align-items: center;
-  padding-left: $spacing_100;
   color: $dark_gray;
   font-weight: bold;
-  font-size: $text_body;
   box-sizing: border-box;
-  justify-content: space-between;
   background: $white;
   z-index: 1;
-  margin-bottom: $spacing_200;
+  float: left;
+  text-align: center;
+  flex-direction: column;
 }
 .p-nav--logged_out {
   border-bottom: 1px solid $dark_blue;
-  margin-bottom: 0;
 }
 .p-nav--logged_in {
   border-bottom: 1px solid $light_gray;
 }
 .p-nav__logo {
-  color: $dark_blue;
+  color: $black;
+  font-size: $text_large;
+  margin: $spacing_100 0;
 }
 .p-nav__items {
-  display: flex;
-  height: 100%;
+  font-size: $text_body;
+  font-weight: normal;
+  text-align: center;
+  width: 100%;
 }
 .p-nav__item {
-  margin: 0 $spacing_150;
-  display: flex;
-  align-items: center;
   border-bottom: 2px solid $white;
   cursor: pointer;
-
-  &:hover {
-    border-bottom: 2px solid $gray;
-  }
+  text-align: center;
+  display: block;
+  margin-bottom: $spacing_75;
+}
+.p-nav__item_sub {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 .p-nav--logged_in .p-nav__item {
   color: $black;
@@ -52,12 +54,4 @@
   top: 0;
   left: 0;
   z-index: 0;
-}
-
-@media (max-width: 350px) {
-  .p-nav--logged_in {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: $spacing_100 inherit;
-  }
 }

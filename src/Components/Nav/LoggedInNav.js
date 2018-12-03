@@ -17,14 +17,16 @@ class LoggedInNav extends Component {
     return (
       <nav className="p-nav p-nav--logged_in">
         <div className="p-nav__logo">
-          FreshBudgets
+          fb
         </div>
         <div className="p-nav__items">
           <Link to="/dashboard" className="p-nav__item">
-            Dashboard
+            <i className="fa fa-dashboard"></i>
+            <div className="p-nav__item_sub">Home</div>
           </Link>
           <Link to="/settings" className="p-nav__item">
-            Settings
+            <i className="fa fa-cog"></i>
+            <div className="p-nav__item_sub">Settings</div>
           </Link>
         </div>
       </nav>

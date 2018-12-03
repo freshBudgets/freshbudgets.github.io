@@ -1,4 +1,12 @@
+@import './tools.scss';
+
 a {
   text-decoration: none;
   color: inherit;
+}
+.c-content_wrapper {
+  width: calc(100% - #{$nav_width});
+  background: $light_gray;
+  float: right;
+  min-height: 100vh;
 }

@@ -5,14 +5,19 @@
   text-align: center;
 }
 
-.p-budget__transactions .c-card {
-  padding: 0 !important;
+.c-card.p-budget__transaction {
+  padding: $spacing_100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing_100;
 }
-
 .p-budget__transactions .c-card_header {
   margin-bottom: 0;
 }
-
+.p-budget__transaction_date {
+  margin-top: $spacing_50;
+}
 .p-transaction_table__edit {
   width: 100%;
   text-align: center;

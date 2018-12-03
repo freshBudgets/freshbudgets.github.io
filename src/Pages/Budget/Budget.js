@@ -5,7 +5,8 @@ import { Redirect } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 
 import { apiGet, apiPost } from '../../Functions/api'
-import Progress from '../../Components/Progress';
+// import Progress from '../../Components/Progress';
+import SmallProgress from '../../Components/SmallProgress';
 import Modal from '../../Components/Modal';
 import TransactionTable from './TransactionTable';
 
@@ -112,14 +113,31 @@ class Budget extends PureComponent {
       });
     })
   }
-
+  
   render() {
     const { budget, transactions } = this.state;
     if (this.state.deleted) return <Redirect to="/dashboard" />;
+    const headerType = budget.currentAmount > budget.budgetLimit ? 'red' : 'green';
+    const left = parseFloat(Math.round((budget.budgetLimit - budget.currentAmount) * 100) / 100).toFixed(2);
 
     return (
       <div className="p-budget">
-        <div className="p-budget__content">
+        <div className={`p-budget__header p-budget__header-${headerType}`}>
+          <div className="p-budget__title_bar">
+            <div className="p-budget__title">{budget.budgetName}</div>
+            <i className="fa fa-cog p-budget__settings_icon" onClick={this.showModal}></i>
+          </div>
+          <div className="p-budget__left">${left}</div>
+          <div className="p-budget__progress_wrapper">
+            <SmallProgress spent={budget.currentAmount} total={budget.budgetLimit} />
+          </div>
+          <div className="p-budget__left_unit">Left in your budget this week</div>
+        </div>
+        <div className="p-budget__transactions">
+          <div className="p-budget__transactions_header">Transactions</div>
+          <TransactionTable transactions={transactions} updateTransactions={this.updateTransactions}/>
+        </div>
+        {/* <div className="p-budget__content">
           <div className="p-budget__title_bar">
             <div className="p-budget__title">{budget.budgetName}</div>
             <i className="fa fa-cog p-budget__settings_icon" onClick={this.showModal}></i>
@@ -127,9 +145,8 @@ class Budget extends PureComponent {
           <Progress spent={budget.currentAmount} total={budget.budgetLimit} />
           <div className="c-card p-budget__transactions">
             <div className="c-card_header">Transactions</div>
-            <TransactionTable transactions={transactions} updateTransactions={this.updateTransactions}/>
           </div>
-        </div>
+        </div> */}
         <Modal title="Edit Budget" isShowing={this.state.editBudgetModal} closeModal={this.hideModal}>
           <input
             type="text"

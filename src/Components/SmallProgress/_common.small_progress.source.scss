@@ -1,0 +1,44 @@
+@import '../../Public/tools.scss';
+
+$top_height: 15px;
+$border_size: 2px;
+$full_height: $top_height + ($border_size * 2);
+
+.c-small_progress {
+  width: 100%;
+  position: relative;
+  height: $full_height;
+}
+
+.c-small_progress__sub_bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 0;
+  top: calc(#{$full_height} / 2);
+  transform: translateY(-50%);
+
+  &.c-small_progress__sub_bar-red {
+    background: $light_red;
+  }
+  &.c-small_progress__sub_bar-green {
+    background: $light_green;
+  }
+}
+
+.c-small_progress__top_bar {
+  height: $top_height;
+  background: $light_gray;
+  border-radius: 15px;
+  position: absolute;
+  z-index: 0;
+  transition: .2s;
+
+  &.c-small_progress__top_bar-red {
+    border: $border_size solid $dark_red;
+  }
+  &.c-small_progress__top_bar-green {
+    border: $border_size solid $dark_green;
+  }
+}

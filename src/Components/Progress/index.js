@@ -15,13 +15,12 @@ const defaultProps = {
 class Progress extends PureComponent {
   render() {
     const {spent, total} = this.props;
-    console.log(spent, total);
     let width = (spent / total)*100;
     width = width >= 100 ? 100 : width;
     let left = total - spent;
     left = parseFloat(Math.round(left * 100) / 100).toFixed(2);
-    const darkText = width < 55 ? 'c-progress__left--dark' : '';
-
+    // const darkText = width < 55 ? 'c-progress__left--dark' : '';
+    const darkText = ''
     const roundAll = width === 100 ? 'round_all' : '';
 
     return(

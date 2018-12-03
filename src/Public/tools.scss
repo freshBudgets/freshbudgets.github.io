@@ -1,15 +1,22 @@
 // Colors
-$black: #000000;
-$dark_gray: #484848;
-$gray: #767676;
-$light_gray: rgba(0,0,0,0.1);
+$black: #34394A;
+$dark_gray: #A5ABB2;
+$light_gray: #F8F9FA;
 $white: #ffffff;
 
-$light_blue: #95E5F5;
-$dark_blue: #074E93;
-$pink: #FF585B;
-$dark_green: #00848A;
-$light_green: #D3F2B3;
+$light_blue: #7EDAF2;
+$dark_blue: #69CBE4;
+
+$light_green: #7CEEAB;
+$dark_green: #68DD99;
+
+$light_red: #DD7051;
+$dark_red: #D26141;
+
+// Old
+$gray: #767676;
+$pink: $light_red;
+
 
 // Spacing
 $spacing_25: 4px;
@@ -28,6 +35,8 @@ $text_large: 24px;
 $text_med: 22px;
 $text_body: 16px;
 $text_small: 12px;
+
+$nav_width: 70px;
 
 @mixin max-width {
   max-width: 1000px;
@@ -64,7 +73,7 @@ button {
   transition: .1s;
 
   &:hover {
-    background: #006c72;
+    background: $light_green;
     transition: .1s;
   }
 }
@@ -109,4 +118,11 @@ button {
 }
 .c-error_text {
   color: $pink;
+}
+
+.c-text_small {
+  font-size: $text_small;
+}
+.c-text_body {
+  font-size: $text_body;
 }
