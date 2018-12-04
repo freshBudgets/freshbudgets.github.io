@@ -5,6 +5,7 @@ import Select from 'react-select';
 import { find, isEmpty } from 'lodash';
 
 import { apiPost } from '../../Functions/api'
+import { getAllBudgets } from '../../Actions/Budget';
 import Modal from '../../Components/Modal';
 import './_pillar.budget.transaction_table.source.scss';
 
@@ -35,8 +36,15 @@ class EditTransaction extends PureComponent {
     this.handleChangeBudget = this.handleChangeBudget.bind(this);
   }
 
+  componentDidMount() {
+    // conditional fetch
+    if (this.props.budgets.length === 0) {
+      this.props.getAllBudgets();
+    }
+  }
+
   componentDidUpdate(prevProps) {
-    if (!isEmpty(this.props.transaction) && this.props.transaction !== prevProps.transaction) {
+    if (!isEmpty(this.props.transaction) && this.props.transaction !== prevProps.transaction && this.props.budgets.length > 0) {
       const budId = this.props.transaction.budget_id;
       const budget = find(this.props.budgets, {id: budId});
       this.setState({selectedOption: {value: budget.id, label: budget.name}})
@@ -86,7 +94,7 @@ class EditTransaction extends PureComponent {
         <div className="p-edit_transactions__actions">
           <button onClick={this.save} style={{marginTop: '16px'}}>Save</button>
           <div onClick={this.delete} className="c-error_text">Delete Transaction</div>
-        </div> 
+        </div>
       </Modal>
     )
   }
@@ -99,6 +107,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  getAllBudgets: () => dispatch(getAllBudgets()),
 });
 
 EditTransaction.propTypes = propTypes;

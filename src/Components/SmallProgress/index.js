@@ -17,9 +17,7 @@ class SmallProgress extends PureComponent {
     const {spent, total} = this.props;
     let width = (spent / total)*100;
     width = width >= 100 ? 100 : width;
-    console.log(spent, total);
-    // let left = total - spent;
-    // left = parseFloat(Math.round(left * 100) / 100).toFixed(2);
+
     let type = 'green';
     if (spent && total) {
       type = spent > total ? 'red' : 'green';
@@ -31,7 +29,7 @@ class SmallProgress extends PureComponent {
         <div className={`c-small_progress__sub_bar c-small_progress__sub_bar-${type}`} />
         <div
           className={`c-small_progress__top_bar c-small_progress__top_bar-${type}`}
-          style={{width: `${width}%`}}
+          style={{width: `${width}%`, minWidth: '1%'}}
         />
       </div>
     )

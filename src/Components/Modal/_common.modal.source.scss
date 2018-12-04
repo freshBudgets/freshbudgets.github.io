@@ -9,6 +9,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 5
 }
 .c-modal__bg {
   width: 100%;
@@ -20,7 +21,8 @@
   z-index: 3;
 }
 .c-modal__modal {
-  width: 500px;
+  flex-basis: 500px;
+  // max-width: 500px;
   margin: 0 $spacing_100;
   background: #FFFFFF;
   padding: $spacing_100;
@@ -28,11 +30,8 @@
   border-radius: calc(#{$border-radius} * 2);
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
   z-index: 4;
+  position: absolute;
 
 }
 .c-modal__header {
