@@ -93,7 +93,7 @@ class EditTransaction extends PureComponent {
         />
         <div className="p-edit_transactions__actions">
           <button onClick={this.save} style={{marginTop: '16px'}}>Save</button>
-          <div onClick={this.delete} className="c-error_text">Delete Transaction</div>
+          <div onClick={this.delete} className="c-error_text p-budget__delete">Delete Transaction</div>
         </div>
       </Modal>
     )

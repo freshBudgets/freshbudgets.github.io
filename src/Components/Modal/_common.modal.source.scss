@@ -21,8 +21,7 @@
   z-index: 3;
 }
 .c-modal__modal {
-  flex-basis: 500px;
-  // max-width: 500px;
+  width: 500px;
   margin: 0 $spacing_100;
   background: #FFFFFF;
   padding: $spacing_100;
@@ -47,4 +46,10 @@
   letter-spacing: 1px;
   font-size: 14px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 533px) {
+  .c-modal__modal {
+    width: calc(100% - #{$spacing_200});
+  }
 }

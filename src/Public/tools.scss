@@ -109,10 +109,12 @@ button {
 }
 .c-card.c-clickable_card {
   transition: .2s;
+  cursor: pointer;
 }
 .c-clickable_card:hover {
-  transform: scale(1.01);
+  // transform: scale(1.01);
   transition: .2s;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
 }
 
 .c-light_text {

@@ -43,6 +43,13 @@
   font-weight: bold;
   color: $black;
   margin-bottom: $spacing_100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & i {
+    font-size: $text_body;
+  }
 }
 
 .p-budget__content {

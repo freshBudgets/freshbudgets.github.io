@@ -72,7 +72,7 @@ class TransactionTable extends PureComponent {
           transactions.map((transaction) => {
             return (
               <div
-                className="c-card p-budget__transaction"
+                className="c-card p-budget__transaction c-clickable_card"
                 key={transaction._id}
                 onClick={() => this.showEditModal(transaction._id)}
                 >

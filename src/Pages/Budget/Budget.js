@@ -5,12 +5,11 @@ import { Redirect } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 
 import { apiGet, apiPost } from '../../Functions/api'
-// import Progress from '../../Components/Progress';
 import MobileNav from '../../Components/Nav/MobileNav';
 import SmallProgress from '../../Components/SmallProgress';
 import Modal from '../../Components/Modal';
 import TransactionTable from './TransactionTable';
-
+import NewTransactionModal from './NewTransactionModal'
 import './_pillar.budget.source.scss';
 
 const propTypes = {
@@ -43,11 +42,14 @@ class Budget extends PureComponent {
       limit: this.props.budget.total,
       formattedLimit: this.props.budget.total,
       transactions: [],
+      newTransactionModal: false,
     }
 
     this.onDelete = this.onDelete.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.showNewTransactionModal = this.showNewTransactionModal.bind(this);
+    this.hideNewTransactionModal = this.hideNewTransactionModal.bind(this);
     this.updateBudget = this.updateBudget.bind(this);
     this.updateTransactions = this.updateTransactions.bind(this);
   }
@@ -91,6 +93,14 @@ class Budget extends PureComponent {
     this.setState({editBudgetModal: false});
   }
 
+  showNewTransactionModal() {
+    this.setState({newTransactionModal: true});
+  }
+
+  hideNewTransactionModal() {
+    this.setState({newTransactionModal: false});
+  }
+
   updateBudget() {
     const budget = {
       newBudgetName: this.state.budget.budgetName,
@@ -120,6 +130,7 @@ class Budget extends PureComponent {
     if (this.state.deleted) return <Redirect to="/dashboard" />;
     const headerType = budget.currentAmount > budget.budgetLimit ? 'red' : 'green';
     const left = parseFloat(Math.round((budget.budgetLimit - budget.currentAmount) * 100) / 100).toFixed(2);
+    const id = this.props.match.params.id;
 
     return (
       <div className="p-budget">
@@ -135,19 +146,13 @@ class Budget extends PureComponent {
           <div className="p-budget__left_unit">Left in your budget this week</div>
         </div>
         <div className="p-budget__transactions">
-          <div className="p-budget__transactions_header">Transactions</div>
+          <div className="p-budget__transactions_header">
+            <div>Transactions</div>
+            <i className="fa fa-plus fa-sm" onClick={this.showNewTransactionModal}></i>
+          </div>
           <TransactionTable transactions={transactions} updateTransactions={this.updateTransactions}/>
         </div>
-        {/* <div className="p-budget__content">
-          <div className="p-budget__title_bar">
-            <div className="p-budget__title">{budget.budgetName}</div>
-            <i className="fa fa-cog p-budget__settings_icon" onClick={this.showModal}></i>
-          </div>
-          <Progress spent={budget.currentAmount} total={budget.budgetLimit} />
-          <div className="c-card p-budget__transactions">
-            <div className="c-card_header">Transactions</div>
-          </div>
-        </div> */}
+
         <Modal title="Edit Budget" isShowing={this.state.editBudgetModal} closeModal={this.hideModal}>
           <input
             type="text"
@@ -169,6 +174,8 @@ class Budget extends PureComponent {
             <div className="c-error_text p-budget__delete" onClick={this.onDelete}>Delete Budget</div>
           </div>
         </Modal>
+
+        <NewTransactionModal isShowing={this.state.newTransactionModal} hideEditModal={this.hideNewTransactionModal} budgetId={id}/>
       </div>
     );
   }

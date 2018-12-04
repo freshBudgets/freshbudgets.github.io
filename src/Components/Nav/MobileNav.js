@@ -24,7 +24,6 @@ class MobileNav extends Component {
   }
 
   toggleNav() {
-    console.log(this.state.isShowing);
     this.setState({isShowing: !this.state.isShowing})
   }
 
