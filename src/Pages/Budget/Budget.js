@@ -6,6 +6,7 @@ import NumberFormat from 'react-number-format';
 
 import { apiGet, apiPost } from '../../Functions/api'
 // import Progress from '../../Components/Progress';
+import MobileNav from '../../Components/Nav/MobileNav';
 import SmallProgress from '../../Components/SmallProgress';
 import Modal from '../../Components/Modal';
 import TransactionTable from './TransactionTable';
@@ -124,7 +125,7 @@ class Budget extends PureComponent {
       <div className="p-budget">
         <div className={`p-budget__header p-budget__header-${headerType}`}>
           <div className="p-budget__title_bar">
-            <div className="p-budget__title">{budget.budgetName}</div>
+            <div className="p-budget__title"><MobileNav/>{budget.budgetName}</div>
             <i className="fa fa-cog p-budget__settings_icon" onClick={this.showModal}></i>
           </div>
           <div className="p-budget__left">${left}</div>

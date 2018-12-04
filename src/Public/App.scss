@@ -14,3 +14,10 @@ a {
 .c-site {
   position: relative;
 }
+
+@media (max-width: $mobile_nav_show) {
+  .c-content_wrapper {
+    width: 100%;
+    float: none;
+  }
+}

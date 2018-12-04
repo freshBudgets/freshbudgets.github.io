@@ -64,3 +64,9 @@
   left: 0;
   z-index: 0;
 }
+
+@media (max-width: $mobile_nav_show) {
+  .p-desktop_nav {
+    display: none;
+  }
+}

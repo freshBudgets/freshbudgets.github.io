@@ -38,6 +38,8 @@ $text_small: 12px;
 
 $nav_width: 70px;
 
+$mobile_nav_show: 550px;
+
 @mixin max-width {
   max-width: 1000px;
   padding: 0 $spacing_100;

@@ -1,0 +1,32 @@
+@import '../../Public/tools.scss';
+
+.p-mobile_nav {
+  margin-right: $spacing_50;
+  display: none;
+}
+
+.p-mobile_nav__nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 5;
+}
+
+.p-movile_nav__bg {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.3);
+}
+
+@media (max-width: 550px) {
+  .p-mobile_nav {
+    display: inline-block;
+  }
+
+  .p-nav {
+    position: absolute;
+    top: 0;
+  }
+}

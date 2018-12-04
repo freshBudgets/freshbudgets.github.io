@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { getAllBudgets } from '../../Actions/Budget';
 import Progress from '../../Components/Progress';
 import DashboardBudget from '../../Components/DashboardBudget';
+import MobileNav from '../../Components/Nav/MobileNav';
 // import BudgetSelector from '../../Components/BudgetSelector';
 import './_pillar.dashboard.source.scss';
 
@@ -73,7 +74,7 @@ class Dashboard extends PureComponent {
       <div className="p-dashboard">
           <div className="p-dashboard__content">
             { budgets.length === 0 ? this.renderNoBudgets() : <div>
-              <div className="p-dashboard__title">Budget Overview</div>
+              <div className="p-dashboard__title"><MobileNav />Budget Overview</div>
               <Progress total={total.total} spent={total.spent} />
               <div className="p-dashboard__budgets_wrapper c-card">
                 <div className="c-card_header">
