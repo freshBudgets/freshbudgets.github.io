@@ -2,12 +2,22 @@
 
 .p-add_account {
   @include max-width;
-  margin-top: $spacing_100;
+  padding-top: $spacing_100;
 }
 .p-add_account__header {
   font-size: $text_large;
   margin-bottom: $spacing_100;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & i.fa-plus {
+    font-size: $text_body;
+  }
+}
+.p-add_account__name {
+  font-size: $text_large;
 }
 .p-add_account__content {
   text-align: center;

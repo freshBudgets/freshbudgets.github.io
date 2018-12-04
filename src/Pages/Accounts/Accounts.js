@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PlaidLink from './PlaidLink';
-import Nav from '../../Components/Nav';
+import MobileNav from '../../Components/Nav/MobileNav';
 
 import { linkAccount } from '../../Actions/Account';
-import './_pillar.add_account.source.scss';
+import { apiGet } from '../../Functions/api';
+import './_pillar.accounts.source.scss';
 
 const propTypes = {
 }
@@ -13,24 +13,26 @@ const propTypes = {
 const defaultProps = {
 }
 
-class AddAccount extends PureComponent {
+class Accounts extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      modalOpen: false,
-      redirect: false,
-      message: null,
+      accounts: [],
     }
 
-    this.onEvent = this.onEvent.bind(this);
     this.handleOnSuccess = this.handleOnSuccess.bind(this);
-    this.handleOnExit = this.handleOnExit.bind(this);
   }
 
   componentDidMount() {
     const env = this.props.location.search.substring(5);
     this.setState({env: env === 'dev' ? 'development' : 'sandbox'});
+
+    apiGet('/accounts').then(res => {
+      if (res.success) {
+        this.setState({accounts: res.accounts});
+      }
+    })
   }
 
   componentWillUnmount() {
@@ -51,46 +53,52 @@ class AddAccount extends PureComponent {
     })
   }
 
-  handleOnExit() {
-    this.setState({message: 'You clicked the little x. Redirecting...'});
-    this.setState({redirect: true});
+  renderNoAccounts() {
+    return (
+      <div className="c-card">
+        <p>
+          You don't have any account added to Fresh Budgets yet. Click the plus
+          in the corner to add one!
+        </p>
+        <p>
+          Remember, money doesn't grow on trees, it grows by smartly spending. <span role="img" aria-label="Nice!">👍</span>
+        </p>
+      </div>
+    )
   }
 
-  onEvent(e) {
-    if (e === 'OPEN') {
-      this.setState({modalOpen: true});
-    }
-    if (e === 'EXIT' || e === 'HANDOFF') {
-      this.setState({modalOpen: false});
-    }
-  }
-
-  onLoad() {
-    const plaid = document.getElementById('plaid-link-iframe-1');
-    plaid.style.zIndex = 10;
+  renderAccount() {
+    return (
+      <div className="c-card">
+        Account
+      </div>
+    )
   }
 
   render() {
-    if (this.state.redirect) return <Redirect to="/dashboard" />
+    const { accounts } = this.state;
     return (
       <div className="p-add_account">
-        <div className="p-add_account__nav"><Nav/></div>
-        <div className="p-add_account__header">Add Account</div>
-        <div className="p-add_account__content">
-          { this.state.message && this.state.message }
+        <div className="p-add_account__header">
+          <div className="p-add_account__name"><MobileNav />Accounts</div>
           <PlaidLink
             clientName="Fresh Budgets"
             env={this.state.env}
             product={["auth", "transactions"]}
             publicKey="c71dae3573f12ec78aaaabfeca273d"
             style={{}}
-            onExit={this.handleOnExit}
-            onEvent={this.onEvent}
-            onLoad={this.onLoad}
             webhook="https://api.freshbudgets.com/api/plaid/transaction"
             onSuccess={this.handleOnSuccess}>
             Connect
           </PlaidLink>
+        </div>
+        <div className="p-add_account__content">
+          { accounts.length === 0 ? this.renderNoAccounts() :
+            accounts.map((account) => {
+              return this.renderAccount(account);
+            })
+          }
+
         </div>
       </div>
     )
@@ -105,6 +113,6 @@ const mapDispatchToProps = (dispatch) => ({
   linkAccount: (obj) => dispatch(linkAccount(obj))
 });
 
-AddAccount.propTypes = propTypes;
-AddAccount.defaultProps = defaultProps;
-export default connect(mapStateToProps, mapDispatchToProps)(AddAccount)
+Accounts.propTypes = propTypes;
+Accounts.defaultProps = defaultProps;
+export default connect(mapStateToProps, mapDispatchToProps)(Accounts)

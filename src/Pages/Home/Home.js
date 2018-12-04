@@ -37,10 +37,6 @@ class Home extends PureComponent {
           <div className="p-home__content">
             <div className="p-home__content_copy">
               <h1>Keep your financials in check and start spending right.</h1>
-              <p>Enter your phone number to get started.</p>
-              <div>
-                <input onChange={this.changePhoneNumber} value={this.state.formattedPhoneNumber} type='text' ref='phone' className="p-home_phone_input" placeholder='(555) 555-5555'/>
-              </div>
               <Link to="/register"><button>Get Started</button></Link>
             </div>
             <div className="p-home__content_image">
@@ -50,6 +46,21 @@ class Home extends PureComponent {
         </div>
         <div className="p-home__features">
           <h1>Features</h1>
+          <div className="p-home__feature">
+            <div className="p-home__feature_description">
+              <h2>Stay in the loop as you spend</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div>
+              <div className="p-home__texting">
+                <div className="c-sms_bubble c-sms_bubble-recieve">You just spent $5.63 at Chick-Fil-A. You have $13.73 left for Food today.</div>
+                <div className="c-sms_bubble c-sms_bubble-send">Thanks!</div>
+              </div>              
+            </div>
+          </div>
           <div className="p-home__feature">
             <MockBrowser width={500} src={Budget} />
             <div className="p-home__feature_description">

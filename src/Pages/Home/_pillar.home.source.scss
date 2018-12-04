@@ -1,9 +1,10 @@
 @import '../../Public/tools.scss';
 
 .p-home__grabber {
-  background: $light_blue;
+  // background: $light_blue;
+  background: linear-gradient(45deg, $light_blue 0%, $light_green 100%);
   width: 100%;
-  color: #FFFFFF;
+  // color: #FFFFFF;
 }
 .p-home nav {
   width: 100%;
@@ -13,6 +14,17 @@
   height: 70px;
   padding: 0 $spacing_100;
   box-sizing: border-box;
+}
+.p-home_nav__items {
+  height: 100%;
+}
+.p-home_nav__item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.p-home_nav__item:hover {
+  border-bottom: 1px solid $black;
 }
 .p-home__logo {
   font-size: $text_large;
@@ -29,6 +41,7 @@
   align-items: center;
   margin-top: $spacing_200;
   padding-bottom: 64px;
+  height: 500px;
 }
 .p-home__content_image {
   width: 30%;
@@ -41,16 +54,16 @@
 .p-home__content h1 {
   font-size: 80px;
   margin: 0;
-  margin-bottom: $spacing_100;
-  line-height: 82px;
+  margin-bottom: $spacing_200;
+  line-height: 90px;
   letter-spacing: -2.5px;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
 .p-home__content button {
-  background-color: $dark_blue;
+  background-color: $white;
   border: none;
-  color: #fff;
+  color: $black;
   box-shadow: 0 5px 0 rgba(17,17,31,.25);
   border-radius: 99999rem;
   text-transform: uppercase;
@@ -61,21 +74,44 @@
   cursor: pointer;
 }
 .p-home__content button:hover {
-  background: $light_blue;
+  background: $light_gray;
 }
 .p-home_phone_input {
   max-width: 280px;
+}
+.p-home__texting {
+  display: inline-block;
+  width: 400px;
+}
+.c-sms_bubble {
+  padding: $spacing_50 $spacing_100;
+  border-radius: 20px;
+  margin: $spacing_50 0;
+  text-align: left;
+
+  &-recieve {
+    background: #E5E5EA;
+    float: left;
+  }
+
+  &-send {
+    float: right;
+    color: $white;
+    background: linear-gradient(0deg, #1288F8 0%, #1287F8 100%);
+  }
 }
 
 .p-home__features {
   margin: $spacing_200 auto;
   @include max-width;
 }
-
+.p-home__features h1 {
+  margin-bottom: $spacing_200;
+}
 .p-home__feature {
   display: flex;
   align-items: center;
-  margin-bottom: $spacing_200;
+  margin-bottom: 128px;
 }
 
 .p-home__feature_description {

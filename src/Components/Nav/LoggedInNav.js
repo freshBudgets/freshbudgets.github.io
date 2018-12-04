@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-// import { _noop } from 'lodash';
 
 import './_pillar.nav.source.scss';
 
-const propTypes = {
-}
-
-const defaultProps = {
-}
+const propTypes = {}
+const defaultProps = {}
 
 class LoggedInNav extends Component {
   render() {
@@ -24,7 +19,7 @@ class LoggedInNav extends Component {
             <i className="fas fa-columns"></i>
             <div className="p-nav__item_sub">Home</div>
           </Link>
-          <Link to="/add_account" className="p-nav__item">
+          <Link to="/accounts" className="p-nav__item">
             <i className="fas fa-money-check-alt"></i>
             <div className="p-nav__item_sub">Accounts</div>
           </Link>

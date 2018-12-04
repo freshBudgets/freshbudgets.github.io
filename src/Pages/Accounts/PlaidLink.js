@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import Script from 'react-load-script';
 import PropTypes from 'prop-types';
 
+
+
 class PlaidLink extends Component {
   constructor(props) {
     super(props);
     this.state = {
       disabledButton: true,
-      linkLoaded: true,
+      linkLoaded: false,
       initializeURL: 'https://cdn.plaid.com/link/v2/stable/link-initialize.js',
     };
 
@@ -51,7 +53,7 @@ class PlaidLink extends Component {
     publicKey: PropTypes.string.isRequired,
 
     // The Plaid products you wish to use, an array containing some of connect,
-    // auth, identity, income, transactions
+    // auth, identity, income, transactions, assets
     product: PropTypes.arrayOf(
       PropTypes.oneOf([
         'connect',  // legacy product name
@@ -60,6 +62,7 @@ class PlaidLink extends Component {
         'identity',
         'income',
         'transactions',
+        'assets',
       ])
     ).isRequired,
 
@@ -99,10 +102,6 @@ class PlaidLink extends Component {
     className: PropTypes.string,
   }
 
-  componentDidMount() {
-
-  }
-
   onScriptError() {
     console.error('There was an issue loading the link-initialize.js script');
   }
@@ -124,12 +123,6 @@ class PlaidLink extends Component {
     });
 
     this.setState({ disabledButton: false });
-
-    const institution = this.props.institution || null;
-
-    if (window.linkHandler) {
-      window.linkHandler.open(institution);
-    }
   }
 
   handleLinkOnLoad() {
@@ -158,6 +151,7 @@ class PlaidLink extends Component {
   render() {
     return (
       <div>
+        <i className="fa fa-plus" onClick={this.handleOnClick}></i>
         <Script
           url={this.state.initializeURL}
           onError={this.onScriptError}
