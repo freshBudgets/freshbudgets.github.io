@@ -46,3 +46,13 @@
 .browser-mockup > * {
   display: block;
 }
+
+@media (max-width: 550px) {
+  .browser-mockup {
+    width: 100% !important;
+
+    & img {
+      width: 100% !important;
+    }
+  }
+}
