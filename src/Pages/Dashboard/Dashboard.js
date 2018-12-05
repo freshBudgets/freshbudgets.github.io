@@ -8,7 +8,6 @@ import { getAllBudgets } from '../../Actions/Budget';
 import Progress from '../../Components/Progress';
 import DashboardBudget from '../../Components/DashboardBudget';
 import MobileNav from '../../Components/Nav/MobileNav';
-// import BudgetSelector from '../../Components/BudgetSelector';
 import './_pillar.dashboard.source.scss';
 
 const propTypes = {

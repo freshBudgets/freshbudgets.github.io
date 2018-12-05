@@ -16,8 +16,12 @@ class LoggedInNav extends Component {
         </div>
         <div className="p-nav__items">
           <Link to="/dashboard" className="p-nav__item">
-            <i className="fas fa-columns"></i>
-            <div className="p-nav__item_sub">Home</div>
+            <i className="fas fa-list"></i>
+            <div className="p-nav__item_sub">Budgets</div>
+          </Link>
+          <Link to="/recurring" className="p-nav__item">
+            <i className="fas fa-sync-alt"></i>
+            <div className="p-nav__item_sub">Recurring</div>
           </Link>
           <Link to="/accounts" className="p-nav__item">
             <i className="fas fa-money-check-alt"></i>

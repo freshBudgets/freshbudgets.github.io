@@ -1,0 +1,34 @@
+@import '../../Public/tools.scss';
+
+.p-recurring {
+  @include max-width;
+  padding-top: $spacing_200;
+}
+
+.p-recurring__header {
+  font-size: $text_large;
+  font-weight: bold;
+  margin-bottom: $spacing_100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & i {
+    font-size: $text_body;
+  }
+}
+
+.p-recurring__empty {
+  text-align: center;
+}
+
+.p-recurring__item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $spacing_100;
+}
+
+.p-recurring__edit_actions {
+  display: flex;
+  justify-content: space-between;
+}

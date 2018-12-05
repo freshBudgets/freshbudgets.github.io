@@ -60,7 +60,7 @@ class Accounts extends PureComponent {
           You don't have any account added to Fresh Budgets yet. Click the plus
           in the corner to add one!
         </p>
-        <p>
+        <p className="c-tip">
           Remember, money doesn't grow on trees, it grows by smartly spending. <span role="img" aria-label="Nice!">👍</span>
         </p>
       </div>

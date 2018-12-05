@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import NumberFormat from 'react-number-format';
 import { _noop } from 'lodash';
 
 import { getSettings, saveSettings } from '../../Actions/Settings';
+import MobileNav from '../../Components/Nav/MobileNav';
 import { logoutUser } from '../../Actions/';
 import './_pillar.settings.source.scss';
 
@@ -66,7 +66,7 @@ class Settings extends PureComponent {
 
     return (
       <div className="p-settings">
-        <div className="p-settings__header">Settings</div>
+        <div className="p-settings__header"><MobileNav />Settings</div>
         <div className="c-card p-settings__card">
           <div className="c-card_header">Notification Settings</div>
           <div className="p-settings__setting">
