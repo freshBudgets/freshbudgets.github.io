@@ -29,7 +29,7 @@ class DashboardBudget extends PureComponent {
       subText = 'Over Budget'
     } else {
       data = [
-        {title: "Left", value: left, color: "#E5E5E5"},
+        {title: "Left", value: left, color: "#7EDAF2"},
         {title: "Spent", value: budget.spent, color: "#63DE97"},
       ];
       subText = 'Left Today'

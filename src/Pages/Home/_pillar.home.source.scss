@@ -1,5 +1,8 @@
 @import '../../Public/tools.scss';
 
+.p-home {
+  overflow-x: hidden;
+}
 .p-home__grabber {
   // background: $light_blue;
   background: linear-gradient(45deg, $light_blue 0%, $light_green 100%);
@@ -83,11 +86,14 @@
   display: inline-block;
   width: 400px;
 }
+
 .c-sms_bubble {
   padding: $spacing_50 $spacing_100;
   border-radius: 20px;
   margin: $spacing_50 0;
   text-align: left;
+  clear: both;
+  box-sizing: border-box;
 
   &-recieve {
     background: #E5E5EA;
@@ -154,16 +160,35 @@
 }
 
 .p-home__features {
-  margin: $spacing_200 auto;
-  @include max-width;
+  // padding: $spacing_200 0;
+
+  &--sms {
+    background: $light_gray;
+    padding-top: 32px;
+  }
 }
 .p-home__features h1 {
-  margin-bottom: $spacing_200;
+  margin-bottom: 64px;
+  text-align: center;
 }
 .p-home__feature {
+  @include max-width;
   display: flex;
   align-items: center;
-  margin-bottom: 128px;
+  margin-bottom: 64px;
+  padding-bottom: 64px;
+  position: relative;
+
+  &:not(:last-child):after {
+    content: '';
+    width: 50%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $dark_gray;
+  }
 }
 
 .p-home__feature_description {
@@ -175,6 +200,13 @@
   padding: $spacing_200 0;
   text-align: center;
   background: $dark_gray;
+  box-sizing: border-box;
+}
+
+@media (max-width:455px) {
+  .p-home__texting {
+    width: 100%;
+  }
 }
 
 @media (max-width: 815px) {
