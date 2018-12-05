@@ -53,9 +53,11 @@ class Budget extends PureComponent {
     this.hideNewTransactionModal = this.hideNewTransactionModal.bind(this);
     this.updateBudget = this.updateBudget.bind(this);
     this.updateTransactions = this.updateTransactions.bind(this);
+    this.fetchBudget = this.fetchBudget.bind(this);
   }
 
-  componentDidMount() {
+  // Fetchers
+  fetchBudget() {
     const id = this.props.match.params.id;
 
     apiGet(`/budget/${id}`).then( response => {
@@ -66,8 +68,6 @@ class Budget extends PureComponent {
 
       this.setState({budget: {...response.budgets}});
     })
-
-    this.updateTransactions();
   }
 
   updateTransactions() {
@@ -76,11 +76,20 @@ class Budget extends PureComponent {
     })
   }
 
+  // Lifecycle
+  componentDidMount() {
+    this.fetchBudget();
+    this.updateTransactions();
+  }
+
+
+  // Helpers
   onDelete() {
     apiPost('/budget/delete', {budgetID: this.state.budget._id}).then(response => {
       if (!response.success) {
         const message = response.message || 'Problem getting budget';
         console.error(message);
+        this.fetchBudget();
       }
       this.setState({deleted: true})
     });
@@ -100,6 +109,19 @@ class Budget extends PureComponent {
 
   hideNewTransactionModal() {
     this.setState({newTransactionModal: false});
+    apiGet(`/transactions/budget/${this.props.match.params.id}`).then( response => {
+      this.setState({transactions: response.transactions});
+    })
+    const id = this.props.match.params.id;
+
+    apiGet(`/budget/${id}`).then( response => {
+      if (!response.success) {
+        const message = response.message || 'Problem getting budget';
+        console.error(message);
+      }
+
+      this.setState({budget: {...response.budgets}});
+    })
   }
 
   updateBudget() {
@@ -142,7 +164,7 @@ class Budget extends PureComponent {
         {
           label: 'Transactions',
           fill: false,
-          lineTension: 0,
+          lineTension: .5,
           backgroundColor: 'rgba(75,192,192,0.4)',
           borderColor: 'rgba(105,203,228,1)',
           borderCapStyle: 'butt',
@@ -162,8 +184,6 @@ class Budget extends PureComponent {
         }
       ]
     };
-
-    console.log(chartData);
 
     return (
       <div className="p-budget">
@@ -186,6 +206,9 @@ class Budget extends PureComponent {
           <div className="p-budget__graph">
             <Line
               data={data}
+              legend={{display: false}}
+              height={100}
+              options={{responsive: true, scales: {xAxes: {display: false}}}}
             />
           </div>
           <TransactionTable transactions={transactions} updateTransactions={this.updateTransactions}/>

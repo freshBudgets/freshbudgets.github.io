@@ -42,7 +42,7 @@ class NewTransactionModal extends PureComponent {
   save() {
     apiPost('/transactions/add', this.state.transaction).then(res => {
       this.props.hideEditModal(true);
-
+      this.setState({transaction: {...this.state.transaction, amount: null, name: ''}})
     })
   }
 

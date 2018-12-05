@@ -53,7 +53,7 @@ class TransactionTable extends PureComponent {
     return(
       <div className="c-card">
         <p>
-          We don't have any transactions stored for this budget categroy.
+          We don't have any transactions stored for this budget category.
         </p>
         <p>
           Remember, a penny saved is a penny earned <span role="img" aria-label="Nice!">👍</span>
