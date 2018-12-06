@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 import { Line } from 'react-chartjs-2';
+import moment from 'moment';
 
 import { apiGet, apiPost } from '../../Functions/api'
 import MobileNav from '../../Components/Nav/MobileNav';
@@ -157,9 +158,12 @@ class Budget extends PureComponent {
     const chartData = transactions.map((t, i) => {
       return t.amount
     })
+    const chartLabels = transactions.map((t) => {
+      return moment(t.date).weekday()
+    })
 
     const data = {
-      labels: chartData,
+      labels: chartLabels,
       datasets: [
         {
           label: 'Transactions',

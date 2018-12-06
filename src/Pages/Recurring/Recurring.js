@@ -39,6 +39,7 @@ class Recurring extends PureComponent {
 
   getBills() {
     apiGet('/bills/all').then(res => {
+      console.log(res);
       this.setState({recurrings: res.bills});
     })
   }

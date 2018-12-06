@@ -51,10 +51,11 @@ class Home extends PureComponent {
             <div className="p-home__feature">
               <div className="p-home__feature_description">
                 <h2>Stay in the loop as you spend</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>
+                  We connect with most major financial institutions to monitor your
+                  spending. Every time a transaction is made on a connected account
+                  we will send you an SMS message to keep you aware of your spending.
+                </p>
               </div>
               <div>
                 <div className="p-home__texting">
@@ -67,10 +68,12 @@ class Home extends PureComponent {
             <div className="p-home__feature">
               <div className="p-home__feature_description">
                 <h2>Be reminded when bills are due</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
               </div>
               <div>
                 <div className="p-home__texting">
@@ -82,10 +85,12 @@ class Home extends PureComponent {
             <div className="p-home__feature">
               <div className="p-home__feature_description">
                 <h2>Get notified of approaching or budget overages</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                 do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.</p>
+                laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
               </div>
               <div>
                 <div className="p-home__texting">
@@ -102,10 +107,8 @@ class Home extends PureComponent {
             <div className="p-home__feature_description">
               <h2>Categorize Spending</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.
+                Fresh Budgets also provides an web-based interface to keep more
+                detailed track of your finances.
               </p>
             </div>
           </div>
@@ -113,10 +116,8 @@ class Home extends PureComponent {
             <div className="p-home__feature_description">
               <h2>Categorize Spending</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.
+                At a glance, see where you are spending too much, or where you
+                could redistribute unused funds to.
               </p>
             </div>
             <MockBrowser width={500} src={HomeImg} />

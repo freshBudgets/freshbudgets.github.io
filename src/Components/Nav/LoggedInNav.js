@@ -16,7 +16,7 @@ class LoggedInNav extends Component {
         </div>
         <div className="p-nav__items">
           <Link to="/dashboard" className="p-nav__item">
-            <i className="fas fa-list"></i>
+            <i className="fas fa-chart-pie"></i>
             <div className="p-nav__item_sub">Budgets</div>
           </Link>
           <Link to="/recurring" className="p-nav__item">
@@ -24,7 +24,7 @@ class LoggedInNav extends Component {
             <div className="p-nav__item_sub">Recurring</div>
           </Link>
           <Link to="/accounts" className="p-nav__item">
-            <i className="fas fa-money-check-alt"></i>
+            <i className="fas fa-dollar-sign"></i>
             <div className="p-nav__item_sub">Accounts</div>
           </Link>
           <Link to="/settings" className="p-nav__item">
