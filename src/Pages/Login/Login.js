@@ -26,7 +26,8 @@ class Login extends PureComponent {
     super(props);
 
     this.state = {
-      formattedPhoneNumber: ''
+      formattedPhoneNumber: '',
+      isVerified: false,
     }
 
     this.changePhoneNumber = this.changePhoneNumber.bind(this);
@@ -38,7 +39,10 @@ class Login extends PureComponent {
       password: this.refs.password.value.trim()
     }
 
-    this.props.loginUser(creds);
+    this.props.loginUser(creds).then((res) => {
+      this.setState({isVerified: res.isVerified})
+      console.log('poop', res);
+    });
   }
 
   changePhoneNumber(e) {
@@ -50,7 +54,7 @@ class Login extends PureComponent {
   render() {
     const { errorMessage, isAuthenticated, isFetching, user} = this.props;
     if (isAuthenticated && !user.isVerified) return  <Redirect to="/verify_phone"/>;
-    if (isAuthenticated) return <Redirect to="/dashboard"/>;
+    if (isAuthenticated && user.isVerified ) return <Redirect to="/dashboard"/>;
 
     return (
       <SideBarView isFetching={isFetching}>

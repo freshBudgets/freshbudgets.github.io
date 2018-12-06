@@ -26,10 +26,11 @@ import {
 
 const INITIAL_STATE = {
   isFetching: false,
-  isAuthenticated: isAuthenticated(),
+  isAuthenticated: isAuthenticated() || false,
   user: {
     firstName: '',
     lastName: '',
+    email: '',
     isVerified: false,
   },
   errorMap: {},
@@ -48,6 +49,7 @@ function user(state = INITIAL_STATE, action) {
         isAuthenticated: false
       }
     case LOGIN_SUCCESS:
+      console.log(LOGIN_SUCCESS);
       return {
         ...state,
         isAuthenticated: true,
@@ -55,7 +57,8 @@ function user(state = INITIAL_STATE, action) {
         user: {
           firstName: action.user.firstName,
           lastName: action.user.lastName,
-          isVerified: action.user.isVerified
+          isVerified: action.user.isVerified,
+          email: action.user.email,
         }
       }
     case LOGIN_FAILURE:
@@ -81,7 +84,8 @@ function user(state = INITIAL_STATE, action) {
         user: {
           firstName: action.user.firstName,
           lastName: action.user.lastName,
-          isVerified: action.user.isVerified
+          isVerified: action.user.isVerified,
+          email: action.user.email
         },
         errorMap: {}
       }

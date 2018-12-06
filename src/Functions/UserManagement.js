@@ -15,6 +15,11 @@ const getToken = () => {
   return Cookies.get('token');
 }
 
+/* tricky little ricky function
+  0 - !authed
+  1 - Authed, !verified
+  2 - authed, verified
+*/
 const isAuthenticated = () => {
   const token = Cookies.get('token');
   let tokenIsStored = false;
@@ -22,6 +27,7 @@ const isAuthenticated = () => {
   if (store) {
     const state = store.getState();
     const isAuthenticated = state.user.isAuthenticated;
+
     if (token) tokenIsStored = token.length > 10;
 
     if (isAuthenticated && tokenIsStored) {
@@ -34,7 +40,14 @@ const isAuthenticated = () => {
       ret = false
     }
 
-    return ret;
+    let int = 0;
+    const isVerified = state.user.user.isVerified;
+    console.log('isVerified', isVerified, state.user);
+    if (ret && !isVerified) int = 1;
+    else if (ret && isVerified) int = 2;
+
+    console.log(int);
+    return int;
   }
 }
 

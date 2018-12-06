@@ -7,15 +7,22 @@ const AuthenticatedRoute = ({component: Component, ...rest}) => {
   return (
     <Route
       {...rest}
-      render={(props) => isAuthenticated() === true
-        ?
-        <div className="c-site">
-          <Nav />
-          <div className="c-content_wrapper">
-            <Component {...props} />
-          </div>
-        </div>
-        : <Redirect to='/login' />}
+      render={(props) => {
+        if (isAuthenticated() === 2) {
+          return (
+            <div className="c-site">
+              <Nav />
+              <div className="c-content_wrapper">
+                <Component {...props} />
+              </div>
+            </div>
+          )
+        } else if (isAuthenticated() === 1) {
+          return (<Redirect to='/verify_phone' />)
+        } else if (isAuthenticated() === 0) {
+          return (<Redirect to='/login' />)
+        }
+      }}
     />
   )
 }

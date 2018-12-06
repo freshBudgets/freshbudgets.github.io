@@ -20,10 +20,9 @@ const defaultProps = {
   getSettings: _noop,
   saveSettings: _noop,
   user: {
-    settings: {
-      email: false,
-      sms: false,
-    }
+    firstName: '',
+    lastName: '',
+    email: '',
   }
 }
 
@@ -62,11 +61,20 @@ class Settings extends PureComponent {
   }
 
   render() {
-    const { settings } = this.props;
+    const { settings, user } = this.props;
 
     return (
       <div className="p-settings">
         <div className="p-settings__header"><MobileNav />Settings</div>
+        <div className="c-card p-settings__card">
+          <div className="c-card_header">Account Details</div>
+          <div className="p-setting__account_entry">
+            <b>Name:</b> {user.firstName} {user.lastName}
+          </div>
+          <div>
+            <b>Email:</b> {user.email}
+          </div>
+        </div>
         <div className="c-card p-settings__card">
           <div className="c-card_header">Notification Settings</div>
           <div className="p-settings__setting">
@@ -92,9 +100,11 @@ class Settings extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
+  const { user } = state.user;
   const { settings } = state;
   return {
-    settings
+    settings,
+    user
   };
 };
 

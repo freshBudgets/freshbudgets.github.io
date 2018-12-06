@@ -20,6 +20,7 @@ $login_container_width: 500px;
 }
 .p-side_bar_view__container_content {
   width: 100%;
+  position: relative;
 }
 .p-side_bar_view__art {
   float: right;
@@ -28,6 +29,13 @@ $login_container_width: 500px;
   background-color: #1E3743;
   height: 100%;
   width: calc(100% - #{$login_container_width});
+}
+
+.p-side_bar_view__spinner_holder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }
 
 @media (max-width: 1100px) {

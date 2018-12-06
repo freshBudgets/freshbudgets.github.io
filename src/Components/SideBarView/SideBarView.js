@@ -19,7 +19,8 @@ class SideBarView extends Component {
         <div className="p-side_bar_view__art"></div>
         <div className="p-side_bar_view__container">
           <div className="p-side_bar_view__container_content">
-            { isFetching ? <InfiniteSpinner /> : children }
+            {children}
+            { isFetching ? <div className="p-side_bar_view__spinner_holder"><InfiniteSpinner /></div> :  null}
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import { apiPost, apiGet } from '../Functions/api';
+import { apiPost } from '../Functions/api';
 import { createUser, destroyUser } from '../Functions/UserManagement';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
@@ -36,22 +36,18 @@ export function loginUser(creds) {
   return dispatch => {
     dispatch(requestLogin(creds))
 
-    apiPost('/login', creds).then( response => {
-      if (!response.success) {
-        dispatch(loginError(response.message));
-        return Promise.reject(response.message);
-      }
-      createUser(response.token);
-
-      return apiGet('/user', response.token).then( response => {
+    return new Promise((resolve, reject) => {
+      apiPost('/login', creds).then( response => {
         if (!response.success) {
           dispatch(loginError(response.message));
-          return Promise.reject(response.message);
+          return reject(response.message);
         }
+        createUser(response.token);
+        dispatch(receiveLogin(response.user))
 
-        dispatch(receiveLogin(response.user));
-      })
-    }).catch(err => console.log(err));
+        resolve(response.user);
+      }).catch(err => console.log(err));
+    })
   }
 }
 
@@ -119,14 +115,16 @@ export function signupUser(creds) {
   return dispatch => {
     dispatch(requestSignup(creds))
 
-    return apiPost('/signup', creds).then( response => {
-      if (!response.success) {
-        dispatch(signupError(response.errorMap));
-        return Promise.reject(response.errorMap);
-      }
-      createUser(response.token);
-      dispatch(receiveSignup(response.user));
-    }).catch(err => console.log(err));
+    return new Promise((resolve, reject) => {
+      apiPost('/signup', creds).then( response => {
+        if (!response.success) {
+          dispatch(signupError(response.errorMap));
+          reject(response.errorMap);
+        }
+        createUser(response.token);
+        dispatch(receiveSignup(response.user));
+      }).catch(err => console.log(err));
+    });
   }
 }
 
