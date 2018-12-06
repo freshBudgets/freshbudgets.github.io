@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-const NotAuthenticatedRoute = ({component: Component, ...rest}) => {
+const LandingRute = ({component: Component, ...rest}) => {
   return (
     <Route {...rest}
       render={(props) =>
@@ -9,4 +9,4 @@ const NotAuthenticatedRoute = ({component: Component, ...rest}) => {
       } />
   )}
 
-export default NotAuthenticatedRoute;
+export default LandingRute;

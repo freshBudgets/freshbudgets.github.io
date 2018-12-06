@@ -48,7 +48,8 @@ class Login extends PureComponent {
   }
 
   render() {
-    const { errorMessage, isAuthenticated, isFetching } = this.props;
+    const { errorMessage, isAuthenticated, isFetching, user} = this.props;
+    if (isAuthenticated && !user.isVerified) return  <Redirect to="/verify_phone"/>;
     if (isAuthenticated) return <Redirect to="/dashboard"/>;
 
     return (
@@ -74,12 +75,13 @@ class Login extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated, errorMessage, isFetching } = state.user;
+  const { isAuthenticated, errorMessage, isFetching, user } = state.user;
 
   return {
     isAuthenticated,
     errorMessage,
     isFetching,
+    user,
   }
 }
 
