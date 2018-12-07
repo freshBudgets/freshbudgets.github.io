@@ -34,6 +34,7 @@ class EditTransaction extends PureComponent {
     this.save = this.save.bind(this);
     this.delete = this.delete.bind(this);
     this.handleChangeBudget = this.handleChangeBudget.bind(this);
+    this.lockTransaction = this.lockTransaction.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +67,12 @@ class EditTransaction extends PureComponent {
     })
   }
 
+  lockTransaction() {
+    apiPost(`/transactions/save/${this.props.transaction.name}/${this.props.transaction.budget_id}`).then((res) => {
+      console.log(res);
+    })
+  }
+
   delete() {
     const options = {
       transaction_id: this.props.transaction._id,
@@ -92,7 +99,7 @@ class EditTransaction extends PureComponent {
           options={options}
         />
         <div className="p-edit_transactions__lock_category">
-          <input type="checkbox" />
+          <input type="checkbox" onClick={this.lockTransaction}/>
           <div className="p-edit_transactions__lock_category_text">
             Lock transaction to category
           </div>
