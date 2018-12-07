@@ -91,6 +91,12 @@ class EditTransaction extends PureComponent {
           onChange={this.handleChangeBudget}
           options={options}
         />
+        <div className="p-edit_transactions__lock_category">
+          <input type="checkbox" />
+          <div className="p-edit_transactions__lock_category_text">
+            Lock transaction to category
+          </div>
+        </div>
         <div className="p-edit_transactions__actions">
           <button onClick={this.save} style={{marginTop: '16px'}}>Save</button>
           <div onClick={this.delete} className="c-error_text p-budget__delete">Delete Transaction</div>

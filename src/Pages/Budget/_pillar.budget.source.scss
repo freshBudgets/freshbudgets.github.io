@@ -95,3 +95,13 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.p-edit_transactions__lock_category {
+  display: flex;
+  margin-top: $spacing_100;
+  align-items: center;
+}
+
+.p-edit_transactions__lock_category_text {
+  margin-left: $spacing_50;
+}
