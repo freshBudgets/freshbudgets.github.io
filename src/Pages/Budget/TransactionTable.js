@@ -26,7 +26,8 @@ class TransactionTable extends PureComponent {
     this.state = {
       showEditModal: false,
       editingTransaction: {},
-      transactions: this.props.transactions
+      transactions: this.props.transactions,
+      search: '',
     }
 
     this.showEditModal = this.showEditModal.bind(this);
@@ -64,12 +65,18 @@ class TransactionTable extends PureComponent {
 
   render() {
     const {transactions} = this.props;
+    const {search} = this.state;
     if (transactions.length === 0) return this.renderNoTransactions();
 
+    const filteredTransactions = transactions.filter((t) => t.name.toLowerCase().includes(search.toLowerCase()));
     return(
       <div>
+        <div className="p-transaction_table__header">
+          <div className="p-transaction_table__header_text">Transactions This Week</div>
+          <input onChange={(e) => {this.setState({search: e.target.value})}} className="p-transaction_table__search" placeholder="Search" />
+        </div>
         {
-          transactions.map((transaction) => {
+          filteredTransactions.map((transaction) => {
             return (
               <div
                 className="c-card p-budget__transaction c-clickable_card"

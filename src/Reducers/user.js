@@ -34,6 +34,7 @@ const INITIAL_STATE = {
     isVerified: false,
   },
   errorMap: {},
+  message: '',
   settings: {
     email: false,
     sms: false
@@ -59,14 +60,15 @@ function user(state = INITIAL_STATE, action) {
           lastName: action.user.lastName,
           isVerified: action.user.isVerified,
           email: action.user.email,
-        }
+        },
+        errorMap: {...state.error, Maplogin: ''}
       }
     case LOGIN_FAILURE:
       return {
         ...state,
         isFetching: false,
         isAuthenticated: false,
-        errorMap: {login: action.message},
+        errorMap: {...state.errorMap, login: action.message},
       }
     case LOGOUT_SUCCESS:
       return INITIAL_STATE
@@ -87,13 +89,13 @@ function user(state = INITIAL_STATE, action) {
           isVerified: action.user.isVerified,
           email: action.user.email
         },
-        errorMap: {}
+        errorMap: {...state.errorMap, register: ''}
       }
     case SIGNUP_FAILURE:
       return {
         ...state,
         isFetching: false,
-        errorMap: action.errorMap
+        errorMap: {...state.errorMap, register: action.errorMap}
       }
     case VERIFY_CODE_REQUEST:
       return {

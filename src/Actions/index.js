@@ -10,7 +10,7 @@ function requestLogin(creds) {
     type: LOGIN_REQUEST,
     isFetching: true,
     isAuthenticated: false,
-    creds
+    creds,
   }
 }
 
@@ -39,7 +39,7 @@ export function loginUser(creds) {
     return new Promise((resolve, reject) => {
       apiPost('/login', creds).then( response => {
         if (!response.success) {
-          dispatch(loginError(response.message));
+          dispatch(loginError("Invalid phone or password"));
           return reject(response.message);
         }
         createUser(response.token);

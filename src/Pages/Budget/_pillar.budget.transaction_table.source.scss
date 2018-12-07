@@ -5,6 +5,24 @@
   text-align: center;
 }
 
+.p-transaction_table__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing_100;
+  padding-bottom: $spacing_100;
+  border-bottom: 1px solid $dark_gray;
+}
+.p-transaction_table__header {
+  font-weight: bold;
+}
+
+.p-transaction_table__search {
+  width: 50%;
+  padding: $spacing_50 $spacing_75;
+  margin-bottom: 0;
+}
+
 .c-card.p-budget__transaction {
   padding: $spacing_100;
   display: flex;

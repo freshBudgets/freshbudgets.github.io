@@ -42,11 +42,10 @@ const isAuthenticated = () => {
 
     let int = 0;
     const isVerified = state.user.user.isVerified;
-    console.log('isVerified', isVerified, state.user);
+
     if (ret && !isVerified) int = 1;
     else if (ret && isVerified) int = 2;
 
-    console.log(int);
     return int;
   }
 }

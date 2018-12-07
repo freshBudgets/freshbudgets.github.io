@@ -14,7 +14,7 @@ const propTypes = {
   loginUser: PropTypes.func,
   isFetching: PropTypes.bool,
   isAuthenticated: PropTypes.bool,
-  errorMessage: PropTypes.string,
+  errorMap: PropTypes.object,
 };
 
 const defaultProps = {
@@ -41,7 +41,6 @@ class Login extends PureComponent {
 
     this.props.loginUser(creds).then((res) => {
       this.setState({isVerified: res.isVerified})
-      console.log('poop', res);
     });
   }
 
@@ -52,7 +51,7 @@ class Login extends PureComponent {
   }
 
   render() {
-    const { errorMessage, isAuthenticated, isFetching, user} = this.props;
+    const { errorMap, isAuthenticated, isFetching, user} = this.props;
     if (isAuthenticated && !user.isVerified) return  <Redirect to="/verify_phone"/>;
     if (isAuthenticated && user.isVerified ) return <Redirect to="/dashboard"/>;
 
@@ -64,8 +63,8 @@ class Login extends PureComponent {
         <button onClick={(event) => this.handleClick(event)}>
           Login
         </button>
-        {errorMessage &&
-          <p>{errorMessage}</p>
+        {errorMap && errorMap.login &&
+          <p>{errorMap.login}</p>
         }
         <div className="p-login__extra_links">
           <Link to="/register" className="p-login__links">Register</Link>{' '}/{' '}
@@ -79,11 +78,11 @@ class Login extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated, errorMessage, isFetching, user } = state.user;
+  const { isAuthenticated, errorMap, isFetching, user } = state.user;
 
   return {
     isAuthenticated,
-    errorMessage,
+    errorMap,
     isFetching,
     user,
   }

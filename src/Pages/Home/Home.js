@@ -69,10 +69,7 @@ class Home extends PureComponent {
               <div className="p-home__feature_description">
                 <h2>Be reminded when bills are due</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                  Get automatic SMS notifications when upcoming bills need to be paid.
                 </p>
               </div>
               <div>
@@ -86,10 +83,7 @@ class Home extends PureComponent {
               <div className="p-home__feature_description">
                 <h2>Get notified of approaching or budget overages</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.
+                  You'll never hit you limit if you're aware of how close you are to it. 
               </p>
               </div>
               <div>
