@@ -125,10 +125,6 @@ class Recurring extends PureComponent {
           <div><MobileNav />Recurring Transactions</div>
           <i className="fa fa-plus p-budget__settings_icon" onClick={this.showNewModal}></i>
         </div>
-        <p className="c-tip">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
         { recurrings.length === 0 ? this.renderNoRecurring() :
           <div>
             { recurrings.map(recurring => {
