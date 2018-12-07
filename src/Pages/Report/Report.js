@@ -1,12 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { _noop } from 'lodash';
 import { apiGet } from '../../Functions/api'
 import { FormatPrice } from '../../Functions/Price'
 
-import { loginUser } from '../../Actions';
-import SideBarView from '../../Components/SideBarView';
 import './_pillar.report.source.scss';
 
 class Login extends PureComponent {
