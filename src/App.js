@@ -13,6 +13,7 @@ import Register from './Pages/Register';
 import VerifyPhone from './Pages/VerifyPhone';
 import Accounts from './Pages/Accounts';
 import Recurring from './Pages/Recurring';
+import Report from './Pages/Report';
 import Dashboard from './Pages/Dashboard';
 import Budget from './Pages/Budget';
 import CreateBudget from './Pages/CreateBudget';
@@ -30,6 +31,7 @@ class App extends Component {
 
           <AuthenticatedRouteNoNav authed={ isAuthenticated() } path="/verify_phone" component={ VerifyPhone } />
           <AuthenticatedRoute authed={ isAuthenticated() } path="/accounts" component={ Accounts } />
+          <AuthenticatedRoute authed={ isAuthenticated() } path="/report" component={ Report } />
           <AuthenticatedRoute authed={ isAuthenticated() } path="/recurring" component={ Recurring } />
           <AuthenticatedRoute authed={ isAuthenticated() } path='/dashboard' component={ Dashboard } />
           <AuthenticatedRoute authed={ isAuthenticated() } path='/budget/:id' component={ Budget } />

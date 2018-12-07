@@ -1,0 +1,22 @@
+@import '../../Public/tools.scss';
+
+.p-report {
+  @include max-width;
+  margin-top: $spacing_100;
+}
+
+.p-report__header {
+  font-size: $text_large;
+  font-weight: bold;
+  margin-bottom: $spacing_100;
+}
+
+.p-report__budget {
+  margin-bottom: $spacing_100;
+  display: flex;
+  justify-content: space-between;
+}
+
+.p-report__budget_name {
+  font-weight: bold;
+}

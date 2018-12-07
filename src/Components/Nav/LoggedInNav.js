@@ -19,6 +19,10 @@ class LoggedInNav extends Component {
             <i className="fas fa-chart-pie"></i>
             <div className="p-nav__item_sub">Budgets</div>
           </Link>
+          <Link to="/report" className="p-nav__item">
+            <i className="fas fa-chart-area"></i>
+            <div className="p-nav__item_sub">Report</div>
+          </Link>
           <Link to="/recurring" className="p-nav__item">
             <i className="fas fa-sync-alt"></i>
             <div className="p-nav__item_sub">Recurring</div>

@@ -64,9 +64,8 @@ class Budget extends PureComponent {
     apiGet(`/budget/${id}`).then( response => {
       if (!response.success) {
         const message = response.message || 'Problem getting budget';
-        console.error(message);
       }
-
+      
       this.setState({budget: {...response.budgets}});
     })
   }
