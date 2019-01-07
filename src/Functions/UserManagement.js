@@ -21,6 +21,7 @@ const getToken = () => {
   2 - authed, verified
 */
 const isAuthenticated = () => {
+  return 2;
   const token = Cookies.get('token');
   let tokenIsStored = false;
   let ret = false;

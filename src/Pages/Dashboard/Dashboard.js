@@ -73,7 +73,7 @@ class Dashboard extends PureComponent {
       <div className="p-dashboard">
           <div className="p-dashboard__content">
             { budgets.length === 0 ? this.renderNoBudgets() : <div>
-              <div className="p-dashboard__title"><MobileNav />Budget Overview</div>
+              <div className="p-dashboard__title">Budget Overview</div>
               <Progress total={total.total} spent={total.spent} />
               <div className="p-dashboard__budgets_wrapper c-card">
                 <div className="c-card_header">

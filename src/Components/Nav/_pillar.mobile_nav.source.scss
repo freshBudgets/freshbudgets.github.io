@@ -1,10 +1,16 @@
 @import '../../Public/tools.scss';
 
 .p-mobile_nav {
-  margin-right: $spacing_50;
+  width: 100%;
   display: none;
+  box-shadow: 0 0 4px rgba(0,0,0,0.12);
+  height: $nav_width;
 }
-
+.p-movile_nav__trigger {
+  display: flex;
+  align-items: center;
+  padding: 0 $spacing_100;
+}
 .p-mobile_nav__nav {
   position: fixed;
   top: 0;
@@ -18,11 +24,31 @@
   width: 100%;
   height: 100vh;
   background: rgba(0,0,0,0.3);
+  z-index: 2;
 }
-
+.p-mobile_nav__menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background: white;
+}
+.p-mobile_nav__menu_header {
+  display: flex;
+  justify-content: space-between;
+  height: $nav_width;
+  border-bottom: 1px solid $dark_gray;
+}
+.p-mobile_nav__item {
+  width: 100%;
+  padding: $spacing_200 $spacing_100;
+  text-align: center;
+}
 @media (max-width: 550px) {
   .p-mobile_nav {
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
   }
 
   .p-nav {

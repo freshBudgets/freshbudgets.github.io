@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import MobileNav from './MobileNav';
+import Items from './Items';
 
 import './_pillar.nav.source.scss';
 
@@ -9,34 +11,30 @@ const defaultProps = {}
 
 class LoggedInNav extends Component {
   render() {
+    console.log(Items);
     return (
-      <nav className="p-nav p-nav--logged_in">
-        <div className="p-nav__logo">
-          fb
+      <div>
+        <MobileNav/>
+        <div className="p-desktop_nav">
+          <nav className="p-nav p-nav--logged_in">
+            <Link to="/dashboard" className="p-nav__logo">
+              fb
+            </Link>
+            <div className="p-nav__items">
+              { Items.map(item => {
+                return (
+                  <Link to={item.link} className="p-nav__item">
+                    <div className="p-nav__item_sub">{item.label}</div>
+                  </Link>
+                )
+              })}
+            </div>
+            <Link to="/settings" className="p-nav__user">
+              Cole Johnson
+            </Link>
+          </nav>
         </div>
-        <div className="p-nav__items">
-          <Link to="/dashboard" className="p-nav__item">
-            <i className="fas fa-chart-pie"></i>
-            <div className="p-nav__item_sub">Budgets</div>
-          </Link>
-          <Link to="/report" className="p-nav__item">
-            <i className="fas fa-chart-area"></i>
-            <div className="p-nav__item_sub">Report</div>
-          </Link>
-          <Link to="/recurring" className="p-nav__item">
-            <i className="fas fa-sync-alt"></i>
-            <div className="p-nav__item_sub">Recurring</div>
-          </Link>
-          <Link to="/accounts" className="p-nav__item">
-            <i className="fas fa-dollar-sign"></i>
-            <div className="p-nav__item_sub">Accounts</div>
-          </Link>
-          <Link to="/settings" className="p-nav__item">
-            <i className="fa fa-cog"></i>
-            <div className="p-nav__item_sub">Settings</div>
-          </Link>
-        </div>
-      </nav>
+      </div>
     );
   }
 }

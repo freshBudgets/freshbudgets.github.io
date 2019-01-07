@@ -1,18 +1,15 @@
 @import '../../Public/tools.scss';
 
 .p-nav {
-  width: $nav_width;
-  height: 100vh;
+  height: $nav_width;
+  width: 100%;
   display: flex;
   color: $dark_gray;
   font-weight: bold;
   box-sizing: border-box;
   background: $white;
   z-index: 1;
-  float: left;
   text-align: center;
-  flex-direction: column;
-  position: fixed;
   z-index: 1;
   box-shadow: 0 0 4px rgba(0,0,0,0.12);
 }
@@ -25,32 +22,47 @@
 .p-nav__logo {
   color: $black;
   font-size: $text_large;
-  margin: $spacing_100 0;
+  margin-right: $spacing_100;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid $dark_gray;
+  font-weight: bold;
 }
 .p-nav__items {
   font-size: $text_body;
   font-weight: normal;
   text-align: center;
-  width: 100%;
+  display: flex;
+  flex-grow: 1;
 }
 .p-nav__item {
   border-bottom: 2px solid $white;
   cursor: pointer;
-  text-align: center;
-  display: block;
-  // margin: $spacing_25 0;
-  padding: $spacing_50 0;
+  padding: 0 $spacing_100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
 
   &:hover {
     background: $light_gray
   }
 }
-.p-nav__item_sub {
+.p-nav__user {
+  display: flex;
+  align-items: center;
+  padding: 0 $spacing_100;
+  border-left: 1px solid $dark_gray;
   font-size: 10px;
   text-transform: uppercase;
   font-weight: bold;
-  margin-top: $spacing_50;
+  color: $black;
 }
+
 .p-nav--logged_in .p-nav__item {
   color: $black;
 }
@@ -63,6 +75,10 @@
   top: 0;
   left: 0;
   z-index: 0;
+}
+
+.p-desktop_nav {
+  height: $nav_width;
 }
 
 @media (max-width: $mobile_nav_show) {

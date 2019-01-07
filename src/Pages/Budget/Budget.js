@@ -148,6 +148,10 @@ class Budget extends PureComponent {
     })
   }
 
+  resize() {
+    console.log('poop');
+  }
+
   render() {
     const { budget, transactions } = this.state;
     if (this.state.deleted) return <Redirect to="/dashboard" />;
@@ -166,10 +170,10 @@ class Budget extends PureComponent {
       datasets: [
         {
           label: 'Transactions',
-          fill: false,
+          fill: true,
           lineTension: .5,
-          backgroundColor: 'rgba(75,192,192,0.4)',
-          borderColor: 'rgba(105,203,228,1)',
+          backgroundColor: '#F8F9FA',
+          borderColor: '#A5ABB2',
           borderCapStyle: 'butt',
           borderDash: [],
           borderDashOffset: 0.0,
@@ -188,11 +192,33 @@ class Budget extends PureComponent {
       ]
     };
 
+    const options = {
+      onResize: this.resize,
+      responsive: true,
+      maintainAspectRatio: false,
+      responsiveAnimationDuration: 0,
+      tooltips: { enabled: false},
+      scales: {
+        xAxes: [{
+          display: false,
+          gridLines: {
+            display:false
+          }
+        }],
+        yAxes: [{
+          display: false,
+          gridLines: {
+            display:false
+          }
+        }]
+      }
+    }
+
     return (
       <div className="p-budget">
         <div className={`p-budget__header p-budget__header-${headerType}`}>
           <div className="p-budget__title_bar">
-            <div className="p-budget__title"><MobileNav/>{budget.budgetName}</div>
+            <div className="p-budget__title">{budget.budgetName}</div>
             <i className="fa fa-cog p-budget__settings_icon" onClick={this.showModal}></i>
           </div>
           <div className="p-budget__left">${left}</div>
@@ -201,19 +227,20 @@ class Budget extends PureComponent {
           </div>
           <div className="p-budget__left_unit">Left in your budget this week</div>
         </div>
+        <div className={`p-budget__graph p-budget__graph--${headerType}`}>
+          <Line
+            data={data}
+            legend={{display: false}}
+            height={50}
+            options={options}
+          />
+        </div>
         <div className="p-budget__transactions">
           <div className="p-budget__transactions_header">
             <div>Transactions</div>
             <i className="fa fa-plus fa-sm" onClick={this.showNewTransactionModal}></i>
           </div>
-          <div className="p-budget__graph">
-            <Line
-              data={data}
-              legend={{display: false}}
-              height={100}
-              options={{responsive: true, scales: {xAxes: {display: false}}}}
-            />
-          </div>
+
           <TransactionTable transactions={transactions} updateTransactions={this.updateTransactions}/>
         </div>
 

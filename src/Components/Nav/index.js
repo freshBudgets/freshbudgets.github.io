@@ -32,7 +32,8 @@ class Nav extends PureComponent {
   render() {
     const { isAuthenticated } = this.props;
     if (this.state.shouldRedirect) return <Redirect to="/login" />
-    return isAuthenticated ? <div className="p-desktop_nav"><LoggedInNav /></div> : <LoggedOutNav />
+    // return isAuthenticated ? <div className="p-desktop_nav"><LoggedInNav /></div> : <LoggedOutNav />
+    return <LoggedInNav />;
   }
 }
 

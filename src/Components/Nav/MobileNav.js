@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux'
 // import { _noop } from 'lodash';
 import LoggedInNav from './LoggedInNav';
+import Items from './Items';
 
 import './_pillar.mobile_nav.source.scss';
 
@@ -31,11 +32,34 @@ class MobileNav extends Component {
     const { isShowing } = this.state;
     return (
       <div className="p-mobile_nav">
-        <div className="p-mobile_nav__button" onClick={this.toggleNav}><i className="fa fa-bars"></i></div>
+        <div className="p-nav__logo">
+          fb
+        </div>
+        <div className="p-movile_nav__trigger" onClick={this.toggleNav}>
+          <i className="fa fa-bars"></i>
+        </div>
         { isShowing ?
           <div className="p-mobile_nav__nav">
             <div className="p-movile_nav__bg" onClick={this.toggleNav}/>
-            <LoggedInNav />
+            <div className="p-mobile_nav__menu">
+              <div className="p-mobile_nav__menu_header">
+                <div className="p-nav__logo">
+                  fb
+                </div>
+                <div className="p-nav__user">
+                  Cole Johnson
+                </div>
+              </div>
+              <div className="p-mobile_nav__items">
+                { Items.map(item => {
+                  return <Link to={item.link} >
+                    <div className="p-mobile_nav__item">
+                      {item.label}
+                    </div>
+                  </Link>
+                })}
+              </div>
+            </div>
           </div> : null }
       </div>
     );

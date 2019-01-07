@@ -6,7 +6,7 @@
   height: 220px;
   padding: $spacing_100;
   box-sizing: border-box;
-  margin-bottom: $spacing_100;
+  // margin-bottom: $spacing_100;
 
   &.p-budget__header-red {
     background: $dark_red;
@@ -30,6 +30,17 @@
 }
 .p-budget__graph {
   margin-bottom: $spacing_200;
+  width: 100%;
+  height: 100px !important;
+  position: relative;
+
+  &--red {
+    background: $dark_red;
+  }
+
+  &--green {
+    background: $dark_green;
+  }
 }
 .p-budget__left_unit {
   font-size: $text_body;

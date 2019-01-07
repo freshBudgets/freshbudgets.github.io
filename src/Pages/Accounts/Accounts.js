@@ -37,7 +37,9 @@ class Accounts extends PureComponent {
 
   componentWillUnmount() {
     const plaid = document.getElementById('plaid-link-iframe-1');
-    plaid.style.display = 'none';
+    if (plaid) {
+      plaid.style.display = 'none';      
+    }
   }
 
   handleOnSuccess(token, metadata) {

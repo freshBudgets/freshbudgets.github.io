@@ -12,9 +12,7 @@ const AuthenticatedRoute = ({component: Component, ...rest}) => {
           return (
             <div className="c-site">
               <Nav />
-              <div className="c-content_wrapper">
-                <Component {...props} />
-              </div>
+              <Component {...props} />
             </div>
           )
         } else if (isAuthenticated() === 1) {
